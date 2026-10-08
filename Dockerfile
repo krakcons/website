@@ -5,7 +5,9 @@ RUN npm ci
 COPY . .
 ARG EMDASH_DATABASE=postgres
 ARG EMDASH_STORAGE=s3
-ARG EMDASH_SITE_URL=https://krakconsultants.com
+# Accept the shared deployment helper's public-origin argument.
+ARG VITE_SITE_URL=https://krakconsultants.com
+ARG EMDASH_SITE_URL=${VITE_SITE_URL}
 ENV EMDASH_DATABASE=$EMDASH_DATABASE
 ENV EMDASH_STORAGE=$EMDASH_STORAGE
 ENV EMDASH_SITE_URL=$EMDASH_SITE_URL

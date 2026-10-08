@@ -1,0 +1,22 @@
+name: Deploy
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    uses: krakcons/krakstack/.github/workflows/project-deploy.yml@main
+    permissions:
+      contents: read
+      packages: write
+    with:
+      build_image: true
+      build_context: .
+      dockerfile: Dockerfile
+      project_slug: krak-consultants-website-prod
+      krak_group: app
+      krak_task: krak-consultants-website
+      vite_site_url: https://newwebsite.krakconsultants.net
+    secrets:
+      KRAK_RELEASE_TOKEN: ${{ secrets.KRAK_RELEASE_TOKEN }}

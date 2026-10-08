@@ -102,33 +102,49 @@ Operational notes:
 
 ## CI and GHCR images
 
-GitHub Actions in `.github/workflows/container.yml` typechecks and builds each
-pull request, including its PostgreSQL/S3 Docker image without publishing it.
-Successful pushes to `main` (or manual workflow runs on `main`) publish:
+GitHub Actions in `.github/workflows/production-build.yml` uses the same shared
+build-and-deploy helper as the KrakStack template:
+`krakcons/krakstack/.github/workflows/project-deploy.yml@main`.
+Pushes to `main` build the PostgreSQL/S3 Docker image and publish:
 
 - `ghcr.io/krakcons/website:latest`
-- `ghcr.io/krakcons/website:sha-<full-commit-sha>`
+- `ghcr.io/krakcons/website:<full-commit-sha>` (used by the admin release)
 
 Images target `linux/amd64`, matching the Krak cluster. Actions authenticate with
 the repository's built-in `GITHUB_TOKEN`; no registry password is needed in
 repository secrets. The package is linked to this repository through OCI labels.
 Keep it private; the cluster's registry account must have access to the package.
 
-Set the repository Actions variable `EMDASH_SITE_URL` if the public origin differs
-from `https://krakconsultants.com`. Changing it requires a new image build.
+The workflow's `vite_site_url` is `https://newwebsite.krakconsultants.net`.
+The Dockerfile maps that shared helper argument to `EMDASH_SITE_URL` for the
+Astro build. Change the workflow input when changing the public origin, and set
+the same `EMDASH_SITE_URL` in the admin project's runtime variables.
 Database, S3, and encryption credentials belong in the admin project's runtime
 variables, never in Actions variables or Docker build arguments.
+
+After publishing, the shared helper releases the exact commit-tagged image through
+`https://admin.krakconsultants.net`. It targets project
+`krak-consultants-website-prod`, group `app`, task `krak-consultants-website`.
+Pull requests do not trigger this workflow. Run type checking locally before
+pushing; the Docker build runs `npm run build` but not `npm run typecheck`.
+
+Configure the Actions secret `KRAK_RELEASE_TOKEN` in this repository (or its
+`production` environment) with a token authorized to release this project.
+The workflow cannot complete an authenticated release without this secret.
+The release job uses the GitHub `production` environment; any configured approval
+rules still apply. Database and CMS content are not imported by this workflow.
 
 ### Admin project handoff
 
 1. Create the website project with PostgreSQL and private S3 storage.
-2. Use `ghcr.io/krakcons/website:latest` (or the digest from the successful Actions
-   run summary for reproducibility), application port `4321`, and one replica.
+2. Use `ghcr.io/krakcons/website:latest` initially (or a full commit-SHA tag for
+   reproducibility), application port `4321`, and one replica.
 3. Supply the runtime variables listed above. For private GHCR pulls, use
    `REGISTRY_USERNAME` and `REGISTRY_TOKEN` with package read access, or inherit
    the shared registry credentials if that account can access this package.
-4. Deploy through the admin. Publishing an image does **not** automatically
-   redeploy the cluster project; trigger a new release to pull an updated image.
+4. Deploy initially through the admin. With `KRAK_RELEASE_TOKEN` configured,
+   subsequent successful `main` builds trigger an admin release automatically
+   using the full commit-SHA image tag, rather than relying on `latest` updates.
 5. Complete protected CMS setup and migrate the approved local CMS content and
    media before switching production traffic. The Git repository contains the
    starter seed, not the live SQLite database or uploaded media.
