@@ -1,0 +1,260 @@
+---
+import {
+  getMenuWithCacheHint,
+  getSiteSettingsWithCacheHint,
+  getTranslations,
+} from "emdash";
+import { EmDashHead, EmDashBodyStart, EmDashBodyEnd } from "emdash/ui";
+import { createPublicPageContext } from "emdash/page";
+import "../styles/theme.css";
+import { navigation } from "../utils/navigation";
+import { resolveStarterSiteIdentity } from "../utils/site-identity";
+import { getLocale, localePath, messages } from "../utils/i18n";
+import LanguageSwitcher from "../components/LanguageSwitcher.astro";
+
+interface Props {
+  title: string;
+  pageTitle?: string | null;
+  description?: string | null;
+  image?: string | null;
+  canonical?: string | null;
+  /** Pass content reference for plugin page contributions on content pages */
+  content?: { collection: string; id: string; slug?: string | null };
+}
+
+const { title, pageTitle, description, image, canonical, content } =
+  Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const t = messages[locale];
+const link = (path: string) => localePath(path, locale);
+const otherLocale = locale === "en" ? "fr" : "en";
+let otherUrl = localePath(Astro.url.pathname, otherLocale);
+if (content) {
+  const { translations } = await getTranslations(
+    content.collection,
+    content.id,
+  );
+  const sibling = translations.find(
+    (entry) =>
+      entry.locale === otherLocale &&
+      entry.status === "published" &&
+      entry.slug,
+  );
+  if (sibling?.slug) {
+    const path =
+      content.collection === "posts"
+        ? `/posts/${sibling.slug}`
+        : sibling.slug === "home"
+          ? "/"
+          : `/${sibling.slug}`;
+    otherUrl = localePath(path, otherLocale);
+  } else {
+    otherUrl = localePath("/", otherLocale);
+  }
+}
+const [settingsResult, menuResult] = await Promise.all([
+  getSiteSettingsWithCacheHint(),
+  getMenuWithCacheHint("primary", { locale }),
+]);
+if (Astro.cache?.enabled) {
+  Astro.cache.set(settingsResult.cacheHint);
+  Astro.cache.set(menuResult.cacheHint);
+}
+
+const { siteTitle, siteTagline, siteLogo } = resolveStarterSiteIdentity(
+  settingsResult.data,
+);
+const titleIncludesSiteName =
+  title === siteTitle ||
+  title.endsWith(` | ${siteTitle}`) ||
+  title.endsWith(` — ${siteTitle}`);
+const fullTitle = titleIncludesSiteName ? title : `${title} — ${siteTitle}`;
+const pageDescription =
+  description ?? (locale === "fr" ? t.tagline : siteTagline);
+const menuItems = menuResult.data?.items.length
+  ? menuResult.data.items
+  : navigation.map((item, index) => ({
+      ...item,
+      label: t.nav[index],
+      url: link(item.url),
+    }));
+
+const pageCtx = createPublicPageContext({
+  Astro,
+  kind: content ? "content" : "custom",
+  pageType: "website",
+  title: fullTitle,
+  pageTitle: pageTitle ?? title,
+  description: pageDescription,
+  canonical,
+  image,
+  content,
+  siteName: siteTitle,
+});
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <EmDashHead page={pageCtx} />
+  </head>
+  <body>
+    <EmDashBodyStart page={pageCtx} />
+
+    <a class="skip-link" href="#main">
+      {t.skip}
+    </a>
+    <header class="site-header">
+      <div class="identity-bar">
+        <div class="container identity-bar-inner">
+          <span class="canadian-badge">
+            <span aria-hidden="true">🇨🇦</span> {t.proud}
+          </span>
+        </div>
+      </div>
+      <div class="container header-inner">
+        <a class="brand" href={link("/")} aria-label={t.homeLabel}>
+          {siteLogo ? (
+            <img
+              src={siteLogo.url}
+              alt={siteLogo.alt || siteTitle}
+              style="height:48px;width:auto;margin:-8px 0;display:block;"
+            />
+          ) : (
+            <>
+              <span class="brand-word">
+                KRAK<span class="brand-dot">.</span>
+              </span>
+              <span class="brand-subtitle">CONSULTANTS</span>
+            </>
+          )}
+        </a>
+        <nav class="desktop-nav" aria-label={t.primaryNav}>
+          {menuItems.map((item) => (
+            <a
+              href={item.url}
+              aria-current={
+                Astro.url.pathname.replace(/\/$/, "") === item.url
+                  ? "page"
+                  : undefined
+              }
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+        <div class="header-controls">
+          <LanguageSwitcher locale={locale} otherUrl={otherUrl} />
+          <details class="site-menu">
+            <summary>
+              <span class="sr-only">{t.menu}</span>
+              <svg
+                class="menu-open-icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <svg
+                class="menu-close-icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="m6 6 12 12M6 18 18 6" />
+              </svg>
+            </summary>
+            <nav aria-label={t.primaryNav}>
+              {menuItems.map((item) => (
+                <a
+                  href={item.url}
+                  aria-current={
+                    Astro.url.pathname.replace(/\/$/, "") === item.url
+                      ? "page"
+                      : undefined
+                  }
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </details>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+    <section class="contact-strip">
+      <div class="container contact-strip-inner">
+        <div>
+          <p class="eyebrow">{t.tagline}</p>
+          <h2>{t.contactHeading}</h2>
+          <p>{t.contactText}</p>
+        </div>
+        <a class="button button-light" href="mailto:info@krakconsultants.com">
+          {t.contactLink} <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <a class="brand" href={link("/")} aria-label={t.homeLabel}>
+            <span class="brand-word">
+              KRAK<span class="brand-dot">.</span>
+            </span>
+            <span class="brand-subtitle">CONSULTANTS</span>
+          </a>
+          <nav aria-label={t.footerNav}>
+            {menuItems.map((item) => (
+              <a href={item.url}>{item.label}</a>
+            ))}
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span>
+            © {new Date().getFullYear()} {t.rights}
+          </span>
+          <a href="mailto:info@krakconsultants.com">info@krakconsultants.com</a>
+          <LanguageSwitcher locale={locale} otherUrl={otherUrl} />
+        </div>
+      </div>
+    </footer>
+
+    <EmDashBodyEnd page={pageCtx} />
+    <script>
+      document
+        .querySelectorAll<HTMLDetailsElement>(".site-menu")
+        .forEach((menu) => {
+          document.addEventListener("click", (event) => {
+            if (event.target instanceof Node && !menu.contains(event.target))
+              menu.open = false;
+          });
+          menu.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+              menu.open = false;
+              menu.querySelector("summary")?.focus();
+            }
+          });
+        });
+    </script>
+  </body>
+</html>

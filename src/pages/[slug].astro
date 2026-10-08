@@ -1,0 +1,11 @@
+---
+import ContentPage from "../components/ContentPage.astro";
+import { loadCompanyPage } from "../utils/company-page";
+if (Astro.params.slug === "home") return Astro.redirect("/", 301);
+if (Astro.params.slug === "process") return Astro.redirect("/mission", 301);
+const pageResult = await loadCompanyPage(Astro.params.slug ?? "", "en");
+if (Astro.cache?.enabled) Astro.cache.set(pageResult.cacheHint);
+if (!pageResult.data) Astro.response.status = 404;
+---
+
+<ContentPage pageResult={pageResult} />

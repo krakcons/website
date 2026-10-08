@@ -1,0 +1,17 @@
+---
+import Base from "../layouts/Base.astro";
+import { getLocale, localePath, messages } from "../utils/i18n";
+const locale = getLocale(Astro.currentLocale);
+const t = messages[locale];
+---
+
+<Base title={t.notFound}>
+  <section class="container page-hero">
+    <p class="eyebrow">404</p>
+    <h1>{t.notFoundHeading}</h1>
+    <p class="lead">{t.notFoundText}</p>
+    <a class="button" href={localePath("/", locale)}>
+      {t.backHome} <span aria-hidden="true">→</span>
+    </a>
+  </section>
+</Base>

@@ -1,0 +1,69 @@
+---
+import { getSeoMeta, getSiteSettingsWithCacheHint } from "emdash";
+import { Image, PortableText } from "emdash/ui";
+import type { getEmDashEntry } from "emdash";
+import Base from "../layouts/Base.astro";
+import { getLocale, localePath } from "../utils/i18n";
+import { insightMessages } from "../utils/insights-i18n";
+interface Props {
+  post: NonNullable<
+    Awaited<ReturnType<typeof getEmDashEntry<"posts">>>["entry"]
+  >;
+}
+const { post } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const t = insightMessages[locale];
+const link = (path: string) => localePath(path, locale);
+const settings = await getSiteSettingsWithCacheHint();
+if (Astro.cache?.enabled) Astro.cache.set(settings.cacheHint);
+const seo = getSeoMeta(post, {
+  siteTitle: settings.data?.title ?? "KRAK Consultants",
+  siteUrl: process.env.EMDASH_SITE_URL ?? Astro.url.origin,
+  path: Astro.url.pathname,
+});
+---
+
+<Base
+  title={seo.title}
+  description={seo.description}
+  canonical={seo.canonical}
+  image={seo.ogImage}
+  content={{
+    collection: "posts",
+    id: post.data.id,
+    slug: post.data.slug ?? undefined,
+  }}
+>
+  <article class="container page-hero prose">
+    <a class="breadcrumb" href={link("/posts")}>
+      {t.title} <span aria-hidden="true">/</span>
+    </a>
+    {post.data.featured_image && (
+      <div {...post.edit.featured_image}>
+        <Image image={post.data.featured_image} />
+      </div>
+    )}
+    <h1 {...post.edit.title}>{post.data.title}</h1>
+    {post.data.publishedAt && (
+      <p>
+        <time datetime={post.data.publishedAt.toISOString()}>
+          {post.data.publishedAt.toLocaleDateString(
+            locale === "fr" ? "fr-CA" : "en-CA",
+            { year: "numeric", month: "long", day: "numeric" },
+          )}
+        </time>
+      </p>
+    )}
+    <PortableText value={post.data.content ?? []} />
+    <nav class="project-jump-links" aria-label={t.category}>
+      {post.data.terms?.category?.map((term) => (
+        <a href={link(`/category/${term.slug}`)}>{term.label}</a>
+      ))}
+    </nav>
+    <nav class="project-jump-links" aria-label={t.tag}>
+      {post.data.terms?.tag?.map((term) => (
+        <a href={link(`/tag/${term.slug}`)}>{term.label}</a>
+      ))}
+    </nav>
+  </article>
+</Base>

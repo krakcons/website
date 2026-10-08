@@ -1,0 +1,208 @@
+{
+  "collections": [
+    {
+      "slug": "organizations",
+      "label": "Organizations",
+      "labelSingular": "Organization",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "hidden": false,
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Organization name",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "url",
+          "label": "Website",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "logo",
+          "label": "Logo",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "sort_order",
+          "label": "Display order",
+          "type": "integer",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "pages",
+      "label": "Pages",
+      "labelSingular": "Page",
+      "supports": [
+        "drafts",
+        "revisions",
+        "preview",
+        "search",
+        "seo"
+      ],
+      "hidden": false,
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Title",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "heading",
+          "label": "Display heading",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "summary",
+          "label": "Introduction",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "content",
+          "label": "Body",
+          "type": "portableText",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "posts",
+      "label": "Insights",
+      "labelSingular": "Insight",
+      "supports": [
+        "drafts",
+        "revisions",
+        "preview",
+        "scheduling",
+        "search",
+        "seo"
+      ],
+      "hidden": false,
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Title",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "featured_image",
+          "label": "Featured image",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "content",
+          "label": "Content",
+          "type": "portableText",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "excerpt",
+          "label": "Excerpt",
+          "type": "text",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "projects",
+      "label": "Projects",
+      "labelSingular": "Project",
+      "supports": [
+        "drafts",
+        "revisions",
+        "search"
+      ],
+      "hidden": false,
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Project name",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "organization",
+          "label": "Company or organization",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "category",
+          "label": "Project category",
+          "type": "select",
+          "required": true,
+          "unique": false,
+          "validation": {
+            "options": [
+              "Client & nonprofit work",
+              "Internal products",
+              "Open source"
+            ]
+          }
+        },
+        {
+          "slug": "summary",
+          "label": "Short description",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "url",
+          "label": "Website or repository",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "logo",
+          "label": "Project or organization logo",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "repository_url",
+          "label": "GitHub repository",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "sort_order",
+          "label": "Display order (lowest first)",
+          "type": "integer",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ],
+  "version": "bb6bdeb1b5a2812b"
+}

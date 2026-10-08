@@ -1,0 +1,1533 @@
+{
+  "$schema": "https://emdashcms.com/seed.schema.json",
+  "version": "1",
+  "meta": {
+    "name": "KRAK Consultants",
+    "description": "Canadian-first digital solutions for organizations working for good.",
+    "author": "KRAK Consultants"
+  },
+  "settings": {
+    "title": "KRAK Consultants",
+    "tagline": "Canadian-first. Built for good."
+  },
+  "collections": [
+    {
+      "slug": "pages",
+      "label": "Pages",
+      "labelSingular": "Page",
+      "urlPattern": "/{slug}",
+      "supports": ["drafts", "revisions", "preview", "search", "seo"],
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Title",
+          "type": "string",
+          "required": true,
+          "searchable": true
+        },
+        {
+          "slug": "heading",
+          "label": "Display heading",
+          "type": "string",
+          "required": true
+        },
+        {
+          "slug": "summary",
+          "label": "Introduction",
+          "type": "text",
+          "searchable": true
+        },
+        {
+          "slug": "content",
+          "label": "Body",
+          "type": "portableText",
+          "searchable": true
+        }
+      ]
+    },
+    {
+      "slug": "projects",
+      "label": "Projects",
+      "labelSingular": "Project",
+      "supports": ["drafts", "revisions", "search"],
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Project name",
+          "type": "string",
+          "required": true,
+          "searchable": true
+        },
+        {
+          "slug": "organization",
+          "label": "Company or organization",
+          "type": "string",
+          "searchable": true
+        },
+        {
+          "slug": "category",
+          "label": "Project category",
+          "type": "select",
+          "required": true,
+          "validation": {
+            "options": [
+              "Client & nonprofit work",
+              "Internal products",
+              "Open source"
+            ]
+          }
+        },
+        {
+          "slug": "summary",
+          "label": "Short description",
+          "type": "text",
+          "searchable": true
+        },
+        { "slug": "url", "label": "Website or repository", "type": "url" },
+        {
+          "slug": "repository_url",
+          "label": "GitHub repository",
+          "type": "url"
+        },
+        {
+          "slug": "logo",
+          "label": "Project or organization logo",
+          "type": "image"
+        },
+        {
+          "slug": "sort_order",
+          "label": "Display order (lowest first)",
+          "type": "integer"
+        }
+      ]
+    },
+    {
+      "slug": "organizations",
+      "label": "Organizations",
+      "labelSingular": "Organization",
+      "supports": ["drafts", "revisions"],
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Organization name",
+          "type": "string",
+          "required": true
+        },
+        { "slug": "url", "label": "Website", "type": "url" },
+        { "slug": "logo", "label": "Logo", "type": "image" },
+        { "slug": "sort_order", "label": "Display order", "type": "integer" }
+      ]
+    },
+    {
+      "slug": "posts",
+      "label": "Insights",
+      "labelSingular": "Insight",
+      "urlPattern": "/posts/{slug}",
+      "supports": [
+        "drafts",
+        "revisions",
+        "preview",
+        "scheduling",
+        "search",
+        "seo"
+      ],
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Title",
+          "type": "string",
+          "required": true,
+          "searchable": true
+        },
+        {
+          "slug": "featured_image",
+          "label": "Featured image",
+          "type": "image"
+        },
+        {
+          "slug": "content",
+          "label": "Content",
+          "type": "portableText",
+          "searchable": true
+        },
+        { "slug": "excerpt", "label": "Excerpt", "type": "text" }
+      ]
+    }
+  ],
+  "taxonomies": [
+    {
+      "name": "category",
+      "label": "Categories",
+      "labelSingular": "Category",
+      "hierarchical": true,
+      "collections": ["posts"]
+    },
+    {
+      "name": "tag",
+      "label": "Tags",
+      "labelSingular": "Tag",
+      "hierarchical": false,
+      "collections": ["posts"]
+    }
+  ],
+  "menus": [
+    {
+      "name": "primary",
+      "label": "Primary navigation",
+      "items": [
+        { "type": "custom", "label": "About us", "url": "/about-us" },
+        { "type": "custom", "label": "Mission", "url": "/mission" },
+        { "type": "custom", "label": "Services", "url": "/specializations" },
+        { "type": "custom", "label": "Projects", "url": "/projects" },
+        { "type": "custom", "label": "Contact", "url": "/contact" }
+      ]
+    },
+    {
+      "name": "primary",
+      "label": "Navigation principale",
+      "locale": "fr",
+      "items": [
+        { "type": "custom", "label": "À propos", "url": "/fr/about-us" },
+        {
+          "type": "custom",
+          "label": "Mission",
+          "url": "/fr/mission"
+        },
+        { "type": "custom", "label": "Services", "url": "/fr/specializations" },
+        { "type": "custom", "label": "Projets", "url": "/fr/projects" },
+        { "type": "custom", "label": "Contact", "url": "/fr/contact" }
+      ]
+    }
+  ],
+  "content": {
+    "pages": [
+      {
+        "id": "home",
+        "slug": "home",
+        "status": "published",
+        "data": {
+          "title": "Welcome to KRAK",
+          "heading": "Canadian-first.\nBuilt for good.",
+          "summary": "Software, hosting, and digital tools for Canadian nonprofits and organizations tackling societal challenges.",
+          "content": [
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "We help organizations turn their mission into practical digital solutions. Alongside our consulting work and infrastructure, we build internal products and open-source tools that contribute to a shared ecosystem."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "about-us",
+        "slug": "about-us",
+        "status": "published",
+        "data": {
+          "title": "About us",
+          "heading": "Digital expertise.\nA purpose beyond technology.",
+          "summary": "KRAK is a Canadian-first software consulting and digital solutions company focused on helping organizations work for good.",
+          "content": [
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "We work with Canadian nonprofits and organizations addressing societal challenges. Our role is to help you choose, build, and run digital solutions that serve your people and your mission."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                { "_type": "span", "text": "From software to infrastructure" }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Our work brings together software consulting, custom digital solutions, hosting, and internal tooling. We operate our own infrastructure, so the conversation can extend beyond building an application to how it will be hosted and maintained."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "An ecosystem, not just one-off projects"
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Client work, internal products such as Nuonn and Kokobi, and open-source KrakStack tools are three parts of the same approach: solve useful problems and build foundations we can keep improving."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "mission",
+        "slug": "mission",
+        "status": "published",
+        "data": {
+          "title": "Mission",
+          "heading": "Technology in service\nof a better society.",
+          "summary": "Practical digital solutions for Canadian nonprofits and organizations working for good—with a collaborative approach from understanding your mission to building, hosting, and improving your tools.",
+          "content": [
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [{ "_type": "span", "text": "Put the mission first" }]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Technology is a means, not the end. We focus on the people you serve, the problems you are trying to solve, and the tools that help you make progress."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                { "_type": "span", "text": "Canadian-focused. Canadian-first." }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Canada is at the centre of our work. We prioritize the needs of Canadian organizations and operate our own infrastructure as part of delivering and supporting their digital solutions."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Build tools that benefit more than one project"
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Alongside consulting, we invest in internal products and open-source software. Our goal is a connected ecosystem of useful tools that supports our work and gives others foundations to build on."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [{ "_type": "span", "text": "How we work" }]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "A collaborative path from understanding your needs to building, hosting, and improving your digital tools."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                { "_type": "span", "text": "01 — Understand the need" }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "We begin with your mission, your users, and the challenge you are addressing. We work with you to understand your current tools, priorities, and constraints."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                { "_type": "span", "text": "02 — Choose a practical approach" }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Together, we define the scope and an approach that fits your organization. That may mean adapting existing tools, creating custom software, or connecting systems you already use."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                { "_type": "span", "text": "03 — Build and put it to work" }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "We develop the solution with your team, then plan how it will be deployed and used. Where hosting is part of the project, we can bring our own infrastructure into the solution."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [{ "_type": "span", "text": "04 — Keep improving" }]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "We look beyond launch to maintenance, changing needs, and opportunities to reuse what we learn across our products and open-source ecosystem."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "specializations",
+        "slug": "specializations",
+        "status": "published",
+        "data": {
+          "title": "Services",
+          "heading": "The tools to move\nyour mission forward.",
+          "summary": "Software consulting, hosting, digital solutions, and internal tooling for Canadian nonprofits and purpose-driven organizations.",
+          "content": [
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [{ "_type": "span", "text": "Software consulting" }]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Technical guidance and hands-on software development, grounded in the needs of your organization and the people who use your tools."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                { "_type": "span", "text": "Hosting & infrastructure" }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Canadian-first hosting and infrastructure services on systems we operate. We work with you to plan how your applications will run and be maintained."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [{ "_type": "span", "text": "Digital solutions" }]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Custom applications, integrations, and digital workflows that help your organization tackle practical and societal challenges."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                { "_type": "span", "text": "Internal tools & learning systems" }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Tools for the work behind your mission, including learning management systems and software that supports your team's day-to-day operations."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "projects",
+        "slug": "projects",
+        "status": "published",
+        "data": {
+          "title": "Projects",
+          "heading": "Useful work.\nA shared ecosystem.",
+          "summary": "Our work spans client and nonprofit projects, internal products, and open-source tools.",
+          "content": [
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "We build for the organizations we work with, develop products of our own, and contribute open-source tools through KrakStack. Each is part of our mission to create practical digital solutions for good."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "contact",
+        "slug": "contact",
+        "status": "published",
+        "data": {
+          "title": "Contact",
+          "heading": "What's your mission?\nLet's build for it.",
+          "summary": "Tell us about your organization, your digital challenges, and the change you want to make.",
+          "content": [
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Whether you need software advice, hosting, a custom digital solution, or an internal tool, we'd like to hear what you're working toward. Get in touch to start a conversation."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "home-fr",
+        "slug": "home",
+        "locale": "fr",
+        "translationOf": "home",
+        "status": "published",
+        "data": {
+          "title": "Bienvenue chez KRAK",
+          "heading": "Le Canada d'abord.\nLe bien commun, toujours.",
+          "summary": "Des logiciels, de l'hébergement et des outils numériques pour les organismes sans but lucratif canadiens et les organisations qui répondent aux enjeux de société.",
+          "content": [
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Nous aidons les organisations à concrétiser leur mission grâce à des solutions numériques pratiques. En complément de nos services-conseils et de notre infrastructure, nous créons des produits internes et des logiciels libres qui contribuent à un écosystème commun."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "about-us-fr",
+        "slug": "about-us",
+        "locale": "fr",
+        "translationOf": "about-us",
+        "status": "published",
+        "data": {
+          "title": "À propos",
+          "heading": "L'expertise numérique.\nUne raison d'être qui va plus loin.",
+          "summary": "KRAK est une entreprise de conseil en logiciel et de solutions numériques qui met le Canada et le bien commun au cœur de son travail.",
+          "content": [
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Nous travaillons avec des organismes sans but lucratif canadiens et des organisations qui s'attaquent aux enjeux de société. Nous les aidons à choisir, à créer et à exploiter des solutions numériques au service de leur mission et des personnes qu'elles accompagnent."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                { "_type": "span", "text": "Du logiciel à l'infrastructure" }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Notre travail réunit le conseil en logiciel, les solutions numériques sur mesure, l'hébergement et les outils internes. Nous exploitons notre propre infrastructure : la réflexion ne s'arrête donc pas à la création d'une application, mais comprend aussi son hébergement et son entretien."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Un écosystème, pas seulement des projets isolés"
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Les mandats clients, les produits internes comme Nuonn et Kokobi et les outils libres KrakStack sont trois volets d'une même approche : résoudre des problèmes concrets et créer des bases que nous pouvons continuer à améliorer."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "mission-fr",
+        "slug": "mission",
+        "locale": "fr",
+        "translationOf": "mission",
+        "status": "published",
+        "data": {
+          "title": "Mission",
+          "heading": "La technologie au service\nd'une société meilleure.",
+          "summary": "Des solutions numériques pratiques pour les organismes sans but lucratif canadiens et les organisations engagées, avec une démarche collaborative pour comprendre votre mission, puis créer, héberger et améliorer vos outils.",
+          "content": [
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [{ "_type": "span", "text": "La mission avant tout" }]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "La technologie est un moyen, pas une fin. Nous nous concentrons sur les personnes que vous servez, les problèmes que vous cherchez à résoudre et les outils qui vous aident à avancer."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Axé sur le Canada. Le Canada d'abord."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Le Canada est au centre de notre travail. Nous accordons la priorité aux besoins des organisations canadiennes et exploitons notre propre infrastructure pour offrir et soutenir leurs solutions numériques."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Des outils qui servent au-delà d'un seul projet"
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "En parallèle de nos services-conseils, nous investissons dans des produits internes et des logiciels libres. Notre objectif est un écosystème connecté d'outils utiles, qui soutient notre travail et offre à d'autres des bases pour créer."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [{ "_type": "span", "text": "Notre démarche" }]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Une démarche collaborative pour comprendre vos besoins, puis créer, héberger et améliorer vos outils numériques."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                { "_type": "span", "text": "01 — Comprendre le besoin" }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Nous commençons par votre mission, vos utilisateurs et le défi à relever. Ensemble, nous examinons vos outils actuels, vos priorités et vos contraintes."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "02 — Choisir une approche concrète"
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Nous définissons ensemble la portée du projet et une approche adaptée à votre organisation : adapter des outils existants, créer un logiciel sur mesure ou relier les systèmes que vous utilisez déjà."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                { "_type": "span", "text": "03 — Créer et mettre en service" }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Nous développons la solution avec votre équipe, puis planifions son déploiement et son utilisation. Lorsque l'hébergement fait partie du mandat, nous pouvons intégrer notre propre infrastructure à la solution."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                { "_type": "span", "text": "04 — Continuer à améliorer" }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Nous pensons au-delà du lancement : entretien, évolution des besoins et possibilités de réutiliser nos apprentissages dans nos produits et notre écosystème de logiciels libres."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "specializations-fr",
+        "slug": "specializations",
+        "locale": "fr",
+        "translationOf": "specializations",
+        "status": "published",
+        "data": {
+          "title": "Services",
+          "heading": "Les outils pour faire\navancer votre mission.",
+          "summary": "Conseil en logiciel, hébergement, solutions numériques et outils internes pour les organismes sans but lucratif canadiens et les organisations engagées.",
+          "content": [
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [{ "_type": "span", "text": "Conseil en logiciel" }]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Des conseils techniques et du développement logiciel concret, fondés sur les besoins de votre organisation et des personnes qui utilisent vos outils."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                { "_type": "span", "text": "Hébergement et infrastructure" }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Des services d'hébergement et d'infrastructure axés sur le Canada, sur des systèmes que nous exploitons. Nous planifions avec vous le fonctionnement et l'entretien de vos applications."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [{ "_type": "span", "text": "Solutions numériques" }]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Des applications sur mesure, des intégrations et des processus numériques qui aident votre organisation à relever des défis concrets et des enjeux de société."
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "h2",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Outils internes et systèmes de formation"
+                }
+              ]
+            },
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Des outils pour le travail qui soutient votre mission, dont des systèmes de gestion de l'apprentissage et des logiciels pour les activités quotidiennes de votre équipe."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "projects-fr",
+        "slug": "projects",
+        "locale": "fr",
+        "translationOf": "projects",
+        "status": "published",
+        "data": {
+          "title": "Projets",
+          "heading": "Des projets utiles.\nUn écosystème commun.",
+          "summary": "Notre travail comprend des mandats clients et associatifs, des produits internes et des outils libres.",
+          "content": [
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Nous créons pour les organisations avec qui nous travaillons, développons nos propres produits et contribuons aux logiciels libres par l'entremise de KrakStack. Chaque volet participe à notre mission : des solutions numériques pratiques pour le bien commun."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "contact-fr",
+        "slug": "contact",
+        "locale": "fr",
+        "translationOf": "contact",
+        "status": "published",
+        "data": {
+          "title": "Contact",
+          "heading": "Quelle est votre mission?\nCréons les outils pour la réaliser.",
+          "summary": "Parlez-nous de votre organisation, de vos défis numériques et du changement que vous souhaitez apporter.",
+          "content": [
+            {
+              "_type": "block",
+              "style": "normal",
+              "children": [
+                {
+                  "_type": "span",
+                  "text": "Que vous ayez besoin de conseils en logiciel, d'hébergement, d'une solution numérique sur mesure ou d'un outil interne, nous aimerions connaître vos objectifs. Écrivez-nous pour entamer la conversation."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "organizations": [
+      {
+        "id": "mentor-canada",
+        "slug": "mentor-canada",
+        "status": "published",
+        "data": {
+          "title": "Mentor Canada",
+          "url": "https://mentorcanada.ca/en",
+          "sort_order": 70,
+          "logo": {
+            "$media": {
+              "url": "https://mentorcanada.ca/sites/default/files/inline-images/Mentor-Canada-Logo-Display-3x.png",
+              "alt": "Mentor Canada",
+              "filename": "mentor-canada.png"
+            }
+          }
+        }
+      },
+      {
+        "id": "gnb",
+        "slug": "gnb",
+        "status": "published",
+        "data": {
+          "title": "Government of New Brunswick",
+          "url": "https://www.gnb.ca/en.html",
+          "sort_order": 80,
+          "logo": {
+            "$media": {
+              "url": "https://www.gnb.ca/content/dam/GNB3/share/logo/nb-canada/nb-canada-colour.svg",
+              "alt": "Government of New Brunswick",
+              "filename": "gnb.svg"
+            }
+          }
+        }
+      },
+      {
+        "id": "findhelp",
+        "slug": "findhelp",
+        "status": "published",
+        "data": {
+          "title": "Findhelp",
+          "url": "https://findhelp.ca",
+          "sort_order": 90,
+          "logo": {
+            "$media": {
+              "url": "https://findhelp.ca/wp-content/uploads/2026/02/cropped-Untitled-design-1.png",
+              "alt": "Findhelp",
+              "filename": "findhelp-transparent.png"
+            }
+          }
+        }
+      },
+      {
+        "id": "mentor-canada-fr",
+        "slug": "mentor-canada",
+        "locale": "fr",
+        "translationOf": "mentor-canada",
+        "status": "published",
+        "data": {
+          "title": "Mentor Canada",
+          "url": "https://mentorcanada.ca/fr",
+          "sort_order": 70,
+          "logo": {
+            "$media": {
+              "url": "https://mentorcanada.ca/sites/default/files/inline-images/Mentor-Canada-Logo-Display-3x.png",
+              "alt": "Mentor Canada",
+              "filename": "mentor-canada.png"
+            }
+          }
+        }
+      },
+      {
+        "id": "gnb-fr",
+        "slug": "gnb",
+        "locale": "fr",
+        "translationOf": "gnb",
+        "status": "published",
+        "data": {
+          "title": "Gouvernement du Nouveau-Brunswick",
+          "url": "https://www.gnb.ca/fr.html",
+          "sort_order": 80,
+          "logo": {
+            "$media": {
+              "url": "https://www.gnb.ca/content/dam/GNB3/share/logo/nb-canada/nb-canada-colour.svg",
+              "alt": "Gouvernement du Nouveau-Brunswick",
+              "filename": "gnb.svg"
+            }
+          }
+        }
+      },
+      {
+        "id": "findhelp-fr",
+        "slug": "findhelp",
+        "locale": "fr",
+        "translationOf": "findhelp",
+        "status": "published",
+        "data": {
+          "title": "Findhelp",
+          "url": "https://findhelp.ca",
+          "sort_order": 90,
+          "logo": {
+            "$media": {
+              "url": "https://findhelp.ca/wp-content/uploads/2026/02/cropped-Untitled-design-1.png",
+              "alt": "Findhelp",
+              "filename": "findhelp-transparent.png"
+            }
+          }
+        }
+      },
+      {
+        "id": "volunteerconnector",
+        "slug": "volunteerconnector",
+        "status": "published",
+        "data": {
+          "title": "VolunteerConnector",
+          "url": "https://www.volunteerconnector.org",
+          "sort_order": 60,
+          "logo": {
+            "$media": {
+              "url": "https://vccprodstorage.blob.core.windows.net/static/design/images/volunteer-connector-logo.svg?v=222",
+              "alt": "VolunteerConnector",
+              "filename": "volunteerconnector.svg"
+            }
+          }
+        }
+      },
+      {
+        "id": "volunteerconnector-fr",
+        "slug": "volunteerconnector",
+        "locale": "fr",
+        "translationOf": "volunteerconnector",
+        "status": "published",
+        "data": {
+          "title": "VolunteerConnector",
+          "url": "https://www.volunteerconnector.org",
+          "sort_order": 60,
+          "logo": {
+            "$media": {
+              "url": "https://vccprodstorage.blob.core.windows.net/static/design/images/volunteer-connector-logo.svg?v=222",
+              "alt": "VolunteerConnector",
+              "filename": "volunteerconnector.svg"
+            }
+          }
+        }
+      },
+      {
+        "id": "211",
+        "slug": "211",
+        "status": "published",
+        "data": {
+          "title": "211",
+          "url": "https://211.ca",
+          "sort_order": 10,
+          "logo": {
+            "$media": {
+              "url": "https://app.211.ca/api/media/file/211%20Logo.svg",
+              "alt": "211",
+              "filename": "211.svg"
+            }
+          }
+        }
+      },
+      {
+        "id": "companionlink",
+        "slug": "companionlink",
+        "status": "published",
+        "data": {
+          "title": "CompanionLink",
+          "url": "https://companionlink.org",
+          "sort_order": 20,
+          "logo": {
+            "$media": {
+              "url": "https://companionlink.org/wp-content/uploads/2023/07/Logo.svg",
+              "alt": "CompanionLink",
+              "filename": "companionlink.svg"
+            }
+          }
+        }
+      },
+      {
+        "id": "bread",
+        "slug": "bread",
+        "status": "published",
+        "data": {
+          "title": "Bread",
+          "url": "https://bread.help",
+          "sort_order": 30,
+          "logo": {
+            "$media": {
+              "url": "https://bread.help/logo.svg",
+              "alt": "Bread",
+              "filename": "bread.svg"
+            }
+          }
+        }
+      },
+      {
+        "id": "technology-helps",
+        "slug": "technology-helps",
+        "status": "published",
+        "data": {
+          "title": "Technology Helps",
+          "url": "https://technologyhelps.org",
+          "sort_order": 40,
+          "logo": {
+            "$media": {
+              "url": "https://bread.help/tech-helps-logo.png",
+              "alt": "Technology Helps",
+              "filename": "technology-helps.png"
+            }
+          }
+        }
+      },
+      {
+        "id": "sage",
+        "slug": "sage",
+        "status": "published",
+        "data": {
+          "title": "Sage Project",
+          "url": "https://sageproject.ca",
+          "sort_order": 50,
+          "logo": {
+            "$media": {
+              "url": "https://sageproject.ca/wp-content/uploads/Logo-1.svg",
+              "alt": "Sage Project",
+              "filename": "sage.svg"
+            }
+          }
+        }
+      },
+      {
+        "id": "211-fr",
+        "slug": "211",
+        "locale": "fr",
+        "translationOf": "211",
+        "status": "published",
+        "data": {
+          "title": "211",
+          "url": "https://211.ca",
+          "sort_order": 10,
+          "logo": {
+            "$media": {
+              "url": "https://app.211.ca/api/media/file/211%20Logo.svg",
+              "alt": "211",
+              "filename": "211.svg"
+            }
+          }
+        }
+      },
+      {
+        "id": "companionlink-fr",
+        "slug": "companionlink",
+        "locale": "fr",
+        "translationOf": "companionlink",
+        "status": "published",
+        "data": {
+          "title": "CompanionLink",
+          "url": "https://companionlink.org",
+          "sort_order": 20,
+          "logo": {
+            "$media": {
+              "url": "https://companionlink.org/wp-content/uploads/2023/07/Logo.svg",
+              "alt": "CompanionLink",
+              "filename": "companionlink.svg"
+            }
+          }
+        }
+      },
+      {
+        "id": "bread-fr",
+        "slug": "bread",
+        "locale": "fr",
+        "translationOf": "bread",
+        "status": "published",
+        "data": {
+          "title": "Bread",
+          "url": "https://bread.help",
+          "sort_order": 30,
+          "logo": {
+            "$media": {
+              "url": "https://bread.help/logo.svg",
+              "alt": "Bread",
+              "filename": "bread.svg"
+            }
+          }
+        }
+      },
+      {
+        "id": "technology-helps-fr",
+        "slug": "technology-helps",
+        "locale": "fr",
+        "translationOf": "technology-helps",
+        "status": "published",
+        "data": {
+          "title": "Technology Helps",
+          "url": "https://technologyhelps.org",
+          "sort_order": 40,
+          "logo": {
+            "$media": {
+              "url": "https://bread.help/tech-helps-logo.png",
+              "alt": "Technology Helps",
+              "filename": "technology-helps.png"
+            }
+          }
+        }
+      },
+      {
+        "id": "sage-fr",
+        "slug": "sage",
+        "locale": "fr",
+        "translationOf": "sage",
+        "status": "published",
+        "data": {
+          "title": "Sage Project",
+          "url": "https://sageproject.ca",
+          "sort_order": 50,
+          "logo": {
+            "$media": {
+              "url": "https://sageproject.ca/wp-content/uploads/Logo-1.svg",
+              "alt": "Sage Project",
+              "filename": "sage.svg"
+            }
+          }
+        }
+      }
+    ],
+    "projects": [
+      {
+        "id": "211-canada-app",
+        "slug": "211-canada-app",
+        "status": "published",
+        "data": {
+          "title": "211 Canada App",
+          "organization": "211",
+          "category": "Client & nonprofit work",
+          "summary": "Client work on the 211 Canada app.",
+          "url": "https://apps.apple.com/ca/app/211-canada/id6449502739",
+          "sort_order": 10
+        }
+      },
+      {
+        "id": "companionlink",
+        "slug": "companionlink",
+        "status": "published",
+        "data": {
+          "title": "CompanionLink",
+          "organization": "CompanionLink",
+          "category": "Client & nonprofit work",
+          "summary": "Website development for CompanionLink at companionlink.org.",
+          "logo": {
+            "$media": {
+              "url": "https://companionlink.org/wp-content/uploads/2023/07/Logo-4.png",
+              "alt": "CompanionLink",
+              "filename": "companionlink-mark.png"
+            }
+          },
+          "url": "https://companionlink.org",
+          "sort_order": 30
+        }
+      },
+      {
+        "id": "bread",
+        "slug": "bread",
+        "status": "published",
+        "data": {
+          "title": "Bread",
+          "organization": "Technology Helps",
+          "category": "Client & nonprofit work",
+          "summary": "Built bread.help with Technology Helps.",
+          "url": "https://bread.help",
+          "sort_order": 40
+        }
+      },
+      {
+        "id": "sage",
+        "slug": "sage",
+        "status": "published",
+        "data": {
+          "title": "Sage Project",
+          "organization": "Sage Project",
+          "category": "Client & nonprofit work",
+          "summary": "Client project at sageproject.ca.",
+          "url": "https://sageproject.ca",
+          "sort_order": 50
+        }
+      },
+      {
+        "id": "nuonn",
+        "slug": "nuonn",
+        "status": "published",
+        "data": {
+          "title": "Nuonn",
+          "organization": "KRAK Consultants",
+          "category": "Internal products",
+          "summary": "A simulator training system.",
+          "url": "https://nuonn.com",
+          "sort_order": 20
+        }
+      },
+      {
+        "id": "krakstack",
+        "slug": "krakstack",
+        "status": "published",
+        "data": {
+          "title": "KrakStack",
+          "organization": "KRAK Consultants",
+          "category": "Open source",
+          "summary": "Our open-source component registry and tooling at krakstack.net.",
+          "url": "https://krakstack.net",
+          "repository_url": "https://github.com/krakcons/krakstack",
+          "sort_order": 0
+        }
+      },
+      {
+        "id": "211-canada-app-fr",
+        "slug": "211-canada-app",
+        "locale": "fr",
+        "translationOf": "211-canada-app",
+        "status": "published",
+        "data": {
+          "title": "Application 211 Canada",
+          "organization": "211",
+          "category": "Client & nonprofit work",
+          "summary": "Un mandat pour l'application 211 Canada.",
+          "url": "https://apps.apple.com/ca/app/211-canada/id6449502739?l=fr-CA",
+          "sort_order": 10
+        }
+      },
+      {
+        "id": "companionlink-fr",
+        "slug": "companionlink",
+        "locale": "fr",
+        "translationOf": "companionlink",
+        "status": "published",
+        "data": {
+          "title": "CompanionLink",
+          "organization": "CompanionLink",
+          "category": "Client & nonprofit work",
+          "summary": "Création du site Web de CompanionLink à companionlink.org.",
+          "logo": {
+            "$media": {
+              "url": "https://companionlink.org/wp-content/uploads/2023/07/Logo-4.png",
+              "alt": "CompanionLink",
+              "filename": "companionlink-mark.png"
+            }
+          },
+          "url": "https://companionlink.org",
+          "sort_order": 30
+        }
+      },
+      {
+        "id": "bread-fr",
+        "slug": "bread",
+        "locale": "fr",
+        "translationOf": "bread",
+        "status": "published",
+        "data": {
+          "title": "Bread",
+          "organization": "Technology Helps",
+          "category": "Client & nonprofit work",
+          "summary": "Création de bread.help avec Technology Helps.",
+          "url": "https://bread.help",
+          "sort_order": 40
+        }
+      },
+      {
+        "id": "sage-fr",
+        "slug": "sage",
+        "locale": "fr",
+        "translationOf": "sage",
+        "status": "published",
+        "data": {
+          "title": "Sage Project",
+          "organization": "Sage Project",
+          "category": "Client & nonprofit work",
+          "summary": "Un projet client à sageproject.ca.",
+          "url": "https://sageproject.ca",
+          "sort_order": 50
+        }
+      },
+      {
+        "id": "nuonn-fr",
+        "slug": "nuonn",
+        "locale": "fr",
+        "translationOf": "nuonn",
+        "status": "published",
+        "data": {
+          "title": "Nuonn",
+          "organization": "KRAK Consultants",
+          "category": "Internal products",
+          "summary": "Un système de formation par simulation.",
+          "url": "https://nuonn.com",
+          "sort_order": 20
+        }
+      },
+      {
+        "id": "krakstack-fr",
+        "slug": "krakstack",
+        "locale": "fr",
+        "translationOf": "krakstack",
+        "status": "published",
+        "data": {
+          "title": "KrakStack",
+          "organization": "KRAK Consultants",
+          "category": "Open source",
+          "summary": "Notre registre de composants et nos outils libres à krakstack.net.",
+          "url": "https://krakstack.net",
+          "repository_url": "https://github.com/krakcons/krakstack",
+          "sort_order": 0
+        }
+      },
+      {
+        "id": "cocobee",
+        "slug": "cocobee",
+        "status": "published",
+        "data": {
+          "title": "Kokobi Learning",
+          "organization": "KRAK Consultants",
+          "category": "Internal products",
+          "summary": "A learning management system (LMS).",
+          "url": "https://learning.kokobi.org/en/",
+          "logo": {
+            "$media": {
+              "url": "https://learning.kokobi.org/favicon.svg",
+              "alt": "Kokobi Learning",
+              "filename": "kokobi-learning.svg"
+            }
+          },
+          "sort_order": 10
+        }
+      },
+      {
+        "id": "krakstack-auth",
+        "slug": "krakstack-auth",
+        "status": "published",
+        "data": {
+          "title": "KrakStack Auth",
+          "organization": "KRAK Consultants",
+          "category": "Open source",
+          "summary": "A central authentication system in the KrakStack ecosystem.",
+          "repository_url": "https://github.com/krakcons/krakstack-auth",
+          "sort_order": 10
+        }
+      },
+      {
+        "id": "krakstack-uptime",
+        "slug": "krakstack-uptime",
+        "status": "published",
+        "data": {
+          "title": "KrakStack Uptime",
+          "organization": "KRAK Consultants",
+          "category": "Open source",
+          "summary": "Status management in the KrakStack ecosystem.",
+          "url": "https://status.krakconsultants.net",
+          "repository_url": "https://github.com/krakcons/krakstack-uptime",
+          "sort_order": 20
+        }
+      },
+      {
+        "id": "cocobee-fr",
+        "slug": "cocobee",
+        "locale": "fr",
+        "translationOf": "cocobee",
+        "status": "published",
+        "data": {
+          "title": "Kokobi Learning",
+          "organization": "KRAK Consultants",
+          "category": "Internal products",
+          "summary": "Un système de gestion de l'apprentissage (LMS).",
+          "url": "https://learning.kokobi.org/fr/",
+          "logo": {
+            "$media": {
+              "url": "https://learning.kokobi.org/favicon.svg",
+              "alt": "Kokobi Learning",
+              "filename": "kokobi-learning.svg"
+            }
+          },
+          "sort_order": 10
+        }
+      },
+      {
+        "id": "krakstack-auth-fr",
+        "slug": "krakstack-auth",
+        "locale": "fr",
+        "translationOf": "krakstack-auth",
+        "status": "published",
+        "data": {
+          "title": "KrakStack Auth",
+          "organization": "KRAK Consultants",
+          "category": "Open source",
+          "summary": "Un système central d'authentification dans l'écosystème KrakStack.",
+          "repository_url": "https://github.com/krakcons/krakstack-auth",
+          "sort_order": 10
+        }
+      },
+      {
+        "id": "krakstack-uptime-fr",
+        "slug": "krakstack-uptime",
+        "locale": "fr",
+        "translationOf": "krakstack-uptime",
+        "status": "published",
+        "data": {
+          "title": "KrakStack Uptime",
+          "organization": "KRAK Consultants",
+          "category": "Open source",
+          "summary": "La gestion des statuts dans l'écosystème KrakStack.",
+          "url": "https://status.krakconsultants.net",
+          "repository_url": "https://github.com/krakcons/krakstack-uptime",
+          "sort_order": 20
+        }
+      }
+    ]
+  }
+}

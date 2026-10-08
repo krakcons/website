@@ -1,0 +1,33 @@
+---
+import { messages, type Locale } from "../utils/i18n";
+interface Props {
+  locale: Locale;
+  otherUrl: string;
+}
+const { locale, otherUrl } = Astro.props;
+---
+
+<nav class="language-switcher" aria-label={messages[locale].language}>
+  {(["en", "fr"] as const).map((language) =>
+    language === locale ? (
+      <span
+        class="language-option"
+        aria-current="page"
+        lang={language}
+        aria-label={language === "en" ? "English" : "Français"}
+      >
+        {language.toUpperCase()}
+      </span>
+    ) : (
+      <a
+        class="language-option"
+        href={otherUrl}
+        lang={language}
+        hreflang={language}
+        aria-label={language === "en" ? "English" : "Français"}
+      >
+        {language.toUpperCase()}
+      </a>
+    ),
+  )}
+</nav>

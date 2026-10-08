@@ -1,0 +1,9 @@
+---
+import Home from "../../components/Home.astro";
+import { loadCompanyPage } from "../../utils/company-page";
+const pageResult = await loadCompanyPage("home", "fr");
+if (Astro.cache?.enabled) Astro.cache.set(pageResult.cacheHint);
+if (!pageResult.data) Astro.response.status = 503;
+---
+
+<Home pageResult={pageResult} />

@@ -1,0 +1,220 @@
+---
+import { getEmDashCollection } from "emdash";
+import { Image, PortableText } from "emdash/ui";
+import Base from "../layouts/Base.astro";
+import { projectGroups, safeProjectUrl } from "../utils/projects";
+import type { loadCompanyPage } from "../utils/company-page";
+interface Props {
+  pageResult: Awaited<ReturnType<typeof loadCompanyPage>>;
+}
+import { getLocale, localePath, messages } from "../utils/i18n";
+
+const locale = getLocale(Astro.currentLocale);
+const t = messages[locale];
+const link = (path: string) => localePath(path, locale);
+// Official product marks bundled with the theme; CMS uploads take precedence.
+const productLogoFiles: Record<string, string> = {
+  cocobee: "kokobi-learning",
+  nuonn: "nuonn",
+  krakstack: "krakstack",
+  "krakstack-auth": "krakstack-auth",
+  "krakstack-uptime": "krakstack-uptime",
+};
+
+const { entry: page, defaults, data } = Astro.props.pageResult;
+
+const result = await getEmDashCollection("projects", { limit: 100, locale });
+if (Astro.cache?.enabled) Astro.cache.set(result.cacheHint);
+const projects = [...result.entries];
+const organizationResult = await getEmDashCollection("organizations", {
+  locale,
+  limit: 100,
+});
+if (Astro.cache?.enabled) Astro.cache.set(organizationResult.cacheHint);
+const organizations = [...organizationResult.entries];
+let organizationCursor = organizationResult.nextCursor;
+while (organizationCursor) {
+  const next = await getEmDashCollection("organizations", {
+    locale,
+    limit: 100,
+    cursor: organizationCursor,
+  });
+  if (Astro.cache?.enabled) Astro.cache.set(next.cacheHint);
+  organizations.push(...next.entries);
+  organizationCursor = next.nextCursor;
+}
+let cursor = result.nextCursor;
+while (cursor) {
+  const next = await getEmDashCollection("projects", {
+    limit: 100,
+    cursor,
+    locale,
+  });
+  projects.push(...next.entries);
+  if (Astro.cache?.enabled) Astro.cache.set(next.cacheHint);
+  cursor = next.nextCursor;
+}
+projects.sort(
+  (a, b) =>
+    (a.data.sort_order ?? 0) - (b.data.sort_order ?? 0) ||
+    a.data.title.localeCompare(b.data.title),
+);
+---
+
+<Base
+  title={data?.title ?? t.notFound}
+  description={data?.summary}
+  content={
+    page
+      ? { collection: "pages", id: page.data.id, slug: "projects" }
+      : undefined
+  }
+>
+  {data ? (
+    <>
+      <section class="page-hero container">
+        <nav class="breadcrumb" aria-label={t.breadcrumb}>
+          <a href={link("/")}>{t.home}</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page" {...page?.edit.title}>
+            {data.title}
+          </span>
+        </nav>
+        <h1 {...page?.edit.heading}>{data.heading}</h1>
+        <p class="lead" {...page?.edit.summary}>
+          {data.summary}
+        </p>
+        <nav class="project-jump-links" aria-label={t.categories}>
+          {projectGroups.map((group, index) => (
+            <a href={`#${group.id}`}>
+              {t.groups[index].title} <span aria-hidden="true">↓</span>
+            </a>
+          ))}
+        </nav>
+      </section>
+      <div class="container projects-intro lead" {...page?.edit.content}>
+        {page ? (
+          <PortableText value={page.data.content ?? []} />
+        ) : (
+          <p>{defaults?.data.content[0].children[0].text}</p>
+        )}
+      </div>
+      {projectGroups.map((group, index) => {
+        const entries = projects.filter(
+          (project) => project.data.category === group.value,
+        );
+        return (
+          <section
+            class="container project-group"
+            id={group.id}
+            aria-labelledby={`${group.id}-heading`}
+          >
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">
+                  0{index + 1} / {t.projectsLabel}
+                </p>
+                <h2 id={`${group.id}-heading`}>{t.groups[index].title}</h2>
+              </div>
+              <p class="project-group-description">
+                {t.groups[index].description}
+              </p>
+            </div>
+            {entries.length ? (
+              <div class="project-grid">
+                {entries.map((project) => {
+                  const url = safeProjectUrl(project.data.url);
+                  const repositoryUrl = safeProjectUrl(
+                    project.data.repository_url,
+                  );
+                  const organization =
+                    organizations.find((entry) => entry.id === project.id) ??
+                    organizations.find(
+                      (entry) => entry.data.title === project.data.organization,
+                    );
+                  const productLogo = productLogoFiles[project.id];
+                  const logo =
+                    project.data.logo ??
+                    organization?.data.logo ??
+                    (productLogo
+                      ? {
+                          id: `bundled-${productLogo}`,
+                          src: `/logos/${productLogo}.svg`,
+                          alt: project.data.title,
+                          width: undefined,
+                          height: undefined,
+                        }
+                      : undefined);
+                  return (
+                    <article class="project-card">
+                      <div class="project-identity">
+                        {logo && (
+                          <div
+                            class:list={["project-branding", { "project-branding-nuonn": project.id === "nuonn" }]}
+                            {...(project.data.logo ? project.edit.logo : {})}
+                          >
+                            <Image image={{ ...logo, alt: "" }} />
+                          </div>
+                        )}
+                        <div class="project-identity-copy">
+                          <p class="eyebrow" {...project.edit.organization}>
+                            {project.data.organization}
+                          </p>
+                          <h3 {...project.edit.title}>{project.data.title}</h3>
+                        </div>
+                      </div>
+                      <p {...project.edit.summary}>{project.data.summary}</p>
+                      <div class="project-links">
+                        {url && (
+                          <a
+                            class="text-link"
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {new URL(url).hostname === "apps.apple.com"
+                              ? t.appStore
+                              : t.explore}{" "}
+                            <span aria-hidden="true">→</span>
+                            <span class="sr-only"> ({t.newTab})</span>
+                          </a>
+                        )}
+                        {repositoryUrl && (
+                          <a
+                            class="text-link"
+                            href={repositoryUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {t.github} <span aria-hidden="true">→</span>
+                            <span class="sr-only"> ({t.newTab})</span>
+                          </a>
+                        )}
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            ) : (
+              <div class="project-empty">
+                <h3>{t.emptyHeading}</h3>
+                <p>{t.emptyText}</p>
+                <a class="text-link" href={link("/contact")}>
+                  {t.contactLink} <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            )}
+          </section>
+        );
+      })}
+    </>
+  ) : (
+    <section class="container page-hero">
+      <p class="eyebrow">404</p>
+      <h1>{t.notFound}</h1>
+      <a class="button" href={link("/")}>
+        {t.backHome}
+      </a>
+    </section>
+  )}
+</Base>

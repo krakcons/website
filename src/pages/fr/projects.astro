@@ -1,0 +1,9 @@
+---
+import Projects from "../../components/Projects.astro";
+import { loadCompanyPage } from "../../utils/company-page";
+const pageResult = await loadCompanyPage("projects", "fr");
+if (Astro.cache?.enabled) Astro.cache.set(pageResult.cacheHint);
+if (!pageResult.data) Astro.response.status = 404;
+---
+
+<Projects pageResult={pageResult} />

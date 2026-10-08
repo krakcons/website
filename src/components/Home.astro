@@ -1,0 +1,153 @@
+---
+import { PortableText } from "emdash/ui";
+import Base from "../layouts/Base.astro";
+import type { loadCompanyPage } from "../utils/company-page";
+interface Props {
+  pageResult: Awaited<ReturnType<typeof loadCompanyPage>>;
+}
+import { getLocale, localePath, messages } from "../utils/i18n";
+import { projectGroups } from "../utils/projects";
+import WorkedWith from "./WorkedWith.astro";
+
+const locale = getLocale(Astro.currentLocale);
+const t = messages[locale];
+const link = (path: string) => localePath(path, locale);
+const { entry: home, defaults, data } = Astro.props.pageResult;
+const showSite = Boolean(data);
+---
+
+<Base
+  title="KRAK Consultants"
+  description={data?.summary}
+  content={
+    home ? { collection: "pages", id: home.data.id, slug: "home" } : undefined
+  }
+>
+  {showSite ? (
+    <>
+      <section class="hero container">
+        <div class="hero-copy">
+          <p class="eyebrow">{t.heroEyebrow}</p>
+          <h1 {...home?.edit.heading}>{data?.heading}</h1>
+          <p class="lead" {...home?.edit.summary}>
+            {data?.summary}
+          </p>
+          <div class="actions">
+            <a class="button" href={link("/contact")}>
+              {t.talk} <span aria-hidden="true">↗</span>
+            </a>
+            <a class="text-link" href={link("/about-us")}>
+              {t.meet} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <img
+            class="hero-illustration"
+            src="/illustrations/technology-for-good.svg"
+            alt=""
+            width="600"
+            height="520"
+            fetchpriority="high"
+          />
+        </div>
+      </section>
+      <WorkedWith />
+      <section class="intro-section">
+        <div class="container intro-grid">
+          <p class="eyebrow">{t.mission}</p>
+          <div>
+            <h2 class="multiline">{t.introHeading}</h2>
+            <div class="lead" {...home?.edit.content}>
+              {home ? (
+                <PortableText value={home.data.content ?? []} />
+              ) : (
+                <p>{defaults?.data.content[0].children[0].text}</p>
+              )}
+            </div>
+            <a class="text-link" href={link("/mission")}>
+              {t.missionLink} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="container section-space">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">{t.servicesLabel}</p>
+            <h2 class="multiline">{t.servicesHeading}</h2>
+          </div>
+          <a class="text-link" href={link("/specializations")}>
+            {t.servicesLink} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="services-grid">
+          {t.services.map((service) => (
+            <a class="service-card" href={link("/specializations")}>
+              <span class="card-number">{service.number}</span>
+              <h3>{service.title}</h3>
+              <p>{service.text}</p>
+              <span class="card-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+      <section class="process-section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">{t.workLabel}</p>
+              <h2>{t.workHeading}</h2>
+            </div>
+            <a class="text-link" href={link("/mission")}>
+              {t.processLink} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <ol class="process-grid">
+            {t.steps.map((step, index) => (
+              <li>
+                <span>0{index + 1}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+      <section class="container section-space ecosystem-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">{t.projectsLabel}</p>
+            <h2 class="multiline">{t.ecosystemHeading}</h2>
+          </div>
+          <a class="text-link" href={link("/projects")}>
+            {t.projectsLink} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="ecosystem-grid">
+          {t.groups.map((group, index) => (
+            <a
+              class="ecosystem-card"
+              href={`${link("/projects")}#${projectGroups[index].id}`}
+            >
+              <span class="card-number">0{index + 1}</span>
+              <h3>{group.title}</h3>
+              <p>{group.teaser}</p>
+              <span class="text-link">
+                {group.link} <span aria-hidden="true">→</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    </>
+  ) : (
+    <section class="container page-hero">
+      <p class="eyebrow">KRAK Consultants</p>
+      <h1>{t.comingHeading}</h1>
+      <p class="lead">{t.comingText}</p>
+    </section>
+  )}
+</Base>

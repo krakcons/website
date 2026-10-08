@@ -1,0 +1,13 @@
+---
+import { getTaxonomyTermsWithCacheHint } from "emdash";
+import Insights from "../../../components/Insights.astro";
+import NotFound from "../../../components/NotFound.astro";
+const result = await getTaxonomyTermsWithCacheHint("category", {
+  locale: "fr",
+});
+if (Astro.cache?.enabled) Astro.cache.set(result.cacheHint);
+const term = result.data.find((term) => term.slug === Astro.params.slug);
+if (!term) Astro.response.status = 404;
+---
+
+{term ? <Insights taxonomy="category" term={term} /> : <NotFound />}

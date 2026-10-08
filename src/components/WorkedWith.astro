@@ -1,0 +1,241 @@
+---
+import { getEmDashCollection } from "emdash";
+import { Image } from "emdash/ui";
+import seed from "../../seed/seed.json";
+import { getLocale, messages } from "../utils/i18n";
+import { safeProjectUrl } from "../utils/projects";
+const locale = getLocale(Astro.currentLocale);
+const t = messages[locale];
+const result = await getEmDashCollection("organizations", {
+  locale,
+  limit: 100,
+});
+if (Astro.cache?.enabled) Astro.cache.set(result.cacheHint);
+const organizations = result.entries.map((entry) => entry.data);
+let cursor = result.nextCursor;
+while (cursor) {
+  const next = await getEmDashCollection("organizations", {
+    locale,
+    limit: 100,
+    cursor,
+  });
+  if (Astro.cache?.enabled) Astro.cache.set(next.cacheHint);
+  organizations.push(...next.entries.map((entry) => entry.data));
+  cursor = next.nextCursor;
+}
+const preview = import.meta.env.DEV && !organizations.length;
+const items = preview
+  ? seed.content.organizations
+      .filter((entry) => (entry.locale ?? "en") === locale)
+      .map((entry) => ({
+        ...entry.data,
+        logo: {
+          id: `seed-${entry.id}`,
+          src: `/logos/${entry.data.logo.$media.filename}`,
+          alt: entry.data.title,
+        },
+      }))
+  : organizations;
+items.sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+---
+
+{items.length > 0 && (
+  <section class="worked-with container" aria-labelledby="worked-with-heading">
+    <div class="worked-with-heading">
+      <p class="eyebrow" id="worked-with-heading">
+        {t.workedWith}
+      </p>
+      <button
+        class="logo-motion-toggle"
+        type="button"
+        aria-pressed="false"
+        aria-label={t.pauseLogos}
+        data-pause={t.pauseLogos}
+        data-resume={t.resumeLogos}
+      >
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="M4 3h2v8H4zm4 0h2v8H8z" />
+        </svg>
+      </button>
+    </div>
+    <div class="logo-viewport">
+      <div class="logo-track">
+        {[false, true].map((duplicate) => (
+          <ul
+            class="organization-logos"
+            aria-hidden={duplicate ? "true" : undefined}
+          >
+            {items.map((organization) => {
+              const url = safeProjectUrl(organization.url);
+              const Tag = url ? "a" : "div";
+              // Balance compact symbols against long wordmarks instead of forcing
+              // every logo into the same-sized box.
+              const logo = organization.logo;
+              const ratio =
+                logo &&
+                "width" in logo &&
+                "height" in logo &&
+                logo.width &&
+                logo.height
+                  ? logo.width / logo.height
+                  : 3;
+              const logoWidth =
+                ratio > 8 ? 160 : Math.min(180, Math.max(56, ratio * 40));
+              const isTechnologyHelps =
+                organization.title === "Technology Helps";
+              return (
+                <li class:list={{ "organization-wordmark": ratio > 3.5 }}>
+                  <Tag
+                    class="organization-logo"
+                    class:list={{
+                      "organization-logo-findhelp":
+                        organization.title === "Findhelp",
+                    }}
+                    href={url}
+                    tabindex={duplicate && url ? -1 : undefined}
+                    aria-label={organization.title}
+                    style={`--logo-width: ${isTechnologyHelps ? 76 : logoWidth}px; --logo-height: ${isTechnologyHelps ? 64 : 40}px`}
+                  >
+                    {organization.logo ? (
+                      <Image image={organization.logo} priority />
+                    ) : (
+                      <span>{organization.title}</span>
+                    )}
+                  </Tag>
+                </li>
+              );
+            })}
+          </ul>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .worked-with-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+  .worked-with-heading .eyebrow {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+  .logo-motion-toggle {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .logo-motion-toggle:hover {
+    background: #edf2e4;
+  }
+  .logo-motion-toggle:focus-visible {
+    outline: 3px solid #638832;
+    outline-offset: 3px;
+  }
+  .logo-motion-toggle[aria-pressed="true"] {
+    color: var(--green);
+    background: #edf2e4;
+  }
+  .logo-viewport {
+    overflow: hidden;
+    container-type: inline-size;
+  }
+  .logo-track {
+    display: flex;
+    width: max-content;
+    animation: logo-drift 70s linear infinite;
+  }
+  .worked-with .organization-logos {
+    display: flex;
+    flex: 0 0 auto;
+    width: max-content;
+    min-width: 100cqw;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 2.5rem;
+    margin: 0;
+    padding: 0.25rem 2.5rem 0.25rem 0;
+  }
+  .worked-with .organization-logos li {
+    flex: 0 0 auto;
+    width: auto;
+    order: 0;
+  }
+  .worked-with .organization-logo {
+    width: var(--logo-width);
+    min-height: 48px;
+  }
+  .worked-with .organization-logo img {
+    width: var(--logo-width);
+    max-width: none;
+    height: var(--logo-height, 40px);
+    opacity: 0.8;
+  }
+  .worked-with .organization-logo:hover img,
+  .worked-with .organization-logo:focus-visible img {
+    opacity: 1;
+  }
+  .organization-logo-findhelp img {
+    mix-blend-mode: multiply;
+  }
+  .logo-viewport:hover .logo-track,
+  .worked-with:focus-within .logo-track,
+  .worked-with[data-paused] .logo-track {
+    animation-play-state: paused;
+  }
+  .logo-viewport:focus-within {
+    overflow-x: auto;
+  }
+  @keyframes logo-drift {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-track {
+      animation: none;
+    }
+    .logo-viewport {
+      overflow-x: auto;
+    }
+    .worked-with .organization-logos[aria-hidden="true"],
+    .logo-motion-toggle {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>(".logo-motion-toggle")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        const paused = button.getAttribute("aria-pressed") !== "true";
+        button.setAttribute("aria-pressed", String(paused));
+        button.setAttribute(
+          "aria-label",
+          (paused ? button.dataset.resume : button.dataset.pause) ?? "",
+        );
+        button.closest(".worked-with")?.toggleAttribute("data-paused", paused);
+      });
+    });
+</script>

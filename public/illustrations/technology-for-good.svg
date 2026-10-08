@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="520" viewBox="25 40 535 464" fill="none">
+  <defs>
+    <linearGradient id="landscape" x1="153" y1="82" x2="459" y2="425" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#35634D"/>
+      <stop offset="1" stop-color="#193E30"/>
+    </linearGradient>
+    <linearGradient id="ribbon" x1="88" y1="387" x2="481" y2="165" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#92B37C"/>
+      <stop offset=".55" stop-color="#D2E878"/>
+      <stop offset="1" stop-color="#E2EEAA"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="204" y1="168" x2="403" y2="325" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FAFBF7"/>
+      <stop offset="1" stop-color="#EAF0DF"/>
+    </linearGradient>
+    <filter id="shadow" x="-35%" y="-35%" width="180%" height="190%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#102D23" flood-opacity=".16"/>
+    </filter>
+  </defs>
+
+  <!-- An open, organic silhouette rather than a framed illustration. -->
+  <path d="M108 287C80 217 101 125 175 95C244 68 282 103 337 91C400 77 480 94 497 159C515 225 473 246 477 299C482 364 433 423 361 422C300 421 273 458 208 434C141 410 132 347 108 287Z" fill="#EBF0DF"/>
+  <path d="M121 210C129 136 187 100 251 119C302 134 320 105 374 116C456 132 481 182 459 241C443 285 471 326 435 367C396 414 346 390 295 408C220 434 168 405 153 350C140 303 114 268 121 210Z" fill="url(#landscape)"/>
+
+  <!-- A single continuous ribbon connects the tools and flows beyond them. -->
+  <path d="M69 360C91 412 172 442 233 404C285 372 268 317 235 311C195 303 177 344 209 371C247 404 349 347 397 297C439 254 464 210 515 192" stroke="#234D3D" stroke-opacity=".08" stroke-width="29" stroke-linecap="round"/>
+  <path d="M69 354C91 406 172 436 233 398C285 366 268 311 235 305C195 297 177 338 209 365C247 398 349 341 397 291C439 248 464 204 515 186" stroke="url(#ribbon)" stroke-width="20" stroke-linecap="round"/>
+  <path d="M150 130C193 83 264 68 329 82" stroke="#8CAD91" stroke-opacity=".65" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M430 416C479 398 508 357 518 315" stroke="#8CAD91" stroke-opacity=".65" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- A gently tilted digital surface; simple, legible and human-centred. -->
+  <g transform="rotate(-7 305 242)" filter="url(#shadow)">
+    <rect x="195" y="157" width="223" height="173" rx="20" fill="url(#glass)"/>
+    <path d="M195 187H418" stroke="#D9E2D0"/>
+    <circle cx="212" cy="173" r="2.5" fill="#8CAD91"/>
+    <circle cx="223" cy="173" r="2.5" fill="#8CAD91"/>
+    <circle cx="234" cy="173" r="2.5" fill="#8CAD91"/>
+    <rect x="360" y="171" width="39" height="4" rx="2" fill="#CAD8BF"/>
+    <path d="M239 208C261 193 299 197 314 221C329 245 310 273 283 278C252 284 223 266 223 240C223 226 228 216 239 208Z" fill="#234D3D"/>
+    <path d="M269 256L253 240C241 227 257 215 269 230C281 215 297 227 285 240L269 256Z" fill="#D2E878"/>
+    <rect x="331" y="215" width="66" height="6" rx="3" fill="#6A8D6E"/>
+    <rect x="331" y="231" width="51" height="4" rx="2" fill="#BFCEB3"/>
+    <rect x="331" y="243" width="60" height="4" rx="2" fill="#BFCEB3"/>
+    <rect x="331" y="266" width="48" height="22" rx="11" fill="#D2E878"/>
+    <path d="M346 277H364M359 272L364 277L359 282" stroke="#234D3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="217" y="298" width="87" height="4" rx="2" fill="#CBD8BF"/>
+  </g>
+
+  <!-- Conversation and care, carried by the same flowing connection. -->
+  <g transform="rotate(9 133 185)" filter="url(#shadow)">
+    <path d="M111 149C89 152 85 174 91 195C96 216 121 228 145 216C167 205 173 176 157 157C145 144 130 145 111 149Z" fill="#D2E878"/>
+    <path d="M112 169H148V191H131L120 200V191H112V169Z" stroke="#234D3D" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="122" cy="180" r="1.8" fill="#234D3D"/>
+    <circle cx="130" cy="180" r="1.8" fill="#234D3D"/>
+    <circle cx="138" cy="180" r="1.8" fill="#234D3D"/>
+  </g>
+  <g transform="rotate(12 451 333)" filter="url(#shadow)">
+    <rect x="422" y="304" width="58" height="58" rx="21" fill="#E8B294"/>
+    <path d="M439 333L447 341L463 325" stroke="#234D3D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <circle cx="515" cy="186" r="5" fill="#234D3D"/>
+  <circle cx="69" cy="354" r="5" fill="#234D3D"/>
+</svg>
