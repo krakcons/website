@@ -39,7 +39,7 @@ export const messages = {
     appStore: "View on the App Store",
     ecosystemHeading: "One mission.\nA growing ecosystem.",
     projectsLink: "Explore our projects",
-    contactHeading: "Let's get cracking.",
+    contactHeading: "Let's get KRAKing.",
     contactText: "Tell us about your mission and the tools you need.",
     contactLink: "Start a conversation",
     rights: "KRAK Consultants Inc. All rights reserved.",
