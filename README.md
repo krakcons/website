@@ -100,6 +100,43 @@ Operational notes:
 - Back up the database, media, and encryption key. Use separate databases and buckets for staging.
 - Sandboxed marketplace/registry plugins are not enabled. Add the Node `workerd` runner if we need them later.
 
+## CI and GHCR images
+
+GitHub Actions in `.github/workflows/container.yml` typechecks and builds each
+pull request, including its PostgreSQL/S3 Docker image without publishing it.
+Successful pushes to `main` (or manual workflow runs on `main`) publish:
+
+- `ghcr.io/krakcons/website:latest`
+- `ghcr.io/krakcons/website:sha-<full-commit-sha>`
+
+Images target `linux/amd64`, matching the Krak cluster. Actions authenticate with
+the repository's built-in `GITHUB_TOKEN`; no registry password is needed in
+repository secrets. The package is linked to this repository through OCI labels.
+Keep it private; the cluster's registry account must have access to the package.
+
+Set the repository Actions variable `EMDASH_SITE_URL` if the public origin differs
+from `https://krakconsultants.com`. Changing it requires a new image build.
+Database, S3, and encryption credentials belong in the admin project's runtime
+variables, never in Actions variables or Docker build arguments.
+
+### Admin project handoff
+
+1. Create the website project with PostgreSQL and private S3 storage.
+2. Use `ghcr.io/krakcons/website:latest` (or the digest from the successful Actions
+   run summary for reproducibility), application port `4321`, and one replica.
+3. Supply the runtime variables listed above. For private GHCR pulls, use
+   `REGISTRY_USERNAME` and `REGISTRY_TOKEN` with package read access, or inherit
+   the shared registry credentials if that account can access this package.
+4. Deploy through the admin. Publishing an image does **not** automatically
+   redeploy the cluster project; trigger a new release to pull an updated image.
+5. Complete protected CMS setup and migrate the approved local CMS content and
+   media before switching production traffic. The Git repository contains the
+   starter seed, not the live SQLite database or uploaded media.
+
+Use `/health` for liveness. It does not check database or S3 readiness. To roll
+back application code, redeploy a previous image digest; database migrations
+and CMS content require their own backup/restore plan.
+
 ## Checks
 
 ```bash

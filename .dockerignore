@@ -7,3 +7,8 @@ dist
 data.db
 data.db-*
 uploads
+.github
+.agents
+.claude
+.cursor
+.vscode
