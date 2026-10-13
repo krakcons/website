@@ -35,12 +35,12 @@ export default defineConfig({
       plugins: [
         formsPlugin({ defaultSpamProtection: "honeypot" }),
         {
-          id: "runtime-smtp",
+          id: "krakstack-smtp",
           version: "1.0.0",
           format: "native",
           capabilities: ["hooks.email-transport:register"],
           entrypoint: new URL(
-            "./src/plugins/smtp/runtime-smtp.mjs",
+            "./src/plugins/smtp/krakstack-smtp.mjs",
             import.meta.url,
           ).pathname,
         },

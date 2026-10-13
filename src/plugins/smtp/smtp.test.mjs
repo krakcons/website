@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createServer } from "node:net";
 import { readSmtpConfig, sendSmtpMessage } from "./smtp-transport.mjs";
-import { createPlugin } from "./runtime-smtp.mjs";
+import { createPlugin } from "./krakstack-smtp.mjs";
 
 const env = {
   SMTP_HOST: "smtp.example.com",
@@ -128,7 +128,7 @@ test("recipient rejection fails delivery", async () => {
 
 test("minimal plugin provides only the exclusive SMTP delivery hook", () => {
   const plugin = createPlugin();
-  assert.equal(plugin.id, "runtime-smtp");
+  assert.equal(plugin.id, "krakstack-smtp");
   assert.ok(!plugin.routes || Object.keys(plugin.routes).length === 0);
   assert.ok(!plugin.admin?.pages?.length);
   assert.equal(plugin.hooks["email:deliver"].exclusive, true);

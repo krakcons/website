@@ -3,7 +3,7 @@ import { readSmtpConfig, sendSmtpMessage } from "./smtp-transport.mjs";
 
 export function createPlugin() {
   return definePlugin({
-    id: "runtime-smtp",
+    id: "krakstack-smtp",
     version: "1.0.0",
     capabilities: ["hooks.email-transport:register"],
     hooks: {
