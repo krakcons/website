@@ -1245,6 +1245,48 @@
     ],
     "projects": [
       {
+        "id": "volunteerconnector-project",
+        "slug": "volunteerconnector",
+        "status": "published",
+        "data": {
+          "title": "VolunteerConnector",
+          "organization": "VolunteerConnector",
+          "category": "Client & nonprofit work",
+          "summary": "Client work for VolunteerConnector.",
+          "url": "https://www.volunteerconnector.org",
+          "logo": {
+            "$media": {
+              "url": "https://vccprodstorage.blob.core.windows.net/static/design/images/volunteer-connector-logo.svg?v=222",
+              "alt": "VolunteerConnector",
+              "filename": "volunteerconnector.svg"
+            }
+          },
+          "sort_order": 20
+        }
+      },
+      {
+        "id": "volunteerconnector-project-fr",
+        "slug": "volunteerconnector",
+        "locale": "fr",
+        "translationOf": "volunteerconnector-project",
+        "status": "published",
+        "data": {
+          "title": "VolunteerConnector",
+          "organization": "VolunteerConnector",
+          "category": "Client & nonprofit work",
+          "summary": "Un mandat client pour VolunteerConnector.",
+          "url": "https://www.volunteerconnector.org",
+          "logo": {
+            "$media": {
+              "url": "https://vccprodstorage.blob.core.windows.net/static/design/images/volunteer-connector-logo.svg?v=222",
+              "alt": "VolunteerConnector",
+              "filename": "volunteerconnector.svg"
+            }
+          },
+          "sort_order": 20
+        }
+      },
+      {
         "id": "211-canada-app",
         "slug": "211-canada-app",
         "status": "published",
