@@ -1,0 +1,235 @@
+---
+import { messages, type Locale } from "../utils/i18n";
+
+interface Props {
+  locale: Locale;
+}
+const t = messages[Astro.props.locale].infrastructure;
+---
+
+<section
+  class="ecosystem container"
+  id="ecosystem"
+  aria-labelledby="ecosystem-heading"
+>
+  <div class="ecosystem-intro">
+    <p class="eyebrow">{t.label}</p>
+    <h2 id="ecosystem-heading">{t.heading}</h2>
+    <p class="lead">{t.intro}</p>
+  </div>
+  <figure
+    class="ecosystem-map"
+    aria-labelledby="ecosystem-heading"
+    aria-describedby="ecosystem-note"
+  >
+    <div class="map-layer project-layer">
+      <p class="layer-label">
+        <span aria-hidden="true">01</span>
+        {t.projects}
+      </p>
+      <ul class="project-nodes">
+        {t.projectTypes.map((name) => (
+          <li>{name}</li>
+        ))}
+      </ul>
+    </div>
+    <div class="connector" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="map-layer technology-layer">
+      <p class="layer-label">
+        <span aria-hidden="true">02</span>
+        {t.core}
+      </p>
+      <div class="technology-nodes">
+        {t.layers.map((layer, index) => (
+          <div class="technology-node">
+            <svg
+              class="node-icon"
+              viewBox="0 0 32 32"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              {index === 0 ? (
+                <>
+                  <rect x="4" y="6" width="24" height="20" rx="3" />
+                  <path d="M4 12h24M9 9h1m3 0h1M10 17h12m-12 4h8" />
+                </>
+              ) : index === 1 ? (
+                <>
+                  <path d="m11 8-8 8 8 8m10-16 8 8-8 8M18 5l-4 22" />
+                </>
+              ) : (
+                <>
+                  <rect x="3" y="3" width="10" height="10" rx="2" />
+                  <rect x="19" y="3" width="10" height="10" rx="2" />
+                  <rect x="11" y="21" width="10" height="8" rx="2" />
+                  <path d="M8 13v4h16v-4m-8 4v4" />
+                </>
+              )}
+            </svg>
+            <h3>{layer.title}</h3>
+            <p>{layer.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="connector" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="map-layer foundation-layer">
+      <p class="layer-label">
+        <span aria-hidden="true">03</span>
+        {t.foundation}
+      </p>
+      <p class="foundation-description">{t.foundationDescription}</p>
+    </div>
+    <figcaption id="ecosystem-note">{t.note}</figcaption>
+  </figure>
+</section>
+
+<style>
+  .ecosystem {
+    padding-block: 1rem 5rem;
+    scroll-margin-top: 2rem;
+  }
+  .ecosystem-intro {
+    max-width: 760px;
+  }
+  .ecosystem-intro h2 {
+    margin-bottom: 1.5rem;
+  }
+  .ecosystem-map {
+    margin: 2.5rem 0 0;
+  }
+  .map-layer {
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .layer-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  .layer-label > span {
+    color: var(--muted);
+    font-size: 0.65rem;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .project-layer {
+    background: #f0f3eb;
+  }
+  .project-nodes,
+  .technology-nodes,
+  .connector {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .project-nodes li {
+    padding: 1rem;
+    text-align: center;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+  .connector {
+    height: 32px;
+    margin-inline: 1.5rem;
+  }
+  .connector span {
+    width: 1px;
+    height: 100%;
+    background: var(--line);
+    justify-self: center;
+    position: relative;
+  }
+  .connector span::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: -3px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+  }
+  .technology-layer {
+    background: white;
+  }
+  .technology-node {
+    padding: 1.25rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+  .node-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--green);
+    margin-bottom: 1rem;
+  }
+  .technology-node h3 {
+    font-size: 1.15rem;
+  }
+  .technology-node p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-block: 0.75rem 0;
+  }
+  .foundation-layer {
+    background: var(--green);
+    color: var(--paper);
+    border-color: var(--green);
+  }
+  .foundation-layer .layer-label > span {
+    color: var(--lime);
+  }
+  .foundation-description {
+    max-width: 760px;
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  figcaption {
+    max-width: 760px;
+    margin-top: 1.25rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  @media (max-width: 760px) {
+    .project-nodes,
+    .technology-nodes {
+      grid-template-columns: 1fr;
+    }
+    .map-layer {
+      padding: 1rem;
+    }
+    .connector {
+      grid-template-columns: 1fr;
+    }
+    .connector span:not(:first-child) {
+      display: none;
+    }
+    .ecosystem {
+      padding-bottom: 3rem;
+    }
+  }
+</style>

@@ -70,7 +70,7 @@ Local development uses SQLite and local uploads. Docker defaults to PostgreSQL a
 | Category | `/category/[slug]` | Posts filtered by category |
 | Tag | `/tag/[slug]` | Posts filtered by tag |
 
-Mission and Process share the `/mission` page (`/fr/mission` in French). Legacy `/process` and `/fr/process` URLs permanently redirect to the corresponding mission page. Keep navigation and homepage links pointed at the merged page.
+Mission, Process, and Services share the `/mission` page (`/fr/mission` in French), along with the ecosystem/infrastructure visual. Services still reads the localized published `specializations` CMS entry, rendered within Mission at `#services`; preserve that entry as the content source. Legacy `/process` URLs permanently redirect to Mission, and `/specializations` URLs redirect to Mission's `#services` section, in both locales. Keep navigation and homepage links pointed at the merged page.
 
 ## Schema
 

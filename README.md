@@ -29,13 +29,15 @@ Both development and production use published content from their own CMS databas
 | ------------------ | ------------------------------------------------- |
 | `/`                | Homepage, backed by the `home` entry in Pages     |
 | `/about-us`        | About the team                                    |
-| `/mission`         | Mission, with a separate “How we work” subsection |
+| `/mission`         | Mission, approach, services, and ecosystem visual |
 | `/process`         | Permanent redirect to `/mission`                  |
-| `/specializations` | Services                                          |
+| `/specializations` | Permanent redirect to `/mission#services`         |
 | `/projects`        | Client work, internal products, and open source   |
 | `/contact`         | Email contact                                     |
 
 Edit titles, display headings, introductions, and body copy in **Pages**. Navigation comes from the **primary** CMS menu. The shared CTA, contact email, homepage service cards, and short process overview currently live in the Astro components; we can move these into structured CMS fields as the content model becomes real.
+
+Mission also renders the published **specializations** entry in the request locale as its Services section. Keep editing that entry in the CMS; it remains the source of the service heading, summary, and body. Its old public URLs redirect to the localized Mission page's `#services` anchor. The frontend omits legacy Services menu links without changing stored CMS menus. The ecosystem diagram and its bilingual interface copy live in `src/components/Ecosystem.astro` and `src/utils/i18n.ts`; it describes the toolkit, not a uniform architecture for every project.
 
 ## Bilingual content and projects
 
@@ -145,8 +147,8 @@ rules still apply. Database and CMS content are not imported by this workflow.
    subsequent successful `main` builds trigger an admin release automatically
    using the full commit-SHA image tag, rather than relying on `latest` updates.
 5. Complete protected CMS setup and configure the required schema and approved
-    content directly in the production CMS before switching production traffic.
-    The Git repository contains no database, uploaded media, or starter seed.
+   content directly in the production CMS before switching production traffic.
+   The Git repository contains no database, uploaded media, or starter seed.
 
 Use `/health` for liveness. It does not check database or S3 readiness. To roll
 back application code, redeploy a previous image digest; database migrations

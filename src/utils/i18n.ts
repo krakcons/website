@@ -23,6 +23,7 @@ export const messages = {
     talk: "Let's talk",
     meet: "Meet KRAK",
     mission: "Our mission",
+    missionSections: "Mission page sections",
     introHeading: "Practical solutions.\nBuilt around you.",
     missionLink: "Practical technology. People first.",
     servicesLabel: "Our services",
@@ -78,7 +79,38 @@ export const messages = {
     emptyText: "Talk to us about the digital tools your organization needs.",
     explore: "Explore",
     newTab: "opens in a new tab",
-    nav: ["About us", "Mission", "Services", "Projects", "Contact"],
+    nav: ["About us", "Mission", "Projects", "Contact"],
+    infrastructure: {
+      label: "Our ecosystem",
+      heading: "The foundations behind the work.",
+      intro:
+        "From websites to custom applications, our work draws on a connected ecosystem of open-source tools and deployment infrastructure.",
+      projects: "What we build",
+      projectTypes: [
+        "Websites & content",
+        "Custom applications",
+        "Internal products",
+      ],
+      core: "Core technologies",
+      layers: [
+        {
+          title: "Web & content",
+          description: "Websites and tools for managing content.",
+        },
+        {
+          title: "Applications & services",
+          description: "Interfaces and the services behind them.",
+        },
+        {
+          title: "Shared building blocks",
+          description: "Reusable components, authentication, and data access.",
+        },
+      ],
+      foundation: "Deployment & data",
+      foundationDescription:
+        "The infrastructure that supports deployment, hosting, and the storage of project data.",
+      note: "Technologies and hosting are chosen to fit each project.",
+    },
     services: [
       {
         number: "01",
@@ -155,6 +187,7 @@ export const messages = {
     talk: "Parlons-en",
     meet: "Découvrir KRAK",
     mission: "Notre mission",
+    missionSections: "Sections de la page Mission",
     introHeading: "Des solutions concrètes.\nPensées pour vous.",
     missionLink: "Des solutions concrètes. Les personnes d'abord.",
     servicesLabel: "Nos services",
@@ -212,7 +245,39 @@ export const messages = {
       "Parlons des outils numériques dont votre organisation a besoin.",
     explore: "Découvrir",
     newTab: "s'ouvre dans un nouvel onglet",
-    nav: ["À propos", "Mission", "Services", "Projets", "Contact"],
+    nav: ["À propos", "Mission", "Projets", "Contact"],
+    infrastructure: {
+      label: "Notre écosystème",
+      heading: "Les fondations de nos projets.",
+      intro:
+        "Des sites web aux applications sur mesure, nos projets s’appuient sur un écosystème d’outils libres et d’infrastructure de déploiement.",
+      projects: "Ce que nous créons",
+      projectTypes: [
+        "Sites web et contenu",
+        "Applications sur mesure",
+        "Produits internes",
+      ],
+      core: "Technologies clés",
+      layers: [
+        {
+          title: "Web et contenu",
+          description: "Des sites web et des outils de gestion de contenu.",
+        },
+        {
+          title: "Applications et services",
+          description: "Les interfaces et les services qui les soutiennent.",
+        },
+        {
+          title: "Composants partagés",
+          description:
+            "Des composants réutilisables, l’authentification et l’accès aux données.",
+        },
+      ],
+      foundation: "Déploiement et données",
+      foundationDescription:
+        "L’infrastructure qui soutient le déploiement, l’hébergement et le stockage des données des projets.",
+      note: "Les technologies et l’hébergement sont adaptés à chaque projet.",
+    },
     services: [
       {
         number: "01",

@@ -72,13 +72,18 @@ const titleIncludesSiteName =
 const fullTitle = titleIncludesSiteName ? title : `${title} — ${siteTitle}`;
 const pageDescription =
   description ?? (locale === "fr" ? t.tagline : siteTagline);
-const menuItems = menuResult.data?.items.length
+const sourceMenuItems = menuResult.data?.items.length
   ? menuResult.data.items
   : navigation.map((item, index) => ({
       ...item,
       label: t.nav[index],
       url: link(item.url),
     }));
+// Services now lives on Mission; retain database-owned menus without a CMS write.
+const menuItems = sourceMenuItems.filter((item) => {
+  const pathname = new URL(item.url, Astro.url.origin).pathname;
+  return !/^\/(fr\/)?specializations\/?$/.test(pathname);
+});
 
 const pageCtx = createPublicPageContext({
   Astro,
