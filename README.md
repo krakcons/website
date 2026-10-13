@@ -1,6 +1,6 @@
 # website
 
-KRAK Consultants' bilingual company website, built with Astro and EmDash. Canadian-first software consulting, hosting, and digital solutions for nonprofits and organizations working for good.
+KRAK Consultants' bilingual company website, built with Astro and EmDash. Canadian-first software consulting, hosting, and digital solutions for businesses and organizations, with nonprofit support and discounts available.
 
 ## Run locally
 
@@ -21,19 +21,19 @@ On a fresh database, complete the CMS setup wizard with your own email and passk
 
 For local development only, EmDash also offers `http://localhost:4321/_emdash/api/setup/dev-bypass?redirect=/_emdash/admin`. It creates a dev admin, imports the sample content, and signs you in. CLI commands can create this dev account automatically; if the normal wizard says “Admin user already exists”, use the dev shortcut rather than resetting the database. Do not use a development account as the production setup strategy.
 
-Before setup, development mode previews the copy from `seed/seed.json`. Published CMS content takes precedence. Production never falls back to sample content: an unpublished/missing page returns 404, and a missing homepage returns a 503 “Coming soon” page.
+Both development and production use published content from their own CMS databases, with no bundled seed or sample-content fallback. An unpublished/missing page returns 404, and a missing homepage returns a 503 “Coming soon” page.
 
 ## Pages and editing
 
-| URL                | Content                                                   |
-| ------------------ | --------------------------------------------------------- |
-| `/`                | Homepage, backed by the `home` entry in Pages             |
-| `/about-us`        | About the team                                            |
-| `/mission`         | Mission, with a separate “How we work” subsection         |
-| `/process`         | Permanent redirect to `/mission`                          |
-| `/specializations` | Services                                                  |
-| `/projects`        | Client/nonprofit work, internal products, and open source |
-| `/contact`         | Email contact                                             |
+| URL                | Content                                           |
+| ------------------ | ------------------------------------------------- |
+| `/`                | Homepage, backed by the `home` entry in Pages     |
+| `/about-us`        | About the team                                    |
+| `/mission`         | Mission, with a separate “How we work” subsection |
+| `/process`         | Permanent redirect to `/mission`                  |
+| `/specializations` | Services                                          |
+| `/projects`        | Client work, internal products, and open source   |
+| `/contact`         | Email contact                                     |
 
 Edit titles, display headings, introductions, and body copy in **Pages**. Navigation comes from the **primary** CMS menu. The shared CTA, contact email, homepage service cards, and short process overview currently live in the Astro components; we can move these into structured CMS fields as the content model becomes real.
 
@@ -47,7 +47,7 @@ In **Pages** or **Projects**, use the locale filter or the entry's **Translation
 
 The portfolio includes the 211 Canada app (linked to the Canadian App Store), CompanionLink, Bread (with Technology Helps), Sage Project, internal products Nuonn and Kokobi Learning, and KrakStack open-source tools. KrakStack's default package, registry, and components are one project; Auth and Uptime have separate entries. Descriptions stay within the confirmed scope; detailed case studies can be added later. Kokobi Learning replaces the earlier CocoBee display name, while its existing CMS slug is preserved. Project cards use compact outlined white logo squares beside their names. CompanionLink uses its standalone symbol in project cards; its wordmark remains in the homepage logo row. Kokobi Learning uses the product icon from `learning.kokobi.org`.
 
-**Organizations** controls the homepage's “Worked with” logo section. Edit names, logos, optional websites, and display order in each locale. Each organization has one CMS entry per language, independently of its number of projects. The section includes 211, CompanionLink, Bread, Technology Helps, Sage Project, VolunteerConnector, Mentor Canada, the Government of New Brunswick, and Findhelp. The single-row logo strip scrolls continuously; a repeated visual set keeps the loop seamless without adding duplicate keyboard or screen-reader stops. Hover, keyboard focus, and the pause control stop movement; reduced-motion users get a manually scrollable row. Logos load eagerly to avoid empty spots as they move into view. Logos were sourced from their official websites (source URLs are in the seed), with PNG copies uploaded to the local CMS. `public/logos/` supplies development previews before setup; production uses published CMS entries and media.
+**Organizations** controls the homepage's “Worked with” logo section. Edit names, logos, optional websites, and display order in each locale. Each organization has one CMS entry per language, independently of its number of projects. The single-row logo strip scrolls continuously; a repeated visual set keeps the loop seamless without adding duplicate keyboard or screen-reader stops. Hover, keyboard focus, and the pause control stop movement; reduced-motion users get a manually scrollable row. Logos load eagerly to avoid empty spots as they move into view. Both development and production use published CMS entries and media; the section is hidden when no organizations are published.
 
 The starter also retains an optional Insights/posts collection, but there are no sample articles or public navigation links to it.
 
@@ -58,10 +58,9 @@ Key files:
 - `src/pages/` and `src/pages/fr/`: English/French server-rendered routes.
 - `src/utils/i18n.ts`: shared English/French UI copy and locale URLs.
 - `src/styles/theme.css`: responsive design.
-- `seed/seed.json`: initial content model and starter copy.
 - `astro.config.mjs`: deployment adapters.
 
-Seed changes do not overwrite an existing database. After setup, edit through the CMS or use EmDash's schema/content tooling. Do not delete a live database to apply a new seed.
+Manage the content model and entries through the CMS or EmDash's schema/content tooling. New installations require schema and content setup; this repository no longer bundles a seed. Never delete a live database to reinitialize a site.
 
 ## Docker, PostgreSQL and S3
 
@@ -145,9 +144,9 @@ rules still apply. Database and CMS content are not imported by this workflow.
 4. Deploy initially through the admin. With `KRAK_RELEASE_TOKEN` configured,
    subsequent successful `main` builds trigger an admin release automatically
    using the full commit-SHA image tag, rather than relying on `latest` updates.
-5. Complete protected CMS setup and migrate the approved local CMS content and
-   media before switching production traffic. The Git repository contains the
-   starter seed, not the live SQLite database or uploaded media.
+5. Complete protected CMS setup and configure the required schema and approved
+    content directly in the production CMS before switching production traffic.
+    The Git repository contains no database, uploaded media, or starter seed.
 
 Use `/health` for liveness. It does not check database or S3 readiness. To roll
 back application code, redeploy a previous image digest; database migrations

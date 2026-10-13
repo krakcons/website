@@ -22,7 +22,7 @@ const productLogoFiles: Record<string, string> = {
   "krakstack-uptime": "krakstack-uptime",
 };
 
-const { entry: page, defaults, data } = Astro.props.pageResult;
+const { entry: page, data } = Astro.props.pageResult;
 
 const result = await getEmDashCollection("projects", { limit: 100, locale });
 if (Astro.cache?.enabled) Astro.cache.set(result.cacheHint);
@@ -94,11 +94,7 @@ projects.sort(
         </nav>
       </section>
       <div class="container projects-intro lead" {...page?.edit.content}>
-        {page ? (
-          <PortableText value={page.data.content ?? []} />
-        ) : (
-          <p>{defaults?.data.content[0].children[0].text}</p>
-        )}
+        <PortableText value={page?.data.content ?? []} />
       </div>
       {projectGroups.map((group, index) => {
         const entries = projects.filter(

@@ -2,7 +2,7 @@ export const projectGroups = [
   {
     id: "client-work",
     value: "Client & nonprofit work",
-    title: "Client & nonprofit work",
+    title: "Client work",
     description:
       "Digital solutions for the organizations and people we work with.",
   },

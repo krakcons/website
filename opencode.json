@@ -1,0 +1,10 @@
+{
+  "mcp": {
+    "servers": {
+      "krak-website": {
+        "type": "remote",
+        "url": "https://newwebsite.krakconsultants.net/_emdash/api/mcp"
+      }
+    }
+  }
+}

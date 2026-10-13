@@ -1,7 +1,6 @@
 ---
 import { getEmDashCollection } from "emdash";
 import { Image } from "emdash/ui";
-import seed from "../../seed/seed.json";
 import { getLocale, messages } from "../utils/i18n";
 import { safeProjectUrl } from "../utils/projects";
 import { resolveLogo } from "../utils/logos";
@@ -24,19 +23,7 @@ while (cursor) {
   organizations.push(...next.entries.map((entry) => entry.data));
   cursor = next.nextCursor;
 }
-const preview = import.meta.env.DEV && !organizations.length;
-const items = preview
-  ? seed.content.organizations
-      .filter((entry) => (entry.locale ?? "en") === locale)
-      .map((entry) => ({
-        ...entry.data,
-        logo: {
-          id: `seed-${entry.id}`,
-          src: `/logos/${entry.data.logo.$media.filename}`,
-          alt: entry.data.title,
-        },
-      }))
-  : organizations;
+const items = organizations;
 items.sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
 ---
 

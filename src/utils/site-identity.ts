@@ -13,7 +13,7 @@ export interface StarterSiteIdentitySettings {
 }
 
 const DEFAULT_SITE_TITLE = "KRAK Consultants";
-const DEFAULT_SITE_TAGLINE = "Canadian-first. Built for good.";
+const DEFAULT_SITE_TAGLINE = "Your mission. Our expertise.";
 
 export function resolveStarterSiteIdentity(
   settings?: StarterSiteIdentitySettings,

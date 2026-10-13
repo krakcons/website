@@ -18,15 +18,15 @@ export const messages = {
     home: "Home",
     breadcrumb: "Breadcrumb",
     homeLabel: "KRAK Consultants home",
-    tagline: "Canadian-first. Built for good.",
-    heroEyebrow: "Digital solutions for societal challenges",
+    tagline: "Your mission. Our expertise.",
+    heroEyebrow: "Where good ideas become action",
     talk: "Let's talk",
     meet: "Meet KRAK",
     mission: "Our mission",
-    introHeading: "Your mission.\nOur digital expertise.",
-    missionLink: "Technology in service of a better society",
+    introHeading: "Practical solutions.\nBuilt around you.",
+    missionLink: "Practical technology. People first.",
     servicesLabel: "Our services",
-    servicesHeading: "Build the tools\nyour mission needs.",
+    servicesHeading: "Build the tools\nyour team needs.",
     servicesLink: "Explore what we do",
     workLabel: "How we work",
     workHeading: "Start with the people. Build what matters.",
@@ -37,14 +37,35 @@ export const messages = {
     resumeLogos: "Resume logo scrolling",
     github: "View on GitHub",
     appStore: "View on the App Store",
-    ecosystemHeading: "One mission.\nA growing ecosystem.",
+    ecosystemHeading: "Useful tools.\nA growing ecosystem.",
     projectsLink: "Explore our projects",
     contactHeading: "Let's get KRAKing.",
-    contactText: "Tell us about your mission and the tools you need.",
+    contactText: "Tell us about your goals and the tools you need.",
     contactLink: "Start a conversation",
     rights: "KRAK Consultants Inc. All rights reserved.",
     email: "Email us",
-    noForms: "No forms or fuss. Just a conversation.",
+    copyEmail: "Copy email",
+    emailCopied: "Email copied",
+    emailCopyError:
+      "Couldn't copy. Select the email address and copy it manually.",
+    contactForm: {
+      heading: "Tell us what you have in mind",
+      name: "Name",
+      email: "Email address",
+      organization: "Company or organization (optional)",
+      message: "How can we help?",
+      submit: "Send message",
+      sending: "Sending…",
+      success: "Thanks! Your message has been received.",
+      error:
+        "Your message couldn't be sent. Please try again or copy our email address to contact us directly.",
+      invalid: "Please check the highlighted fields and try again.",
+      privacy:
+        "We'll use these details to respond to your inquiry. Please don't include sensitive information.",
+      noScript:
+        "Enable JavaScript to send this form, or copy our email address to contact us directly.",
+      honeypot: "Leave this field blank",
+    },
     comingHeading: "A new site.\nComing soon.",
     comingText:
       "We're getting things ready. In the meantime, get in touch by email.",
@@ -61,29 +82,24 @@ export const messages = {
     services: [
       {
         number: "01",
-        title: "Software consulting",
-        text: "Technical guidance and custom software built around your organization's mission.",
+        title: "Websites & WordPress",
+        text: "New websites, redesigns, and WordPress projects that help businesses and organizations share their work and keep content up to date.",
       },
       {
         number: "02",
-        title: "Hosting & infrastructure",
-        text: "Canadian-first hosting on infrastructure we operate, with a plan for what comes after launch.",
+        title: "Custom applications",
+        text: "Applications, internal tools, learning systems, and integrations built around the way your team works.",
       },
       {
         number: "03",
-        title: "Digital solutions",
-        text: "Applications, integrations, and workflows for organizations tackling societal challenges.",
-      },
-      {
-        number: "04",
-        title: "Internal tools & learning",
-        text: "Learning management systems and practical tools that support the work behind your mission.",
+        title: "Nonprofit projects",
+        text: "Websites and practical digital tools for nonprofits, with an approach that respects your mission, your team's capacity, and your budget.",
       },
     ],
     steps: [
       {
         title: "Listen & understand",
-        text: "Understand your mission, your users, and the challenge.",
+        text: "Understand your goals, your users, and the challenge.",
       },
       {
         title: "Plan with clarity",
@@ -100,10 +116,11 @@ export const messages = {
     ],
     groups: [
       {
-        title: "Client & nonprofit work",
+        title: "Client work",
         description:
           "Digital solutions for the organizations and people we work with.",
-        teaser: "Digital solutions built with organizations working for good.",
+        teaser:
+          "Digital solutions built with businesses, nonprofits, and other organizations.",
         link: "Work with us",
       },
       {
@@ -133,15 +150,15 @@ export const messages = {
     home: "Accueil",
     breadcrumb: "Fil d'Ariane",
     homeLabel: "Accueil de KRAK Consultants",
-    tagline: "Le Canada d'abord. Le bien commun, toujours.",
-    heroEyebrow: "Des solutions numériques aux enjeux de société",
+    tagline: "Votre mission. Notre expertise.",
+    heroEyebrow: "Là où les bonnes idées deviennent action",
     talk: "Parlons-en",
     meet: "Découvrir KRAK",
     mission: "Notre mission",
-    introHeading: "Votre mission.\nNotre expertise numérique.",
-    missionLink: "La technologie au service d'une société meilleure",
+    introHeading: "Des solutions concrètes.\nPensées pour vous.",
+    missionLink: "Des solutions concrètes. Les personnes d'abord.",
     servicesLabel: "Nos services",
-    servicesHeading: "Les outils pour\nfaire avancer votre mission.",
+    servicesHeading: "Les outils pour\nfaire avancer votre équipe.",
     servicesLink: "Découvrir nos services",
     workLabel: "Notre approche",
     workHeading: "Les personnes d'abord. Des outils qui comptent.",
@@ -152,15 +169,36 @@ export const messages = {
     resumeLogos: "Reprendre le défilement des logos",
     github: "Voir sur GitHub",
     appStore: "Voir sur l'App Store",
-    ecosystemHeading: "Une mission.\nUn écosystème en croissance.",
+    ecosystemHeading: "Des outils utiles.\nUn écosystème en croissance.",
     projectsLink: "Découvrir nos projets",
     contactHeading: "Passons à l'action.",
     contactText:
-      "Parlez-nous de votre mission et des outils dont vous avez besoin.",
+      "Parlez-nous de vos objectifs et des outils dont vous avez besoin.",
     contactLink: "Entamer la conversation",
     rights: "KRAK Consultants Inc. Tous droits réservés.",
     email: "Écrivez-nous",
-    noForms: "Sans formulaire compliqué. Une simple conversation.",
+    copyEmail: "Copier le courriel",
+    emailCopied: "Courriel copié",
+    emailCopyError:
+      "La copie a échoué. Sélectionnez l'adresse et copiez-la manuellement.",
+    contactForm: {
+      heading: "Parlez-nous de votre projet",
+      name: "Nom",
+      email: "Adresse courriel",
+      organization: "Entreprise ou organisation (facultatif)",
+      message: "Comment pouvons-nous vous aider?",
+      submit: "Envoyer le message",
+      sending: "Envoi en cours…",
+      success: "Merci! Votre message a bien été reçu.",
+      error:
+        "Votre message n'a pas pu être envoyé. Réessayez ou copiez notre adresse courriel pour nous contacter directement.",
+      invalid: "Vérifiez les champs indiqués et réessayez.",
+      privacy:
+        "Nous utiliserons ces renseignements pour répondre à votre demande. Veuillez ne pas inclure de renseignements sensibles.",
+      noScript:
+        "Activez JavaScript pour envoyer ce formulaire, ou copiez notre adresse courriel pour nous contacter directement.",
+      honeypot: "Laissez ce champ vide",
+    },
     comingHeading: "Un nouveau site.\nBientôt en ligne.",
     comingText:
       "Nous préparons notre nouveau site. En attendant, contactez-nous par courriel.",
@@ -178,29 +216,24 @@ export const messages = {
     services: [
       {
         number: "01",
-        title: "Conseil en logiciel",
-        text: "Des conseils techniques et des logiciels sur mesure au service de la mission de votre organisation.",
+        title: "Sites web et WordPress",
+        text: "Création et refonte de sites web, et projets WordPress pour aider les entreprises et les organisations à présenter leur travail et à tenir leur contenu à jour.",
       },
       {
         number: "02",
-        title: "Hébergement et infrastructure",
-        text: "Un hébergement axé sur le Canada, sur notre propre infrastructure, avec une vision au-delà du lancement.",
+        title: "Applications sur mesure",
+        text: "Des applications, des outils internes, des systèmes de formation et des intégrations adaptés au fonctionnement de votre équipe.",
       },
       {
         number: "03",
-        title: "Solutions numériques",
-        text: "Des applications, des intégrations et des processus pour les organisations qui s'attaquent aux enjeux de société.",
-      },
-      {
-        number: "04",
-        title: "Outils internes et formation",
-        text: "Des systèmes de gestion de l'apprentissage et des outils pratiques pour soutenir votre travail au quotidien.",
+        title: "Projets pour les OBNL",
+        text: "Des sites web et des outils numériques pratiques pour les organismes à but non lucratif, dans le respect de votre mission, de la capacité de votre équipe et de votre budget.",
       },
     ],
     steps: [
       {
         title: "Écouter et comprendre",
-        text: "Comprendre votre mission, vos utilisateurs et le défi à relever.",
+        text: "Comprendre vos objectifs, vos utilisateurs et le défi à relever.",
       },
       {
         title: "Planifier clairement",
@@ -217,11 +250,11 @@ export const messages = {
     ],
     groups: [
       {
-        title: "Mandats clients et organismes",
+        title: "Mandats clients",
         description:
           "Des solutions numériques pour les organisations et les personnes avec qui nous travaillons.",
         teaser:
-          "Des solutions conçues avec des organisations qui œuvrent pour le bien commun.",
+          "Des solutions conçues avec des entreprises, des organismes sans but lucratif et d'autres organisations.",
         link: "Travailler avec nous",
       },
       {
