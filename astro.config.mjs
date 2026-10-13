@@ -16,6 +16,10 @@ const database = usePostgres
   : sqlite({ url: "file:./data.db" });
 
 export default defineConfig({
+  site:
+    process.env.EMDASH_SITE_URL ??
+    process.env.SITE_URL ??
+    "http://localhost:4321",
   output: "server",
   i18n: {
     defaultLocale: "en",

@@ -17,6 +17,6 @@ jobs:
       project_slug: krak-consultants-website-prod
       krak_group: app
       krak_task: krak-consultants-website
-      vite_site_url: https://newwebsite.krakconsultants.net
+      vite_site_url: https://krakconsultants.com
     secrets:
       KRAK_RELEASE_TOKEN: ${{ secrets.KRAK_RELEASE_TOKEN }}

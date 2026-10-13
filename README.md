@@ -116,7 +116,7 @@ the repository's built-in `GITHUB_TOKEN`; no registry password is needed in
 repository secrets. The package is linked to this repository through OCI labels.
 Keep it private; the cluster's registry account must have access to the package.
 
-The workflow's `vite_site_url` is `https://newwebsite.krakconsultants.net`.
+The workflow's `vite_site_url` is `https://krakconsultants.com`.
 The Dockerfile maps that shared helper argument to `EMDASH_SITE_URL` for the
 Astro build. Change the workflow input when changing the public origin, and set
 the same `EMDASH_SITE_URL` in the admin project's runtime variables.

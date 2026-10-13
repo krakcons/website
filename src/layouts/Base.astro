@@ -85,6 +85,15 @@ const menuItems = sourceMenuItems.filter((item) => {
   return !/^\/(fr\/)?specializations\/?$/.test(pathname);
 });
 
+// A reverse proxy can expose an internal origin through Astro.url. Use the
+// deployed public origin for canonical, hreflang, and structured-data URLs.
+const siteUrl = new URL(
+  process.env.EMDASH_SITE_URL ??
+    process.env.SITE_URL ??
+    settingsResult.data.url ??
+    Astro.site?.href ??
+    Astro.url.origin,
+).origin;
 const pageCtx = createPublicPageContext({
   Astro,
   kind: content ? "content" : "custom",
@@ -92,10 +101,11 @@ const pageCtx = createPublicPageContext({
   title: fullTitle,
   pageTitle: pageTitle ?? title,
   description: pageDescription,
-  canonical,
+  canonical: canonical ?? new URL(Astro.url.pathname, siteUrl).href,
   image,
   content,
   siteName: siteTitle,
+  siteUrl,
 });
 ---
 

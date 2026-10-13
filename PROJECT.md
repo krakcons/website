@@ -49,6 +49,8 @@ Marketing copy currently spans CMS entries and shared translations in `src/utils
 
 ## Contact forms and email
 
+Production's canonical origin is `https://krakconsultants.com`. Keep the build workflow's `vite_site_url`, runtime `EMDASH_SITE_URL`, and EmDash's Site URL aligned. `www` redirects to the apex, preserving paths and queries. Public page metadata must use the public origin, never the container's `localhost` address. Domain changes do not require replacing mail DNS records or moving CMS data; update the site setting separately and verify canonical URLs, language alternates, sitemaps, robots.txt, and media after deployment.
+
 - Contact calls to action open the localized Contact page, never the visitor's email client. The email address has an accessible copy button.
 - `@emdash-cms/plugin-forms` handles validation, honeypot spam protection, submission storage, and notifications. A custom bilingual frontend submits to its public API; its success message means the submission was stored, not that email delivery is guaranteed.
 - Register Forms and the site's minimal native `krakstack-smtp` plugin in `astro.config.mjs`. Restart the dev server after changing plugin registration.
