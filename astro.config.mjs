@@ -4,7 +4,6 @@ import { defineConfig } from "astro/config";
 import emdash, { local, s3 } from "emdash/astro";
 import { sqlite, postgres } from "emdash/db";
 import { formsPlugin } from "@emdash-cms/plugin-forms";
-import { emdashSmtp } from "emdash-smtp";
 
 // Adapters are selected at build time; credentials are resolved at runtime.
 const usePostgres = process.env.EMDASH_DATABASE === "postgres";
@@ -35,7 +34,16 @@ export default defineConfig({
       database,
       plugins: [
         formsPlugin({ defaultSpamProtection: "honeypot" }),
-        emdashSmtp(),
+        {
+          id: "runtime-smtp",
+          version: "1.0.0",
+          format: "native",
+          capabilities: ["hooks.email-transport:register"],
+          entrypoint: new URL(
+            "./src/plugins/smtp/runtime-smtp.mjs",
+            import.meta.url,
+          ).pathname,
+        },
       ],
       storage: useS3
         ? s3()

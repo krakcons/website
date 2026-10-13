@@ -12,6 +12,7 @@
     "preview": "astro preview",
     "start": "node ./dist/server/entry.mjs",
     "typecheck": "astro check",
+    "test:smtp": "node --test src/plugins/smtp/smtp.test.mjs",
     "setup:contact": "node scripts/setup-contact-forms.mjs",
     "format": "prettier --write src astro.config.mjs README.md"
   },
@@ -23,7 +24,6 @@
     "@emdash-cms/plugin-forms": "^0.2.9",
     "astro": "^7.3.2",
     "emdash": "^1.0.1",
-    "emdash-smtp": "^0.4.0",
     "nodemailer": "^10.1.0",
     "pg": "^8.23.1",
     "react": "19.2.4",
@@ -33,10 +33,5 @@
     "@astrojs/check": "^0.9.10",
     "prettier": "^3.9.9",
     "prettier-plugin-astro": "^1.1.0"
-  },
-  "overrides": {
-    "emdash-smtp-node-transports": {
-      "nodemailer": "^10.1.0"
-    }
   }
 }
