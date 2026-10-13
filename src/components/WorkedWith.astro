@@ -4,6 +4,7 @@ import { Image } from "emdash/ui";
 import seed from "../../seed/seed.json";
 import { getLocale, messages } from "../utils/i18n";
 import { safeProjectUrl } from "../utils/projects";
+import { resolveLogo } from "../utils/logos";
 const locale = getLocale(Astro.currentLocale);
 const t = messages[locale];
 const result = await getEmDashCollection("organizations", {
@@ -102,8 +103,12 @@ items.sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
                     aria-label={organization.title}
                     style={`--logo-width: ${isTechnologyHelps ? 76 : logoWidth}px; --logo-height: ${isTechnologyHelps ? 64 : 40}px`}
                   >
-                    {organization.logo ? (
-                      <Image image={organization.logo} priority />
+                    {logo ? (
+                      <Image
+                        image={resolveLogo(logo)}
+                        priority
+                        placeholder={false}
+                      />
                     ) : (
                       <span>{organization.title}</span>
                     )}

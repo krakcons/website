@@ -11,6 +11,7 @@ import { navigation } from "../utils/navigation";
 import { resolveStarterSiteIdentity } from "../utils/site-identity";
 import { getLocale, localePath, messages } from "../utils/i18n";
 import LanguageSwitcher from "../components/LanguageSwitcher.astro";
+import EmailCopy from "../components/EmailCopy.astro";
 
 interface Props {
   title: string;
@@ -209,7 +210,7 @@ const pageCtx = createPublicPageContext({
           <h2>{t.contactHeading}</h2>
           <p>{t.contactText}</p>
         </div>
-        <a class="button button-light" href="mailto:info@krakconsultants.com">
+        <a class="button button-light" href={link("/contact")}>
           {t.contactLink} <span aria-hidden="true">↗</span>
         </a>
       </div>
@@ -233,7 +234,7 @@ const pageCtx = createPublicPageContext({
           <span>
             © {new Date().getFullYear()} {t.rights}
           </span>
-          <a href="mailto:info@krakconsultants.com">info@krakconsultants.com</a>
+          <EmailCopy locale={locale} />
           <LanguageSwitcher locale={locale} otherUrl={otherUrl} />
         </div>
       </div>

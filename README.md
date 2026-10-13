@@ -1,6 +1,6 @@
 # website
 
-KRAK Consultants' bilingual company website, built with Astro and EmDash. Canadian-first software consulting, hosting, and digital solutions for nonprofits and organizations working for good.
+KRAK Consultants' bilingual company website, built with Astro and EmDash. Canadian-first software consulting, hosting, and digital solutions for businesses and organizations, with nonprofit support and discounts available.
 
 ## Run locally
 
@@ -25,15 +25,15 @@ Before setup, development mode previews the copy from `seed/seed.json`. Publishe
 
 ## Pages and editing
 
-| URL                | Content                                                   |
-| ------------------ | --------------------------------------------------------- |
-| `/`                | Homepage, backed by the `home` entry in Pages             |
-| `/about-us`        | About the team                                            |
-| `/mission`         | Mission, with a separate “How we work” subsection         |
-| `/process`         | Permanent redirect to `/mission`                          |
-| `/specializations` | Services                                                  |
-| `/projects`        | Client/nonprofit work, internal products, and open source |
-| `/contact`         | Email contact                                             |
+| URL                | Content                                           |
+| ------------------ | ------------------------------------------------- |
+| `/`                | Homepage, backed by the `home` entry in Pages     |
+| `/about-us`        | About the team                                    |
+| `/mission`         | Mission, with a separate “How we work” subsection |
+| `/process`         | Permanent redirect to `/mission`                  |
+| `/specializations` | Services                                          |
+| `/projects`        | Client work, internal products, and open source   |
+| `/contact`         | Email contact                                     |
 
 Edit titles, display headings, introductions, and body copy in **Pages**. Navigation comes from the **primary** CMS menu. The shared CTA, contact email, homepage service cards, and short process overview currently live in the Astro components; we can move these into structured CMS fields as the content model becomes real.
 

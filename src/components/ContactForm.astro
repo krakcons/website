@@ -1,0 +1,191 @@
+---
+import { messages, type Locale } from "../utils/i18n";
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = messages[locale].contactForm;
+---
+
+<section class="contact-form-section" aria-labelledby="contact-form-heading">
+  <h2 id="contact-form-heading">{t.heading}</h2>
+  <form
+    data-contact-form
+    data-form-id={`contact-${locale}`}
+    data-sending={t.sending}
+    data-success={t.success}
+    data-error={t.error}
+    data-invalid={t.invalid}
+  >
+    <div class="contact-form-fields">
+      <label>
+        {t.name}
+        <input name="name" autocomplete="name" required maxlength="150" />
+      </label>
+      <label>
+        {t.email}
+        <input
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+          maxlength="254"
+        />
+      </label>
+      <label class="full-width">
+        {t.organization}
+        <input
+          name="organization"
+          autocomplete="organization"
+          maxlength="200"
+        />
+      </label>
+      <label class="full-width">
+        {t.message}
+        <textarea
+          name="message"
+          required
+          minlength="10"
+          maxlength="5000"
+          rows="6"
+        ></textarea>
+      </label>
+    </div>
+    <div class="honeypot" aria-hidden="true">
+      <label>
+        {t.honeypot}
+        <input name="_hp" tabindex="-1" autocomplete="off" />
+      </label>
+    </div>
+    <p class="form-note">{t.privacy}</p>
+    <button class="button" type="submit" disabled>
+      {t.submit}
+    </button>
+    <p class="form-status" role="status" tabindex="-1"></p>
+    <noscript>
+      <p>{t.noScript}</p>
+    </noscript>
+  </form>
+</section>
+<script>
+  document
+    .querySelectorAll<HTMLFormElement>("[data-contact-form]")
+    .forEach((form) => {
+      const button = form.querySelector<HTMLButtonElement>(
+        "button[type=submit]",
+      )!;
+      const status = form.querySelector<HTMLElement>(".form-status")!;
+      const label = button.textContent!;
+      button.disabled = false;
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!form.reportValidity() || button.disabled) return;
+        button.disabled = true;
+        button.textContent = form.dataset.sending!;
+        status.textContent = "";
+        form
+          .querySelectorAll("[aria-invalid]")
+          .forEach((field) => field.removeAttribute("aria-invalid"));
+        try {
+          const response = await fetch(
+            "/_emdash/api/plugins/emdash-forms/submit",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                formId: form.dataset.formId,
+                data: Object.fromEntries(new FormData(form)),
+              }),
+            },
+          );
+          const body = await response.json();
+          const result = body.data ?? body;
+          if (response.ok && result.success === true) {
+            status.textContent = form.dataset.success!;
+            form.reset();
+          } else if (Array.isArray(result.errors)) {
+            status.textContent = form.dataset.invalid!;
+            for (const error of result.errors) {
+              const field = form.elements.namedItem(error.field);
+              if (field instanceof HTMLElement)
+                field.setAttribute("aria-invalid", "true");
+            }
+          } else {
+            status.textContent = form.dataset.error!;
+          }
+        } catch {
+          status.textContent = form.dataset.error!;
+        } finally {
+          button.disabled = false;
+          button.textContent = label;
+          status.focus();
+        }
+      });
+    });
+</script>
+<style>
+  .contact-form-section {
+    max-width: 760px;
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--line);
+  }
+  h2 {
+    margin-bottom: 1.75rem;
+  }
+  .contact-form-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  label {
+    display: grid;
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+  .full-width {
+    grid-column: 1 / -1;
+  }
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    font: inherit;
+  }
+  textarea {
+    resize: vertical;
+  }
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+  }
+  [aria-invalid="true"] {
+    border-color: #a33232;
+  }
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+  }
+  .form-note {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-block: 1.5rem;
+  }
+  .form-status {
+    margin-top: 1rem;
+  }
+  button:disabled {
+    opacity: 0.65;
+    cursor: wait;
+  }
+  @media (max-width: 600px) {
+    .contact-form-fields {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

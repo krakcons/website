@@ -3,12 +3,12 @@
   "version": "1",
   "meta": {
     "name": "KRAK Consultants",
-    "description": "Canadian-first digital solutions for organizations working for good.",
+    "description": "Canadian-first digital solutions for businesses and organizations.",
     "author": "KRAK Consultants"
   },
   "settings": {
     "title": "KRAK Consultants",
-    "tagline": "Canadian-first. Built for good."
+    "tagline": "Your mission. Our expertise."
   },
   "collections": [
     {
@@ -207,8 +207,8 @@
         "status": "published",
         "data": {
           "title": "Welcome to KRAK",
-          "heading": "Canadian-first.\nBuilt for good.",
-          "summary": "Software, hosting, and digital tools for Canadian nonprofits and organizations tackling societal challenges.",
+          "heading": "Your mission.\nOur expertise.",
+          "summary": "Software, hosting, and digital tools for Canadian businesses and organizations.",
           "content": [
             {
               "_type": "block",
@@ -216,7 +216,7 @@
               "children": [
                 {
                   "_type": "span",
-                  "text": "We help organizations turn their mission into practical digital solutions. Alongside our consulting work and infrastructure, we build internal products and open-source tools that contribute to a shared ecosystem."
+                  "text": "We help businesses and organizations turn their goals into practical digital solutions. Alongside our consulting work and infrastructure, we build internal products and open-source tools that contribute to a shared ecosystem."
                 }
               ]
             }
@@ -230,7 +230,7 @@
         "data": {
           "title": "About us",
           "heading": "Digital expertise.\nA purpose beyond technology.",
-          "summary": "KRAK is a Canadian-first software consulting and digital solutions company focused on helping organizations work for good.",
+          "summary": "KRAK is a Canadian-first software consulting and digital solutions company helping businesses and organizations build, run, and improve their digital tools.",
           "content": [
             {
               "_type": "block",
@@ -238,7 +238,7 @@
               "children": [
                 {
                   "_type": "span",
-                  "text": "We work with Canadian nonprofits and organizations addressing societal challenges. Our role is to help you choose, build, and run digital solutions that serve your people and your mission."
+                  "text": "We work with Canadian businesses, nonprofits, and other organizations. Our role is to help you choose, build, and run digital solutions that fit your goals and support the people who use them. We also support nonprofits with discounted services—one part of our broader commitment to making useful technology accessible."
                 }
               ]
             },
@@ -288,13 +288,13 @@
         "status": "published",
         "data": {
           "title": "Mission",
-          "heading": "Technology in service\nof a better society.",
-          "summary": "Practical digital solutions for Canadian nonprofits and organizations working for good—with a collaborative approach from understanding your mission to building, hosting, and improving your tools.",
+          "heading": "Practical technology.\nPeople first.",
+          "summary": "Practical digital solutions for Canadian businesses and organizations—with a collaborative approach from understanding your goals to building, hosting, and improving your tools.",
           "content": [
             {
               "_type": "block",
               "style": "h2",
-              "children": [{ "_type": "span", "text": "Put the mission first" }]
+              "children": [{ "_type": "span", "text": "Start with your goals" }]
             },
             {
               "_type": "block",
@@ -371,7 +371,7 @@
               "children": [
                 {
                   "_type": "span",
-                  "text": "We begin with your mission, your users, and the challenge you are addressing. We work with you to understand your current tools, priorities, and constraints."
+                  "text": "We begin with your goals, your users, and the challenge you are addressing. We work with you to understand your current tools, priorities, and constraints."
                 }
               ]
             },
@@ -433,13 +433,13 @@
         "status": "published",
         "data": {
           "title": "Services",
-          "heading": "The tools to move\nyour mission forward.",
-          "summary": "Software consulting, hosting, digital solutions, and internal tooling for Canadian nonprofits and purpose-driven organizations.",
+          "heading": "The tools to move\nyour team forward.",
+          "summary": "Development, hosting, and internal tooling for Canadian businesses and organizations.",
           "content": [
             {
               "_type": "block",
               "style": "h2",
-              "children": [{ "_type": "span", "text": "Software consulting" }]
+              "children": [{ "_type": "span", "text": "Development" }]
             },
             {
               "_type": "block",
@@ -447,7 +447,7 @@
               "children": [
                 {
                   "_type": "span",
-                  "text": "Technical guidance and hands-on software development, grounded in the needs of your organization and the people who use your tools."
+                  "text": "Technical guidance, custom applications, integrations, and digital workflows, grounded in the needs of your organization and the people who use your tools."
                 }
               ]
             },
@@ -471,21 +471,6 @@
             {
               "_type": "block",
               "style": "h2",
-              "children": [{ "_type": "span", "text": "Digital solutions" }]
-            },
-            {
-              "_type": "block",
-              "style": "normal",
-              "children": [
-                {
-                  "_type": "span",
-                  "text": "Custom applications, integrations, and digital workflows that help your organization tackle practical and societal challenges."
-                }
-              ]
-            },
-            {
-              "_type": "block",
-              "style": "h2",
               "children": [
                 { "_type": "span", "text": "Internal tools & learning systems" }
               ]
@@ -496,7 +481,7 @@
               "children": [
                 {
                   "_type": "span",
-                  "text": "Tools for the work behind your mission, including learning management systems and software that supports your team's day-to-day operations."
+                  "text": "Tools for your team's day-to-day work, including learning management systems and software that supports your operations."
                 }
               ]
             }
@@ -510,7 +495,7 @@
         "data": {
           "title": "Projects",
           "heading": "Useful work.\nA shared ecosystem.",
-          "summary": "Our work spans client and nonprofit projects, internal products, and open-source tools.",
+          "summary": "Our work spans client projects, internal products, and open-source tools.",
           "content": [
             {
               "_type": "block",
@@ -518,7 +503,7 @@
               "children": [
                 {
                   "_type": "span",
-                  "text": "We build for the organizations we work with, develop products of our own, and contribute open-source tools through KrakStack. Each is part of our mission to create practical digital solutions for good."
+                  "text": "We build for the businesses and organizations we work with, develop products of our own, and contribute open-source tools through KrakStack. Each is part of our approach to solving useful problems and building tools others can build on."
                 }
               ]
             }
@@ -531,8 +516,8 @@
         "status": "published",
         "data": {
           "title": "Contact",
-          "heading": "What's your mission?\nLet's build for it.",
-          "summary": "Tell us about your organization, your digital challenges, and the change you want to make.",
+          "heading": "What are your goals?\nLet's build for them.",
+          "summary": "Tell us about your business or organization, your digital challenges, and what you want to achieve.",
           "content": [
             {
               "_type": "block",
@@ -555,8 +540,8 @@
         "status": "published",
         "data": {
           "title": "Bienvenue chez KRAK",
-          "heading": "Le Canada d'abord.\nLe bien commun, toujours.",
-          "summary": "Des logiciels, de l'hébergement et des outils numériques pour les organismes sans but lucratif canadiens et les organisations qui répondent aux enjeux de société.",
+          "heading": "Votre mission.\nNotre expertise.",
+          "summary": "Des logiciels, de l'hébergement et des outils numériques pour les entreprises et les organisations canadiennes.",
           "content": [
             {
               "_type": "block",
@@ -564,7 +549,7 @@
               "children": [
                 {
                   "_type": "span",
-                  "text": "Nous aidons les organisations à concrétiser leur mission grâce à des solutions numériques pratiques. En complément de nos services-conseils et de notre infrastructure, nous créons des produits internes et des logiciels libres qui contribuent à un écosystème commun."
+                  "text": "Nous aidons les entreprises et les organisations à concrétiser leurs objectifs grâce à des solutions numériques pratiques. En complément de nos services-conseils et de notre infrastructure, nous créons des produits internes et des logiciels libres qui contribuent à un écosystème commun."
                 }
               ]
             }
@@ -580,7 +565,7 @@
         "data": {
           "title": "À propos",
           "heading": "L'expertise numérique.\nUne raison d'être qui va plus loin.",
-          "summary": "KRAK est une entreprise de conseil en logiciel et de solutions numériques qui met le Canada et le bien commun au cœur de son travail.",
+          "summary": "KRAK est une entreprise de conseil en logiciel et de solutions numériques axée sur le Canada, qui aide les entreprises et les organisations à créer, à exploiter et à améliorer leurs outils numériques.",
           "content": [
             {
               "_type": "block",
@@ -588,7 +573,7 @@
               "children": [
                 {
                   "_type": "span",
-                  "text": "Nous travaillons avec des organismes sans but lucratif canadiens et des organisations qui s'attaquent aux enjeux de société. Nous les aidons à choisir, à créer et à exploiter des solutions numériques au service de leur mission et des personnes qu'elles accompagnent."
+                  "text": "Nous travaillons avec des entreprises, des organismes sans but lucratif et d'autres organisations au Canada. Nous les aidons à choisir, à créer et à exploiter des solutions numériques adaptées à leurs objectifs et aux personnes qui les utilisent. Nous offrons aussi des services à tarif réduit aux organismes sans but lucratif, dans le cadre de notre engagement à rendre la technologie utile plus accessible."
                 }
               ]
             },
@@ -640,13 +625,13 @@
         "status": "published",
         "data": {
           "title": "Mission",
-          "heading": "La technologie au service\nd'une société meilleure.",
-          "summary": "Des solutions numériques pratiques pour les organismes sans but lucratif canadiens et les organisations engagées, avec une démarche collaborative pour comprendre votre mission, puis créer, héberger et améliorer vos outils.",
+          "heading": "Des solutions concrètes.\nLes personnes d'abord.",
+          "summary": "Des solutions numériques pratiques pour les entreprises et les organisations canadiennes, avec une démarche collaborative pour comprendre vos objectifs, puis créer, héberger et améliorer vos outils.",
           "content": [
             {
               "_type": "block",
               "style": "h2",
-              "children": [{ "_type": "span", "text": "La mission avant tout" }]
+              "children": [{ "_type": "span", "text": "Vos objectifs d'abord" }]
             },
             {
               "_type": "block",
@@ -726,7 +711,7 @@
               "children": [
                 {
                   "_type": "span",
-                  "text": "Nous commençons par votre mission, vos utilisateurs et le défi à relever. Ensemble, nous examinons vos outils actuels, vos priorités et vos contraintes."
+                  "text": "Nous commençons par vos objectifs, vos utilisateurs et le défi à relever. Ensemble, nous examinons vos outils actuels, vos priorités et vos contraintes."
                 }
               ]
             },
@@ -795,13 +780,13 @@
         "status": "published",
         "data": {
           "title": "Services",
-          "heading": "Les outils pour faire\navancer votre mission.",
-          "summary": "Conseil en logiciel, hébergement, solutions numériques et outils internes pour les organismes sans but lucratif canadiens et les organisations engagées.",
+          "heading": "Les outils pour faire\navancer votre équipe.",
+          "summary": "Développement, hébergement et outils internes pour les entreprises et les organisations canadiennes.",
           "content": [
             {
               "_type": "block",
               "style": "h2",
-              "children": [{ "_type": "span", "text": "Conseil en logiciel" }]
+              "children": [{ "_type": "span", "text": "Développement" }]
             },
             {
               "_type": "block",
@@ -809,7 +794,7 @@
               "children": [
                 {
                   "_type": "span",
-                  "text": "Des conseils techniques et du développement logiciel concret, fondés sur les besoins de votre organisation et des personnes qui utilisent vos outils."
+                  "text": "Des conseils techniques, des applications sur mesure, des intégrations et des processus numériques, fondés sur les besoins de votre organisation et des personnes qui utilisent vos outils."
                 }
               ]
             },
@@ -833,21 +818,6 @@
             {
               "_type": "block",
               "style": "h2",
-              "children": [{ "_type": "span", "text": "Solutions numériques" }]
-            },
-            {
-              "_type": "block",
-              "style": "normal",
-              "children": [
-                {
-                  "_type": "span",
-                  "text": "Des applications sur mesure, des intégrations et des processus numériques qui aident votre organisation à relever des défis concrets et des enjeux de société."
-                }
-              ]
-            },
-            {
-              "_type": "block",
-              "style": "h2",
               "children": [
                 {
                   "_type": "span",
@@ -861,7 +831,7 @@
               "children": [
                 {
                   "_type": "span",
-                  "text": "Des outils pour le travail qui soutient votre mission, dont des systèmes de gestion de l'apprentissage et des logiciels pour les activités quotidiennes de votre équipe."
+                  "text": "Des outils pour le travail quotidien de votre équipe, dont des systèmes de gestion de l'apprentissage et des logiciels pour soutenir vos activités."
                 }
               ]
             }
@@ -877,7 +847,7 @@
         "data": {
           "title": "Projets",
           "heading": "Des projets utiles.\nUn écosystème commun.",
-          "summary": "Notre travail comprend des mandats clients et associatifs, des produits internes et des outils libres.",
+          "summary": "Notre travail comprend des mandats clients, des produits internes et des outils libres.",
           "content": [
             {
               "_type": "block",
@@ -885,7 +855,7 @@
               "children": [
                 {
                   "_type": "span",
-                  "text": "Nous créons pour les organisations avec qui nous travaillons, développons nos propres produits et contribuons aux logiciels libres par l'entremise de KrakStack. Chaque volet participe à notre mission : des solutions numériques pratiques pour le bien commun."
+                  "text": "Nous créons pour les entreprises et les organisations avec qui nous travaillons, développons nos propres produits et contribuons aux logiciels libres par l'entremise de KrakStack. Chaque volet s'inscrit dans notre approche : résoudre des problèmes concrets et créer des outils sur lesquels d'autres peuvent s'appuyer."
                 }
               ]
             }
@@ -900,8 +870,8 @@
         "status": "published",
         "data": {
           "title": "Contact",
-          "heading": "Quelle est votre mission?\nCréons les outils pour la réaliser.",
-          "summary": "Parlez-nous de votre organisation, de vos défis numériques et du changement que vous souhaitez apporter.",
+          "heading": "Quels sont vos objectifs?\nCréons les outils pour les atteindre.",
+          "summary": "Parlez-nous de votre entreprise ou de votre organisation, de vos défis numériques et de ce que vous souhaitez accomplir.",
           "content": [
             {
               "_type": "block",

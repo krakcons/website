@@ -2,6 +2,8 @@
 import { getSeoMeta, getSiteSettingsWithCacheHint } from "emdash";
 import { PortableText } from "emdash/ui";
 import Base from "../layouts/Base.astro";
+import EmailCopy from "./EmailCopy.astro";
+import ContactForm from "./ContactForm.astro";
 import type { loadCompanyPage } from "../utils/company-page";
 interface Props {
   pageResult: Awaited<ReturnType<typeof loadCompanyPage>>;
@@ -91,13 +93,11 @@ const seo = page
           {slug === "contact" && (
             <div class="contact-details">
               <span class="eyebrow">{t.email}</span>
-              <a href="mailto:info@krakconsultants.com">
-                info@krakconsultants.com <span aria-hidden="true">↗</span>
-              </a>
-              <p>{t.noForms}</p>
+              <EmailCopy locale={locale} prominent />
             </div>
           )}
         </div>
+        {slug === "contact" && <ContactForm locale={locale} />}
       </section>
     </>
   ) : (

@@ -2,6 +2,8 @@ This is an EmDash site -- a CMS built on Astro with a full admin UI.
 
 ## Commands
 
+Read `PROJECT.md` for the agreed workflow: develop and test code locally, then deploy it; edit CMS-managed content directly in the confirmed production CMS using drafts, preview, and approved publication. Keep databases separate and do not promote local CMS data as the normal workflow. Code deployment alone does not update published CMS entries.
+
 ```bash
 npm run dev              # Start the Astro dev server
 npx emdash types      # Regenerate TypeScript types from a running site
@@ -46,7 +48,11 @@ This template ships with `.mcp.json`, `.cursor/mcp.json`, and `.vscode/mcp.json`
 
 A general-purpose starting point with posts, pages, categories, and tags. Less opinionated than the themed templates -- a base for sites that want to define their own design.
 
-This project has a green/cream responsive company-site design in `src/styles/theme.css`, imported by `Base.astro`. Its positioning is Canadian-first digital solutions for nonprofits and organizations working for good. Keep changes consistent with this design.
+This project has a green/cream responsive company-site design in `src/styles/theme.css`, imported by `Base.astro`. Its positioning is Canadian-first digital solutions for businesses and organizations. Nonprofit support and discounts are a secondary point, not an exclusive target market. Keep changes consistent with this design.
+
+The primary catchphrase is "Your mission. Our expertise." ("Votre mission. Notre expertise."). The supporting catchphrase is "Where good ideas become action" ("Là où les bonnes idées deviennent action"). Prioritize these in homepage messaging while keeping the audience inclusive of businesses and nonprofits.
+
+Contact calls to action must link to the localized Contact page, not `mailto:` URLs. Use `EmailCopy.astro` for the email address and copy button. The bilingual contact frontend uses the official EmDash Forms plugin; setup and email-delivery requirements are in `PROJECT.md`.
 
 All public UI and company/project content must be bilingual (English/French). Astro i18n serves English at `/` and French at `/fr/`; never prefix the default locale, which breaks the EmDash admin. Shared views are in `src/components/`, shared translated UI copy is in `src/utils/i18n.ts`, and CMS entries use native EmDash translations. Query content and menus with the request locale. The language switcher follows published translation siblings. Do not claim Canadian data residency, certifications, client outcomes, or product capabilities without confirmation.
 

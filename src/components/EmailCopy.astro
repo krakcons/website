@@ -1,0 +1,81 @@
+---
+import { messages, type Locale } from "../utils/i18n";
+interface Props {
+  locale: Locale;
+  prominent?: boolean;
+}
+const t = messages[Astro.props.locale];
+const email = "info@krakconsultants.com";
+---
+
+<div class:list={["email-copy", { prominent: Astro.props.prominent }]} data-email-copy>
+  <span class="email-address">{email}</span>
+  <button
+    type="button"
+    data-email={email}
+    data-success={t.emailCopied}
+    data-error={t.emailCopyError}
+    aria-label={t.copyEmail}
+  >
+    {t.copyEmail}
+  </button>
+  <span class="copy-status" role="status"></span>
+</div>
+<script>
+  document
+    .querySelectorAll<HTMLElement>("[data-email-copy]")
+    .forEach((container) => {
+      const button = container.querySelector<HTMLButtonElement>("button")!;
+      const status = container.querySelector<HTMLElement>(".copy-status")!;
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(button.dataset.email!);
+          status.textContent = button.dataset.success!;
+        } catch {
+          status.textContent = button.dataset.error!;
+        }
+      });
+    });
+</script>
+<style>
+  .email-copy {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .email-address {
+    overflow-wrap: anywhere;
+    user-select: all;
+  }
+  .prominent .email-address {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.035em;
+    color: var(--green);
+  }
+  button {
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    padding: 0.45rem 0.7rem;
+    min-height: 44px;
+    cursor: pointer;
+  }
+  button:focus-visible {
+    outline: 3px solid var(--green);
+    outline-offset: 3px;
+  }
+  .copy-status {
+    font-size: 0.8rem;
+    flex-basis: 100%;
+  }
+  .copy-status:empty {
+    display: none;
+  }
+</style>
