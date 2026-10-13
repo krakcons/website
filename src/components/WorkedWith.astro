@@ -77,6 +77,7 @@ items.sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
                 ratio > 8 ? 160 : Math.min(180, Math.max(56, ratio * 40));
               const isTechnologyHelps =
                 organization.title === "Technology Helps";
+              const isGoalieUp = organization.title.toLowerCase() === "goalieup";
               return (
                 <li class:list={{ "organization-wordmark": ratio > 3.5 }}>
                   <Tag
@@ -84,11 +85,12 @@ items.sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
                     class:list={{
                       "organization-logo-findhelp":
                         organization.title === "Findhelp",
+                      "organization-logo-goalieup": isGoalieUp,
                     }}
                     href={url}
                     tabindex={duplicate && url ? -1 : undefined}
                     aria-label={organization.title}
-                    style={`--logo-width: ${isTechnologyHelps ? 76 : logoWidth}px; --logo-height: ${isTechnologyHelps ? 64 : 40}px`}
+                    style={`--logo-width: ${isGoalieUp ? 112 : isTechnologyHelps ? 76 : logoWidth}px; --logo-height: ${isGoalieUp ? 27 : isTechnologyHelps ? 64 : 40}px`}
                   >
                     {logo ? (
                       <Image
@@ -188,6 +190,10 @@ items.sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
   }
   .organization-logo-findhelp img {
     mix-blend-mode: multiply;
+  }
+  .worked-with .organization-logo-goalieup img {
+    filter: none;
+    opacity: 1;
   }
   .logo-viewport:hover .logo-track,
   .worked-with:focus-within .logo-track,
