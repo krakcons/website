@@ -3,7 +3,11 @@ import type { ImageValue } from "emdash";
 /** Correct legacy uploads without replacing newer, editor-selected logos. */
 export function resolveLogo(image: ImageValue | undefined | null) {
   if (!image) return image;
-  if (image.filename === "goalieup-logo.png") {
+  if (
+    image.filename === "goalieup-logo.png" ||
+    image.id === "01M4VN4QMZA53X94WP3H24VTEZ" ||
+    image.src?.split("?")[0].endsWith("/01M4VN4QMZA53X94WP3H24VTEZ.png")
+  ) {
     return {
       id: "bundled-goalieup",
       src: "/logos/goalieup.svg",
