@@ -3,6 +3,7 @@ import { getEmDashCollection } from "emdash";
 import { Image, PortableText } from "emdash/ui";
 import Base from "../layouts/Base.astro";
 import { projectGroups, safeProjectUrl } from "../utils/projects";
+import { resolveLogo } from "../utils/logos";
 import type { loadCompanyPage } from "../utils/company-page";
 interface Props {
   pageResult: Awaited<ReturnType<typeof loadCompanyPage>>;
@@ -133,27 +134,37 @@ projects.sort(
                       (entry) => entry.data.title === project.data.organization,
                     );
                   const productLogo = productLogoFiles[project.id];
-                  const logo =
+                  const logo = resolveLogo(
                     project.data.logo ??
-                    organization?.data.logo ??
-                    (productLogo
-                      ? {
-                          id: `bundled-${productLogo}`,
-                          src: `/logos/${productLogo}.svg`,
-                          alt: project.data.title,
-                          width: undefined,
-                          height: undefined,
-                        }
-                      : undefined);
+                      organization?.data.logo ??
+                      (productLogo
+                        ? {
+                            id: `bundled-${productLogo}`,
+                            src: `/logos/${productLogo}.svg`,
+                            alt: project.data.title,
+                            width: undefined,
+                            height: undefined,
+                          }
+                        : undefined),
+                  );
                   return (
                     <article class="project-card">
                       <div class="project-identity">
                         {logo && (
                           <div
-                            class:list={["project-branding", { "project-branding-nuonn": project.id === "nuonn" }]}
+                            class:list={[
+                              "project-branding",
+                              {
+                                "project-branding-nuonn":
+                                  project.id === "nuonn",
+                              },
+                            ]}
                             {...(project.data.logo ? project.edit.logo : {})}
                           >
-                            <Image image={{ ...logo, alt: "" }} />
+                            <Image
+                              image={{ ...logo, alt: "" }}
+                              placeholder={false}
+                            />
                           </div>
                         )}
                         <div class="project-identity-copy">
