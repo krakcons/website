@@ -713,16 +713,16 @@ nav a[aria-current="page"] {
   margin-bottom: 0.75rem;
 }
 .contact-details {
-  margin-top: 3rem;
-  border-top: 1px solid var(--line);
-  padding-top: 2rem;
-}
-.contact-details a {
-  display: block;
-  font-size: clamp(1.1rem, 2.3vw, 1.7rem);
+  max-width: 740px;
+  padding: clamp(1.25rem, 3vw, 2rem);
   color: var(--green);
-  margin: 1rem 0;
-  overflow-wrap: anywhere;
+  background: #f0f4e9;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.contact-details .eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--green);
 }
 @media (max-width: 1050px) {
   .desktop-nav {
@@ -974,9 +974,6 @@ nav a[aria-current="page"] {
   }
   .page-body {
     padding-block: 35px 55px;
-  }
-  .contact-details {
-    margin-top: 2rem;
   }
 }
 @media (max-width: 400px) {

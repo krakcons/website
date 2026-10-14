@@ -87,31 +87,37 @@ const seo = page
         )}
       </section>
       <section class="container page-body">
-        <div class="prose" {...page?.edit.content}>
-          {approachIndex >= 0 ? (
-            <>
-              <PortableText value={body.slice(0, approachIndex)} />
-              <section
-                class="mission-approach"
-                id="approach"
-                aria-labelledby="approach-heading"
-              >
-                <h2 id="approach-heading">
-                  {locale === "fr" ? "Notre démarche" : "How we work"}
-                </h2>
-                <PortableText value={body.slice(approachIndex + 1)} />
-              </section>
-            </>
-          ) : (
-            <PortableText value={body} />
-          )}
-          {slug === "contact" && (
-            <div class="contact-details">
-              <span class="eyebrow">{t.email}</span>
-              <EmailCopy locale={locale} prominent />
-            </div>
-          )}
-        </div>
+        {slug === "contact" ? (
+          <section
+            class="contact-details"
+            aria-labelledby="contact-email-heading"
+          >
+            <h2 id="contact-email-heading" class="eyebrow">
+              {t.email}
+            </h2>
+            <EmailCopy locale={locale} prominent />
+          </section>
+        ) : (
+          <div class="prose" {...page?.edit.content}>
+            {approachIndex >= 0 ? (
+              <>
+                <PortableText value={body.slice(0, approachIndex)} />
+                <section
+                  class="mission-approach"
+                  id="approach"
+                  aria-labelledby="approach-heading"
+                >
+                  <h2 id="approach-heading">
+                    {locale === "fr" ? "Notre démarche" : "How we work"}
+                  </h2>
+                  <PortableText value={body.slice(approachIndex + 1)} />
+                </section>
+              </>
+            ) : (
+              <PortableText value={body} />
+            )}
+          </div>
+        )}
         {slug === "contact" && <ContactForm locale={locale} />}
       </section>
       {slug === "mission" && (

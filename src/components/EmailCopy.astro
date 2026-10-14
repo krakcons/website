@@ -8,7 +8,10 @@ const t = messages[Astro.props.locale];
 const email = "info@krakconsultants.com";
 ---
 
-<div class:list={["email-copy", { prominent: Astro.props.prominent }]} data-email-copy>
+<div
+  class:list={["email-copy", { prominent: Astro.props.prominent }]}
+  data-email-copy
+>
   <span class="email-address">{email}</span>
   <button
     type="button"
@@ -49,13 +52,16 @@ const email = "info@krakconsultants.com";
     user-select: all;
   }
   .prominent .email-address {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(1.4rem, 4vw, 2.4rem);
-    font-weight: 600;
-    line-height: 1.25;
-    letter-spacing: -0.035em;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 500;
+    line-height: 1.5;
     color: var(--green);
+  }
+  .prominent button {
+    color: var(--green);
+    border-color: var(--line);
+    background: var(--paper);
+    font-size: 0.85rem;
   }
   button {
     font: inherit;
