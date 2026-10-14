@@ -30,6 +30,7 @@ a:hover {
   color: var(--green);
 }
 a:focus-visible,
+.button:focus-visible,
 summary:focus-visible {
   outline: 3px solid #638832;
   outline-offset: 6px;
@@ -75,6 +76,7 @@ p {
   line-height: 1.7;
 }
 .button {
+  appearance: none;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -82,9 +84,12 @@ p {
   background: var(--green);
   color: white;
   padding: 0.95rem 1.4rem;
+  border: 0;
   border-radius: 3px;
+  font-family: inherit;
   font-size: 0.9rem;
   font-weight: 550;
+  cursor: pointer;
   min-height: 44px;
   transition:
     background 0.2s,
