@@ -1,0 +1,66 @@
+---
+import { sanitizeHref } from "emdash";
+import type { BlockComponentProps } from "emdash/ui";
+import type {
+  PageServicesSectionBlock,
+  PageProjectsSectionBlock,
+} from "../../../emdash-env";
+import ArrowIcon from "../ArrowIcon.astro";
+
+type Props = BlockComponentProps<
+  PageServicesSectionBlock | PageProjectsSectionBlock
+> & { appearance?: "connected" | "separate" };
+const { value, blockKey, appearance = "separate" } = Astro.props;
+const connected = appearance === "connected";
+const cards = value.cards ?? [];
+const headingId = `cards-heading-${blockKey}`;
+---
+
+{cards.length > 0 && (
+  <section
+    class:list={[
+      "container section-space",
+      { "ecosystem-section": !connected },
+    ]}
+    aria-labelledby={headingId}
+  >
+    <div class="section-heading">
+      <div>
+        {value.eyebrow && <p class="eyebrow">{value.eyebrow}</p>}
+        <h2 id={headingId} class="multiline">
+          {value.heading}
+        </h2>
+      </div>
+      {value.link_url && value.link_label && (
+        <a class="text-link" href={sanitizeHref(value.link_url)}>
+          {value.link_label} <ArrowIcon />
+        </a>
+      )}
+    </div>
+    <div class={connected ? "services-grid" : "ecosystem-grid"}>
+      {cards.map((card, index) => {
+        const Tag = card.url ? "a" : "article";
+        return (
+          <Tag
+            class={connected ? "service-card" : "ecosystem-card"}
+            href={card.url ? sanitizeHref(card.url) : undefined}
+          >
+            <span class="card-number">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <h3>{card.title}</h3>
+            {card.summary && <p>{card.summary}</p>}
+            {card.url && card.link_label && (
+              <span class="text-link">
+                {card.link_label} <ArrowIcon />
+              </span>
+            )}
+            {card.url && connected && (
+              <ArrowIcon class="card-arrow" direction="up-right" />
+            )}
+          </Tag>
+        );
+      })}
+    </div>
+  </section>
+)}

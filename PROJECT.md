@@ -42,7 +42,7 @@ CLI content updates publish by default, so use `--draft` when staging changes. T
 ## Content ownership
 
 - Production CMS entries are the source of truth for editable page headings, summaries, body content, and project information.
-- Code holds layouts, styling, shared interface translations, and currently the shared homepage service-card copy.
+- Code holds layouts, styling, and shared interface translations. Homepage service and project teasers are CMS-owned Cards blocks in the localized home entries.
 - New installations require CMS schema and content setup; no seed content is bundled with the application.
 
 Marketing copy currently spans CMS entries and shared translations in `src/utils/i18n.ts`. Check both when making changes so the homepage and detail pages remain consistent.

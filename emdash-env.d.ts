@@ -21,6 +21,36 @@ export interface Organization {
   terms?: Record<string, TaxonomyTerm[]>;
 }
 
+export interface PageServicesSectionCardsV1Block {
+  _type: "cards";
+  _version: 1;
+  _key: string;
+  "eyebrow"?: string | null;
+  "heading": string;
+  "link_label"?: string | null;
+  "link_url"?: string | null;
+  "cards"?: { "title": string; "summary"?: string | null; "url"?: string | null; "link_label"?: string | null }[] | null;
+}
+
+export type PageServicesSectionCardsBlock = PageServicesSectionCardsV1Block;
+
+export type PageServicesSectionBlock = PageServicesSectionCardsBlock;
+
+export interface PageProjectsSectionCardsV1Block {
+  _type: "cards";
+  _version: 1;
+  _key: string;
+  "eyebrow"?: string | null;
+  "heading": string;
+  "link_label"?: string | null;
+  "link_url"?: string | null;
+  "cards"?: { "title": string; "summary"?: string | null; "url"?: string | null; "link_label"?: string | null }[] | null;
+}
+
+export type PageProjectsSectionCardsBlock = PageProjectsSectionCardsV1Block;
+
+export type PageProjectsSectionBlock = PageProjectsSectionCardsBlock;
+
 export interface Page {
   id: string;
   slug: string | null;
@@ -29,6 +59,8 @@ export interface Page {
   heading: string;
   summary?: string;
   content?: PortableTextBlock[];
+  services_section?: PageServicesSectionBlock[];
+  projects_section?: PageProjectsSectionBlock[];
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;

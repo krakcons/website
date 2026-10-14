@@ -26,9 +26,6 @@ export const messages = {
     missionSections: "Mission page sections",
     introHeading: "Practical solutions.\nBuilt around you.",
     missionLink: "Practical technology. People first.",
-    servicesLabel: "Our services",
-    servicesHeading: "Build the tools\nyour team needs.",
-    servicesLink: "Explore what we do",
     workLabel: "How we work",
     workHeading: "Start with the people. Build what matters.",
     processLink: "How we work",
@@ -38,8 +35,6 @@ export const messages = {
     resumeLogos: "Resume logo scrolling",
     github: "View on GitHub",
     appStore: "View on the App Store",
-    ecosystemHeading: "Useful tools.\nA growing ecosystem.",
-    projectsLink: "Explore our projects",
     contactHeading: "Let's get KRAKing.",
     contactText: "Tell us about your goals and the tools you need.",
     contactLink: "Start a conversation",
@@ -111,23 +106,6 @@ export const messages = {
         "The infrastructure that supports deployment, hosting, and the storage of project data.",
       note: "Technologies and hosting are chosen to fit each project.",
     },
-    services: [
-      {
-        number: "01",
-        title: "Development",
-        text: "Technical guidance, custom applications, integrations, and digital workflows built around your organization and the people who use your tools.",
-      },
-      {
-        number: "02",
-        title: "Hosting & infrastructure",
-        text: "Hosting and infrastructure on systems we operate, with a plan for how your applications will run and be maintained.",
-      },
-      {
-        number: "03",
-        title: "Internal tools & learning systems",
-        text: "Tools for your team's day-to-day work, including learning management systems and software that supports your operations.",
-      },
-    ],
     steps: [
       {
         title: "Listen & understand",
@@ -151,23 +129,15 @@ export const messages = {
         title: "Client work",
         description:
           "Digital solutions for the organizations and people we work with.",
-        teaser:
-          "Digital solutions built with businesses, nonprofits, and other organizations.",
-        link: "Work with us",
       },
       {
         title: "Internal products",
         description:
           "Our own products, built to solve useful problems and strengthen our ecosystem.",
-        teaser:
-          "Nuonn, Kokobi Learning, and our own ecosystem of practical digital tools.",
-        link: "Our products",
       },
       {
         title: "Open source",
         description: "KrakStack tools and components that others can build on.",
-        teaser: "KrakStack's component registry, Auth, and Uptime.",
-        link: "Build on KrakStack",
       },
     ],
   },
@@ -190,9 +160,6 @@ export const messages = {
     missionSections: "Sections de la page Mission",
     introHeading: "Des solutions concrètes.\nPensées pour vous.",
     missionLink: "Des solutions concrètes. Les personnes d'abord.",
-    servicesLabel: "Nos services",
-    servicesHeading: "Les outils pour\nfaire avancer votre équipe.",
-    servicesLink: "Découvrir nos services",
     workLabel: "Notre approche",
     workHeading: "Les personnes d'abord. Des outils qui comptent.",
     processLink: "Notre démarche",
@@ -202,8 +169,6 @@ export const messages = {
     resumeLogos: "Reprendre le défilement des logos",
     github: "Voir sur GitHub",
     appStore: "Voir sur l'App Store",
-    ecosystemHeading: "Des outils utiles.\nUn écosystème en croissance.",
-    projectsLink: "Découvrir nos projets",
     contactHeading: "Passons à l'action.",
     contactText:
       "Parlez-nous de vos objectifs et des outils dont vous avez besoin.",
@@ -278,23 +243,6 @@ export const messages = {
         "L’infrastructure qui soutient le déploiement, l’hébergement et le stockage des données des projets.",
       note: "Les technologies et l’hébergement sont adaptés à chaque projet.",
     },
-    services: [
-      {
-        number: "01",
-        title: "Développement",
-        text: "Des conseils techniques, des applications sur mesure, des intégrations et des processus numériques adaptés à votre organisation et aux personnes qui utilisent vos outils.",
-      },
-      {
-        number: "02",
-        title: "Hébergement et infrastructure",
-        text: "De l'hébergement et de l'infrastructure sur des systèmes que nous exploitons, avec un plan pour le fonctionnement et l'entretien de vos applications.",
-      },
-      {
-        number: "03",
-        title: "Outils internes et systèmes de formation",
-        text: "Des outils pour le travail quotidien de votre équipe, dont des systèmes de gestion de l'apprentissage et des logiciels pour soutenir vos activités.",
-      },
-    ],
     steps: [
       {
         title: "Écouter et comprendre",
@@ -318,24 +266,16 @@ export const messages = {
         title: "Mandats clients",
         description:
           "Des solutions numériques pour les organisations et les personnes avec qui nous travaillons.",
-        teaser:
-          "Des solutions conçues avec des entreprises, des organismes sans but lucratif et d'autres organisations.",
-        link: "Travailler avec nous",
       },
       {
         title: "Produits internes",
         description:
           "Nos propres produits, conçus pour résoudre des problèmes concrets et enrichir notre écosystème.",
-        teaser:
-          "Nuonn, Kokobi Learning et notre propre écosystème d'outils numériques pratiques.",
-        link: "Nos produits",
       },
       {
         title: "Logiciels libres",
         description:
           "Des outils et des composants KrakStack sur lesquels d'autres peuvent s'appuyer.",
-        teaser: "Le registre de composants KrakStack, Auth et Uptime.",
-        link: "Construire avec KrakStack",
       },
     ],
   },

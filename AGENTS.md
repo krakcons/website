@@ -43,6 +43,7 @@ This template ships with `.mcp.json`, `.cursor/mcp.json`, and `.vscode/mcp.json`
 - When Astro's cache is enabled, pass content-query hints to `Astro.cache.set(cacheHint)`. Use the `WithCacheHint` variants for site settings, menus, taxonomies, and widget areas rendered by cached routes.
 - Taxonomy names in queries must match the CMS taxonomy name exactly (e.g., `"category"` not `"categories"`).
 - CMS body structure belongs in content: render Portable Text intact, using native headings and break/divider blocks. Do not split bodies by heading text or inject page-specific section dividers. Keep heading and divider styling shared in `src/styles/theme.css`.
+- Homepage Services and Our projects use one native `cards` block type in the `services_section` and `projects_section` Pages fields. Keep section headings, links, card text, and card order in localized CMS entries, not `src/utils/i18n.ts`. Both slots use `src/components/blocks/Cards.astro`; missing or empty slots render no cards.
 
 ## This Template
 

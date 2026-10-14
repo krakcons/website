@@ -6,7 +6,7 @@ interface Props {
   pageResult: Awaited<ReturnType<typeof loadCompanyPage>>;
 }
 import { getLocale, localePath, messages } from "../utils/i18n";
-import { projectGroups } from "../utils/projects";
+import Cards from "./blocks/Cards.astro";
 import WorkedWith from "./WorkedWith.astro";
 import ArrowIcon from "./ArrowIcon.astro";
 
@@ -68,27 +68,16 @@ const showSite = Boolean(data);
           </div>
         </div>
       </section>
-      <section class="container section-space">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">{t.servicesLabel}</p>
-            <h2 class="multiline">{t.servicesHeading}</h2>
-          </div>
-          <a class="text-link" href={link("/services")}>
-            {t.servicesLink} <ArrowIcon />
-          </a>
-        </div>
-        <div class="services-grid">
-          {t.services.map((service) => (
-            <a class="service-card" href={link("/services")}>
-              <span class="card-number">{service.number}</span>
-              <h3>{service.title}</h3>
-              <p>{service.text}</p>
-              <ArrowIcon class="card-arrow" direction="up-right" />
-            </a>
-          ))}
-        </div>
-      </section>
+      <div {...home?.edit.services_section}>
+        {data?.services_section?.map((value, index) => (
+          <Cards
+            value={value}
+            index={index}
+            blockKey={value._key}
+            appearance="connected"
+          />
+        ))}
+      </div>
       <section class="process-section">
         <div class="container">
           <div class="section-heading">
@@ -111,32 +100,11 @@ const showSite = Boolean(data);
           </ol>
         </div>
       </section>
-      <section class="container section-space ecosystem-section">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">{t.projectsLabel}</p>
-            <h2 class="multiline">{t.ecosystemHeading}</h2>
-          </div>
-          <a class="text-link" href={link("/projects")}>
-            {t.projectsLink} <ArrowIcon />
-          </a>
-        </div>
-        <div class="ecosystem-grid">
-          {t.groups.map((group, index) => (
-            <a
-              class="ecosystem-card"
-              href={`${link("/projects")}#${projectGroups[index].id}`}
-            >
-              <span class="card-number">0{index + 1}</span>
-              <h3>{group.title}</h3>
-              <p>{group.teaser}</p>
-              <span class="text-link">
-                {group.link} <ArrowIcon />
-              </span>
-            </a>
-          ))}
-        </div>
-      </section>
+      <div {...home?.edit.projects_section}>
+        {data?.projects_section?.map((value, index) => (
+          <Cards value={value} index={index} blockKey={value._key} />
+        ))}
+      </div>
     </>
   ) : (
     <section class="container page-hero">

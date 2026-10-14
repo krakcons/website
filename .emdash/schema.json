@@ -80,6 +80,36 @@
           "type": "portableText",
           "required": false,
           "unique": false
+        },
+        {
+          "slug": "services_section",
+          "label": "Services section",
+          "type": "blocks",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "allowedTypes": [
+              "cards"
+            ],
+            "retiredTypes": [],
+            "minItems": 0,
+            "maxItems": 1
+          }
+        },
+        {
+          "slug": "projects_section",
+          "label": "Projects section",
+          "type": "blocks",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "allowedTypes": [
+              "cards"
+            ],
+            "retiredTypes": [],
+            "minItems": 0,
+            "maxItems": 1
+          }
         }
       ]
     },
@@ -204,5 +234,5 @@
       ]
     }
   ],
-  "version": "bb6bdeb1b5a2812b"
+  "version": "65d30662e865bcd1"
 }

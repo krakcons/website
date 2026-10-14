@@ -27,6 +27,8 @@ export interface Page {
   heading: string;
   summary?: string;
   content?: PortableTextBlock[];
+  services_section?: unknown[];
+  projects_section?: unknown[];
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;
