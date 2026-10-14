@@ -114,18 +114,18 @@ export const messages = {
     services: [
       {
         number: "01",
-        title: "Websites & WordPress",
-        text: "New websites, redesigns, and WordPress projects that help businesses and organizations share their work and keep content up to date.",
+        title: "Development",
+        text: "Technical guidance, custom applications, integrations, and digital workflows built around your organization and the people who use your tools.",
       },
       {
         number: "02",
-        title: "Custom applications",
-        text: "Applications, internal tools, learning systems, and integrations built around the way your team works.",
+        title: "Hosting & infrastructure",
+        text: "Hosting and infrastructure on systems we operate, with a plan for how your applications will run and be maintained.",
       },
       {
         number: "03",
-        title: "Nonprofit projects",
-        text: "Websites and practical digital tools for nonprofits, with an approach that respects your mission, your team's capacity, and your budget.",
+        title: "Internal tools & learning systems",
+        text: "Tools for your team's day-to-day work, including learning management systems and software that supports your operations.",
       },
     ],
     steps: [
@@ -281,18 +281,18 @@ export const messages = {
     services: [
       {
         number: "01",
-        title: "Sites web et WordPress",
-        text: "Création et refonte de sites web, et projets WordPress pour aider les entreprises et les organisations à présenter leur travail et à tenir leur contenu à jour.",
+        title: "Développement",
+        text: "Des conseils techniques, des applications sur mesure, des intégrations et des processus numériques adaptés à votre organisation et aux personnes qui utilisent vos outils.",
       },
       {
         number: "02",
-        title: "Applications sur mesure",
-        text: "Des applications, des outils internes, des systèmes de formation et des intégrations adaptés au fonctionnement de votre équipe.",
+        title: "Hébergement et infrastructure",
+        text: "De l'hébergement et de l'infrastructure sur des systèmes que nous exploitons, avec un plan pour le fonctionnement et l'entretien de vos applications.",
       },
       {
         number: "03",
-        title: "Projets pour les OBNL",
-        text: "Des sites web et des outils numériques pratiques pour les organismes à but non lucratif, dans le respect de votre mission, de la capacité de votre équipe et de votre budget.",
+        title: "Outils internes et systèmes de formation",
+        text: "Des outils pour le travail quotidien de votre équipe, dont des systèmes de gestion de l'apprentissage et des logiciels pour soutenir vos activités.",
       },
     ],
     steps: [
