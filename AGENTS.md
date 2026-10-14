@@ -71,7 +71,7 @@ Local development uses SQLite and local uploads. Docker defaults to PostgreSQL a
 | Category | `/category/[slug]` | Posts filtered by category |
 | Tag | `/tag/[slug]` | Posts filtered by tag |
 
-Mission and Process share the `/mission` page (`/fr/mission` in French), along with the ecosystem/infrastructure visual. Services has its own `/services` page (`/fr/services` in French), backed by the localized published `specializations` CMS entry. Keep that entry as the content source and point navigation and homepage service links to the standalone page. Legacy `/process` URLs permanently redirect to Mission, and `/specializations` URLs permanently redirect to Services, in both locales. Keep all Services content and teasers out of Mission; Services remains accessible through the shared navigation.
+Mission and Process share the `/mission` page (`/fr/mission` in French), along with the ecosystem/infrastructure visual. Services has its own `/services` page (`/fr/services` in French), backed by the localized published `services` CMS entry. Query the requested CMS slug directly; do not add Services aliases, legacy redirects, or menu URL rewriting. Both Services translations must use the slug `services`, and the localized `primary` CMS menus must link directly to those pages. Point homepage service links to the standalone page. Legacy `/process` URLs redirect to Mission in both locales. Retained redirects must preserve query parameters, including `_preview`; preview redirects are temporary, not permanent. Keep all Services content and teasers out of Mission; Services remains accessible through the shared navigation.
 
 ## Schema
 

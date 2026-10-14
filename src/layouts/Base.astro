@@ -47,9 +47,7 @@ if (content) {
         ? `/posts/${sibling.slug}`
         : sibling.slug === "home"
           ? "/"
-          : sibling.slug === "specializations"
-            ? "/services"
-            : `/${sibling.slug}`;
+          : `/${sibling.slug}`;
     otherUrl = localePath(path, otherLocale);
   } else {
     otherUrl = localePath("/", otherLocale);
@@ -74,27 +72,13 @@ const titleIncludesSiteName =
 const fullTitle = titleIncludesSiteName ? title : `${title} — ${siteTitle}`;
 const pageDescription =
   description ?? (locale === "fr" ? t.tagline : siteTagline);
-const sourceMenuItems = menuResult.data?.items.length
+const menuItems = menuResult.data?.items.length
   ? menuResult.data.items
   : navigation.map((item, index) => ({
       ...item,
       label: t.nav[index],
       url: link(item.url),
     }));
-// Keep database-owned legacy menu links, but use the canonical public URL.
-const menuItems = sourceMenuItems.map((item) => {
-  const url = new URL(item.url, Astro.url.origin);
-  if (
-    url.origin === Astro.url.origin &&
-    /^\/(fr\/)?specializations\/?$/.test(url.pathname)
-  ) {
-    return {
-      ...item,
-      url: `${url.pathname.replace(/specializations\/?$/, "services")}${url.search}${url.hash}`,
-    };
-  }
-  return item;
-});
 
 // A reverse proxy can expose an internal origin through Astro.url. Use the
 // deployed public origin for canonical, hreflang, and structured-data URLs.

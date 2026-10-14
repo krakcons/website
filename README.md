@@ -31,14 +31,13 @@ Both development and production use published content from their own CMS databas
 | `/about-us`        | About the team                                    |
 | `/mission`         | Mission, approach, and ecosystem visual           |
 | `/process`         | Permanent redirect to `/mission`                  |
-| `/services`        | Services, backed by the `specializations` entry   |
-| `/specializations` | Permanent redirect to `/services`                |
+| `/services`        | Services, backed by the localized CMS entry      |
 | `/projects`        | Client work, internal products, and open source   |
 | `/contact`         | Email contact                                     |
 
 Edit titles, display headings, introductions, and body copy in **Pages**. Navigation comes from the **primary** CMS menu. The shared CTA, contact email, homepage service cards, and short process overview currently live in the Astro components; we can move these into structured CMS fields as the content model becomes real.
 
-Services renders the published **specializations** entry in the request locale at `/services` and `/fr/services`. Keep editing that entry in the CMS; it remains the source of the service heading, summary, and body. Legacy `/specializations` URLs permanently redirect to the localized Services page. Navigation and homepage service links point to this standalone page. Mission contains no Services section or teaser. The ecosystem diagram remains on Mission, and its bilingual interface copy lives in `src/components/Ecosystem.astro` and `src/utils/i18n.ts`; it describes the toolkit, not a uniform architecture for every project.
+Services renders the published **services** entry in the request locale at `/services` and `/fr/services`. Keep editing that entry in the CMS; it remains the source of the service heading, summary, and body. Page URLs follow CMS slugs directly, and header, mobile, and footer links use the localized **primary** CMS menu without URL rewriting. Both Services translations must use the slug **services**, and their menu links must use the corresponding localized URL. Homepage service links point to this standalone page. Mission contains no Services section or teaser. The ecosystem diagram remains on Mission, and its bilingual interface copy lives in `src/components/Ecosystem.astro` and `src/utils/i18n.ts`; it describes the toolkit, not a uniform architecture for every project.
 
 ## Bilingual content and projects
 
