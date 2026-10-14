@@ -12,6 +12,7 @@ import { resolveStarterSiteIdentity } from "../utils/site-identity";
 import { getLocale, localePath, messages } from "../utils/i18n";
 import LanguageSwitcher from "../components/LanguageSwitcher.astro";
 import EmailCopy from "../components/EmailCopy.astro";
+import ArrowIcon from "../components/ArrowIcon.astro";
 
 interface Props {
   title: string;
@@ -221,7 +222,7 @@ const pageCtx = createPublicPageContext({
           <p>{t.contactText}</p>
         </div>
         <a class="button button-light" href={link("/contact")}>
-          {t.contactLink} <span aria-hidden="true">↗</span>
+          {t.contactLink} <ArrowIcon direction="up-right" />
         </a>
       </div>
     </section>

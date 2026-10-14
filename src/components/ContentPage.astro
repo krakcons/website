@@ -2,6 +2,7 @@
 import { getSeoMeta, getSiteSettingsWithCacheHint } from "emdash";
 import { PortableText } from "emdash/ui";
 import Base from "../layouts/Base.astro";
+import ArrowIcon from "./ArrowIcon.astro";
 import EmailCopy from "./EmailCopy.astro";
 import ContactForm from "./ContactForm.astro";
 import Ecosystem from "./Ecosystem.astro";
@@ -85,7 +86,7 @@ const seo = page
       <p class="eyebrow">404</p>
       <h1>{t.notFoundHeading}</h1>
       <a class="button" href={link("/")}>
-        {t.backHome} <span aria-hidden="true">→</span>
+        {t.backHome} <ArrowIcon />
       </a>
     </section>
   )}

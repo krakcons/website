@@ -2,6 +2,7 @@
 import { getEmDashCollection } from "emdash";
 import { Image, PortableText } from "emdash/ui";
 import Base from "../layouts/Base.astro";
+import ArrowIcon from "./ArrowIcon.astro";
 import { projectGroups, safeProjectUrl } from "../utils/projects";
 import { resolveLogo } from "../utils/logos";
 import type { loadCompanyPage } from "../utils/company-page";
@@ -182,7 +183,7 @@ projects.sort(
                             {new URL(url).hostname === "apps.apple.com"
                               ? t.appStore
                               : t.explore}{" "}
-                            <span aria-hidden="true">→</span>
+                            <ArrowIcon />
                             <span class="sr-only"> ({t.newTab})</span>
                           </a>
                         )}
@@ -193,7 +194,7 @@ projects.sort(
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            {t.github} <span aria-hidden="true">→</span>
+                            {t.github} <ArrowIcon />
                             <span class="sr-only"> ({t.newTab})</span>
                           </a>
                         )}
@@ -207,7 +208,7 @@ projects.sort(
                 <h3>{t.emptyHeading}</h3>
                 <p>{t.emptyText}</p>
                 <a class="text-link" href={link("/contact")}>
-                  {t.contactLink} <span aria-hidden="true">→</span>
+                  {t.contactLink} <ArrowIcon />
                 </a>
               </div>
             )}

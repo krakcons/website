@@ -8,6 +8,7 @@ interface Props {
 import { getLocale, localePath, messages } from "../utils/i18n";
 import { projectGroups } from "../utils/projects";
 import WorkedWith from "./WorkedWith.astro";
+import ArrowIcon from "./ArrowIcon.astro";
 
 const locale = getLocale(Astro.currentLocale);
 const t = messages[locale];
@@ -34,10 +35,10 @@ const showSite = Boolean(data);
           </p>
           <div class="actions">
             <a class="button" href={link("/contact")}>
-              {t.talk} <span aria-hidden="true">↗</span>
+              {t.talk} <ArrowIcon direction="up-right" />
             </a>
             <a class="text-link" href={link("/about-us")}>
-              {t.meet} <span aria-hidden="true">→</span>
+              {t.meet} <ArrowIcon />
             </a>
           </div>
         </div>
@@ -62,7 +63,7 @@ const showSite = Boolean(data);
               <PortableText value={home?.data.content ?? []} />
             </div>
             <a class="text-link" href={link("/mission")}>
-              {t.missionLink} <span aria-hidden="true">→</span>
+              {t.missionLink} <ArrowIcon />
             </a>
           </div>
         </div>
@@ -74,7 +75,7 @@ const showSite = Boolean(data);
             <h2 class="multiline">{t.servicesHeading}</h2>
           </div>
           <a class="text-link" href={link("/services")}>
-            {t.servicesLink} <span aria-hidden="true">→</span>
+            {t.servicesLink} <ArrowIcon />
           </a>
         </div>
         <div class="services-grid">
@@ -83,9 +84,7 @@ const showSite = Boolean(data);
               <span class="card-number">{service.number}</span>
               <h3>{service.title}</h3>
               <p>{service.text}</p>
-              <span class="card-arrow" aria-hidden="true">
-                ↗
-              </span>
+              <ArrowIcon class="card-arrow" direction="up-right" />
             </a>
           ))}
         </div>
@@ -98,7 +97,7 @@ const showSite = Boolean(data);
               <h2>{t.workHeading}</h2>
             </div>
             <a class="text-link" href={link("/mission")}>
-              {t.processLink} <span aria-hidden="true">→</span>
+              {t.processLink} <ArrowIcon />
             </a>
           </div>
           <ol class="process-grid">
@@ -119,7 +118,7 @@ const showSite = Boolean(data);
             <h2 class="multiline">{t.ecosystemHeading}</h2>
           </div>
           <a class="text-link" href={link("/projects")}>
-            {t.projectsLink} <span aria-hidden="true">→</span>
+            {t.projectsLink} <ArrowIcon />
           </a>
         </div>
         <div class="ecosystem-grid">
@@ -132,7 +131,7 @@ const showSite = Boolean(data);
               <h3>{group.title}</h3>
               <p>{group.teaser}</p>
               <span class="text-link">
-                {group.link} <span aria-hidden="true">→</span>
+                {group.link} <ArrowIcon />
               </span>
             </a>
           ))}
