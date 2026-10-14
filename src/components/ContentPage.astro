@@ -21,6 +21,15 @@ const settingsResult = await getSiteSettingsWithCacheHint();
 if (Astro.cache?.enabled) Astro.cache.set(settingsResult.cacheHint);
 const settings = settingsResult.data;
 const body = page?.data.content ?? [];
+const serviceSectionStarts =
+  slug === "services"
+    ? body.flatMap((block, index) =>
+        block._type === "block" && block.style === "h2" ? [index] : [],
+      )
+    : [];
+const serviceSections = serviceSectionStarts.map((start, index) =>
+  body.slice(start, serviceSectionStarts[index + 1]),
+);
 const approachIndex =
   slug === "mission"
     ? body.findIndex(
@@ -104,6 +113,15 @@ const seo = page
                   <PortableText value={body.slice(approachIndex + 1)} />
                 </section>
               </>
+            ) : serviceSections.length > 0 ? (
+              <>
+                <PortableText value={body.slice(0, serviceSectionStarts[0])} />
+                {serviceSections.map((section) => (
+                  <section class="services-section">
+                    <PortableText value={section} />
+                  </section>
+                ))}
+              </>
             ) : (
               <PortableText value={body} />
             )}
@@ -125,6 +143,14 @@ const seo = page
 </Base>
 
 <style>
+  .services-section + .services-section {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .services-section > :global(h2:first-child) {
+    margin-top: 0;
+  }
   .mission-approach {
     scroll-margin-top: 2rem;
     margin-top: 3.5rem;
@@ -137,6 +163,10 @@ const seo = page
     margin-bottom: 1.25rem;
   }
   @media (max-width: 760px) {
+    .services-section + .services-section {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+    }
     .mission-approach {
       margin-top: 2.5rem;
       padding-top: 2rem;
