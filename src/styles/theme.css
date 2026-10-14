@@ -690,6 +690,7 @@ nav a[aria-current="page"] {
   padding-block: 65px 95px;
 }
 .prose {
+  --emdash-break-color: var(--line);
   max-width: 740px;
   color: var(--muted);
   font-size: 1.05rem;
@@ -701,6 +702,11 @@ nav a[aria-current="page"] {
 }
 .prose h2:first-child {
   margin-top: 0;
+}
+.prose h3 {
+  color: var(--ink);
+  font-size: 1.3rem;
+  margin-block: 1.75rem 0.75rem;
 }
 .prose a {
   text-decoration: underline;

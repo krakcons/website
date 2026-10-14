@@ -42,6 +42,7 @@ This template ships with `.mcp.json`, `.cursor/mcp.json`, and `.vscode/mcp.json`
 - `entry.id` is the slug (for URLs). `entry.data.id` is the database ULID (for API calls like `getEntryTerms`).
 - When Astro's cache is enabled, pass content-query hints to `Astro.cache.set(cacheHint)`. Use the `WithCacheHint` variants for site settings, menus, taxonomies, and widget areas rendered by cached routes.
 - Taxonomy names in queries must match the CMS taxonomy name exactly (e.g., `"category"` not `"categories"`).
+- CMS body structure belongs in content: render Portable Text intact, using native headings and break/divider blocks. Do not split bodies by heading text or inject page-specific section dividers. Keep heading and divider styling shared in `src/styles/theme.css`.
 
 ## This Template
 
