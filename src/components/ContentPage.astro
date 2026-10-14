@@ -5,7 +5,6 @@ import Base from "../layouts/Base.astro";
 import EmailCopy from "./EmailCopy.astro";
 import ContactForm from "./ContactForm.astro";
 import Ecosystem from "./Ecosystem.astro";
-import { loadCompanyPage as loadPage } from "../utils/company-page";
 import type { loadCompanyPage } from "../utils/company-page";
 interface Props {
   pageResult: Awaited<ReturnType<typeof loadCompanyPage>>;
@@ -22,13 +21,6 @@ const settingsResult = await getSiteSettingsWithCacheHint();
 if (Astro.cache?.enabled) Astro.cache.set(settingsResult.cacheHint);
 const settings = settingsResult.data;
 const body = page?.data.content ?? [];
-const servicesResult =
-  slug === "mission" && data
-    ? await loadPage("specializations", locale)
-    : undefined;
-if (Astro.cache?.enabled && servicesResult)
-  Astro.cache.set(servicesResult.cacheHint);
-const services = servicesResult?.entry;
 const approachIndex =
   slug === "mission"
     ? body.findIndex(
@@ -54,7 +46,9 @@ const seo = page
   title={seo?.title ?? data?.title ?? t.notFound}
   description={seo?.description ?? data?.summary}
   canonical={seo?.canonical}
-  content={page ? { collection: "pages", id: page.data.id, slug } : undefined}
+  content={
+    page ? { collection: "pages", id: page.data.id, slug: page.id } : undefined
+  }
 >
   {data ? (
     <>
@@ -77,9 +71,6 @@ const seo = page
                 {t.processLink} <span aria-hidden="true">↓</span>
               </a>
             )}
-            <a href="#services">
-              {t.servicesLabel} <span aria-hidden="true">↓</span>
-            </a>
             <a href="#ecosystem">
               {t.infrastructure.label} <span aria-hidden="true">↓</span>
             </a>
@@ -120,41 +111,7 @@ const seo = page
         )}
         {slug === "contact" && <ContactForm locale={locale} />}
       </section>
-      {slug === "mission" && (
-        <>
-          <section
-            class="container mission-services"
-            id="services"
-            aria-labelledby="services-heading"
-          >
-            <p class="eyebrow">{t.servicesLabel}</p>
-            <h2 id="services-heading" {...services?.edit.heading}>
-              {services?.data.heading ?? t.servicesHeading}
-            </h2>
-            {services?.data.summary && (
-              <p class="lead" {...services.edit.summary}>
-                {services.data.summary}
-              </p>
-            )}
-            {services ? (
-              <div class="prose" {...services.edit.content}>
-                <PortableText value={services.data.content ?? []} />
-              </div>
-            ) : (
-              <div class="services-grid">
-                {t.services.map((service) => (
-                  <article class="service-card">
-                    <span class="card-number">{service.number}</span>
-                    <h3>{service.title}</h3>
-                    <p>{service.text}</p>
-                  </article>
-                ))}
-              </div>
-            )}
-          </section>
-          <Ecosystem locale={locale} />
-        </>
-      )}
+      {slug === "mission" && <Ecosystem locale={locale} />}
     </>
   ) : (
     <section class="container page-hero">
@@ -168,18 +125,6 @@ const seo = page
 </Base>
 
 <style>
-  .mission-services {
-    padding-block: 3rem 4rem;
-    border-top: 1px solid var(--line);
-    scroll-margin-top: 2rem;
-  }
-  .mission-services > h2 {
-    margin-bottom: 1.5rem;
-    white-space: pre-line;
-  }
-  .mission-services > .lead {
-    max-width: 760px;
-  }
   .mission-approach {
     scroll-margin-top: 2rem;
     margin-top: 3.5rem;

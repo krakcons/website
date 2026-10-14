@@ -2,7 +2,8 @@ import { getEmDashEntry } from "emdash";
 import type { Locale } from "./i18n";
 
 export const loadCompanyPage = async (slug: string, locale: Locale) => {
-  const result = await getEmDashEntry("pages", slug, { locale });
+  const contentSlug = slug === "services" ? "specializations" : slug;
+  const result = await getEmDashEntry("pages", contentSlug, { locale });
   // Never silently serve English copy as a French production page.
   const entry =
     result.fallbackLocale && result.fallbackLocale !== locale

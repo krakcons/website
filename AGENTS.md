@@ -47,7 +47,7 @@ This template ships with `.mcp.json`, `.cursor/mcp.json`, and `.vscode/mcp.json`
 
 A general-purpose starting point with posts, pages, categories, and tags. Less opinionated than the themed templates -- a base for sites that want to define their own design.
 
-This project has a green/cream responsive company-site design in `src/styles/theme.css`, imported by `Base.astro`. Its positioning is Canadian-first digital solutions for businesses and organizations. Nonprofit support and discounts are a secondary point, not an exclusive target market. Keep changes consistent with this design.
+This project has a green/cream responsive company-site design in `src/styles/theme.css`, imported by `Base.astro`. Its positioning is practical digital solutions for businesses and organizations, with a proudly Canadian identity and no Canadian-only client restriction. Keep the Canadian badge, but avoid "Canadian-first" positioning, geography-qualified audience descriptions, and claims that Canadian clients receive priority. Mention Canadian infrastructure only where its location is confirmed; do not imply mandatory Canadian data residency. Prefer removing repetitive copy to adding geographic disclaimers. Nonprofit support and discounts are a secondary point, not an exclusive target market. Keep changes consistent with this design.
 
 The primary catchphrase is "Your mission. Our expertise." ("Votre mission. Notre expertise."). The supporting catchphrase is "Where good ideas become action" ("Là où les bonnes idées deviennent action"). Prioritize these in homepage messaging while keeping the audience inclusive of businesses and nonprofits.
 
@@ -70,7 +70,7 @@ Local development uses SQLite and local uploads. Docker defaults to PostgreSQL a
 | Category | `/category/[slug]` | Posts filtered by category |
 | Tag | `/tag/[slug]` | Posts filtered by tag |
 
-Mission, Process, and Services share the `/mission` page (`/fr/mission` in French), along with the ecosystem/infrastructure visual. Services still reads the localized published `specializations` CMS entry, rendered within Mission at `#services`; preserve that entry as the content source. Legacy `/process` URLs permanently redirect to Mission, and `/specializations` URLs redirect to Mission's `#services` section, in both locales. Keep navigation and homepage links pointed at the merged page.
+Mission and Process share the `/mission` page (`/fr/mission` in French), along with the ecosystem/infrastructure visual. Services has its own `/services` page (`/fr/services` in French), backed by the localized published `specializations` CMS entry. Keep that entry as the content source and point navigation and homepage service links to the standalone page. Legacy `/process` URLs permanently redirect to Mission, and `/specializations` URLs permanently redirect to Services, in both locales. Keep all Services content and teasers out of Mission; Services remains accessible through the shared navigation.
 
 ## Schema
 

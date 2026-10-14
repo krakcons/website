@@ -47,7 +47,9 @@ if (content) {
         ? `/posts/${sibling.slug}`
         : sibling.slug === "home"
           ? "/"
-          : `/${sibling.slug}`;
+          : sibling.slug === "specializations"
+            ? "/services"
+            : `/${sibling.slug}`;
     otherUrl = localePath(path, otherLocale);
   } else {
     otherUrl = localePath("/", otherLocale);
@@ -79,10 +81,19 @@ const sourceMenuItems = menuResult.data?.items.length
       label: t.nav[index],
       url: link(item.url),
     }));
-// Services now lives on Mission; retain database-owned menus without a CMS write.
-const menuItems = sourceMenuItems.filter((item) => {
-  const pathname = new URL(item.url, Astro.url.origin).pathname;
-  return !/^\/(fr\/)?specializations\/?$/.test(pathname);
+// Keep database-owned legacy menu links, but use the canonical public URL.
+const menuItems = sourceMenuItems.map((item) => {
+  const url = new URL(item.url, Astro.url.origin);
+  if (
+    url.origin === Astro.url.origin &&
+    /^\/(fr\/)?specializations\/?$/.test(url.pathname)
+  ) {
+    return {
+      ...item,
+      url: `${url.pathname.replace(/specializations\/?$/, "services")}${url.search}${url.hash}`,
+    };
+  }
+  return item;
 });
 
 // A reverse proxy can expose an internal origin through Astro.url. Use the

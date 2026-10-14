@@ -79,7 +79,7 @@ export const messages = {
     emptyText: "Talk to us about the digital tools your organization needs.",
     explore: "Explore",
     newTab: "opens in a new tab",
-    nav: ["About us", "Mission", "Projects", "Contact"],
+    nav: ["About us", "Mission", "Services", "Projects", "Contact"],
     infrastructure: {
       label: "Our ecosystem",
       heading: "The foundations behind the work.",
@@ -245,7 +245,7 @@ export const messages = {
       "Parlons des outils numériques dont votre organisation a besoin.",
     explore: "Découvrir",
     newTab: "s'ouvre dans un nouvel onglet",
-    nav: ["À propos", "Mission", "Projets", "Contact"],
+    nav: ["À propos", "Mission", "Services", "Projets", "Contact"],
     infrastructure: {
       label: "Notre écosystème",
       heading: "Les fondations de nos projets.",

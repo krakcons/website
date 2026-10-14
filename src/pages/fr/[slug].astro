@@ -4,7 +4,7 @@ import { loadCompanyPage } from "../../utils/company-page";
 if (Astro.params.slug === "home") return Astro.redirect("/fr/", 301);
 if (Astro.params.slug === "process") return Astro.redirect("/fr/mission", 301);
 if (Astro.params.slug === "specializations")
-  return Astro.redirect("/fr/mission#services", 301);
+  return Astro.redirect("/fr/services", 301);
 const pageResult = await loadCompanyPage(Astro.params.slug ?? "", "fr");
 if (Astro.cache?.enabled) Astro.cache.set(pageResult.cacheHint);
 if (!pageResult.data) Astro.response.status = 404;

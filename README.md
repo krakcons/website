@@ -1,6 +1,6 @@
 # website
 
-KRAK Consultants' bilingual company website, built with Astro and EmDash. Canadian-first software consulting, hosting, and digital solutions for businesses and organizations, with nonprofit support and discounts available.
+KRAK Consultants' bilingual company website, built with Astro and EmDash. Software consulting, hosting, and digital solutions for businesses and organizations, with a proudly Canadian identity and nonprofit support and discounts available.
 
 ## Run locally
 
@@ -29,15 +29,16 @@ Both development and production use published content from their own CMS databas
 | ------------------ | ------------------------------------------------- |
 | `/`                | Homepage, backed by the `home` entry in Pages     |
 | `/about-us`        | About the team                                    |
-| `/mission`         | Mission, approach, services, and ecosystem visual |
+| `/mission`         | Mission, approach, and ecosystem visual           |
 | `/process`         | Permanent redirect to `/mission`                  |
-| `/specializations` | Permanent redirect to `/mission#services`         |
+| `/services`        | Services, backed by the `specializations` entry   |
+| `/specializations` | Permanent redirect to `/services`                |
 | `/projects`        | Client work, internal products, and open source   |
 | `/contact`         | Email contact                                     |
 
 Edit titles, display headings, introductions, and body copy in **Pages**. Navigation comes from the **primary** CMS menu. The shared CTA, contact email, homepage service cards, and short process overview currently live in the Astro components; we can move these into structured CMS fields as the content model becomes real.
 
-Mission also renders the published **specializations** entry in the request locale as its Services section. Keep editing that entry in the CMS; it remains the source of the service heading, summary, and body. Its old public URLs redirect to the localized Mission page's `#services` anchor. The frontend omits legacy Services menu links without changing stored CMS menus. The ecosystem diagram and its bilingual interface copy live in `src/components/Ecosystem.astro` and `src/utils/i18n.ts`; it describes the toolkit, not a uniform architecture for every project.
+Services renders the published **specializations** entry in the request locale at `/services` and `/fr/services`. Keep editing that entry in the CMS; it remains the source of the service heading, summary, and body. Legacy `/specializations` URLs permanently redirect to the localized Services page. Navigation and homepage service links point to this standalone page. Mission contains no Services section or teaser. The ecosystem diagram remains on Mission, and its bilingual interface copy lives in `src/components/Ecosystem.astro` and `src/utils/i18n.ts`; it describes the toolkit, not a uniform architecture for every project.
 
 ## Bilingual content and projects
 
