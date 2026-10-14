@@ -10,20 +10,14 @@ import ArrowIcon from "../ArrowIcon.astro";
 type Props = BlockComponentProps<
   PageServicesSectionBlock | PageProjectsSectionBlock
 > & { appearance?: "connected" | "separate" };
-const { value, blockKey, appearance = "separate" } = Astro.props;
+const { value, blockKey, appearance = "connected" } = Astro.props;
 const connected = appearance === "connected";
 const cards = value.cards ?? [];
 const headingId = `cards-heading-${blockKey}`;
 ---
 
 {cards.length > 0 && (
-  <section
-    class:list={[
-      "container section-space",
-      { "ecosystem-section": !connected },
-    ]}
-    aria-labelledby={headingId}
-  >
+  <section class="container section-space" aria-labelledby={headingId}>
     <div class="section-heading">
       <div>
         {value.eyebrow && <p class="eyebrow">{value.eyebrow}</p>}
@@ -52,7 +46,7 @@ const headingId = `cards-heading-${blockKey}`;
             {card.summary && <p>{card.summary}</p>}
             {card.url && card.link_label && (
               <span class="text-link">
-                {card.link_label} <ArrowIcon />
+                {card.link_label} {!connected && <ArrowIcon />}
               </span>
             )}
             {card.url && connected && (

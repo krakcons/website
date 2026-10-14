@@ -70,12 +70,7 @@ const showSite = Boolean(data);
       </section>
       <div {...home?.edit.services_section}>
         {data?.services_section?.map((value, index) => (
-          <Cards
-            value={value}
-            index={index}
-            blockKey={value._key}
-            appearance="connected"
-          />
+          <Cards value={value} index={index} blockKey={value._key} />
         ))}
       </div>
       <section class="process-section">
