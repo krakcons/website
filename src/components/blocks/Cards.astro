@@ -4,11 +4,13 @@ import type { BlockComponentProps } from "emdash/ui";
 import type {
   PageServicesSectionBlock,
   PageProjectsSectionBlock,
+  PageApproachSectionBlock,
 } from "../../../emdash-env";
 import ArrowIcon from "../ArrowIcon.astro";
+import CardIcon from "../CardIcon.astro";
 
 type Props = BlockComponentProps<
-  PageServicesSectionBlock | PageProjectsSectionBlock
+  PageServicesSectionBlock | PageProjectsSectionBlock | PageApproachSectionBlock
 > & { appearance?: "connected" | "separate" };
 const { value, blockKey, appearance = "connected" } = Astro.props;
 const connected = appearance === "connected";
@@ -39,9 +41,13 @@ const headingId = `cards-heading-${blockKey}`;
             class={connected ? "service-card" : "ecosystem-card"}
             href={card.url ? sanitizeHref(card.url) : undefined}
           >
-            <span class="card-number">
-              {String(index + 1).padStart(2, "0")}
-            </span>
+            {card.icon ? (
+              <CardIcon name={card.icon} />
+            ) : (
+              <span class="card-number">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            )}
             <h3>{card.title}</h3>
             {card.summary && <p>{card.summary}</p>}
             {card.url && card.link_label && (

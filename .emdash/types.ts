@@ -29,6 +29,7 @@ export interface Page {
   content?: PortableTextBlock[];
   services_section?: unknown[];
   projects_section?: unknown[];
+  approach_section?: unknown[];
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;

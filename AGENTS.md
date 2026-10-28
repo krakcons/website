@@ -43,7 +43,7 @@ This template ships with `.mcp.json`, `.cursor/mcp.json`, and `.vscode/mcp.json`
 - When Astro's cache is enabled, pass content-query hints to `Astro.cache.set(cacheHint)`. Use the `WithCacheHint` variants for site settings, menus, taxonomies, and widget areas rendered by cached routes.
 - Taxonomy names in queries must match the CMS taxonomy name exactly (e.g., `"category"` not `"categories"`).
 - CMS body structure belongs in content: render Portable Text intact, using native headings and break/divider blocks. Do not split bodies by heading text or inject page-specific section dividers. Keep heading and divider styling shared in `src/styles/theme.css`.
-- Homepage Services and Our projects use one native `cards` block type in the `services_section` and `projects_section` Pages fields. Keep section headings, links, card text, and card order in localized CMS entries, not `src/utils/i18n.ts`. Both slots use `src/components/blocks/Cards.astro`; missing or empty slots render no cards.
+- Homepage Services, Built into the approach, and Our projects use one native `cards` block type in the `services_section`, `approach_section`, and `projects_section` Pages fields. Keep section headings, links, card text, and card order in localized CMS entries, not `src/utils/i18n.ts`. All slots use `src/components/blocks/Cards.astro`; missing or empty slots render no cards. The approach slot uses separate cards between Services and How we work.
 
 ## This Template
 
@@ -72,7 +72,7 @@ Local development uses SQLite and local uploads. Docker defaults to PostgreSQL a
 | Category | `/category/[slug]` | Posts filtered by category |
 | Tag | `/tag/[slug]` | Posts filtered by tag |
 
-Mission and Process share the `/mission` page (`/fr/mission` in French), along with the ecosystem/infrastructure visual. Services has its own `/services` page (`/fr/services` in French), backed by the localized published `services` CMS entry. Query the requested CMS slug directly; do not add Services aliases, legacy redirects, or menu URL rewriting. Both Services translations must use the slug `services`, and the localized `primary` CMS menus must link directly to those pages. Point homepage service links to the standalone page. Legacy `/process` URLs redirect to Mission in both locales. Retained redirects must preserve query parameters, including `_preview`; preview redirects are temporary, not permanent. Keep all Services content and teasers out of Mission; Services remains accessible through the shared navigation.
+Mission and Process share the `/mission` page (`/fr/mission` in French), along with the ecosystem/infrastructure visual. Services and Built into the approach live on the homepage as CMS-owned Cards sections. Retired `/services` URLs redirect to the localized homepage's `#services` section; preserve the CMS entries rather than deleting them. Remove Services from both localized `primary` CMS menus and point homepage service links to localized homepage anchors or Contact. Legacy `/process` URLs redirect to Mission in both locales. Retained redirects must preserve query parameters, including `_preview`; preview redirects are temporary, not permanent. Keep all Services content and teasers out of Mission.
 
 ## Schema
 

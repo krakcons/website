@@ -18,6 +18,12 @@ export const cardsBlockType = {
         maxItems: 12,
         subFields: [
           { slug: "title", label: "Title", type: "string", required: true },
+          {
+            slug: "icon",
+            label:
+              "Icon (shield, accessibility, languages, activity, sparkles)",
+            type: "string",
+          },
           { slug: "summary", label: "Summary", type: "text" },
           { slug: "url", label: "Link URL", type: "url" },
           { slug: "link_label", label: "Link label", type: "string" },
@@ -27,9 +33,10 @@ export const cardsBlockType = {
   ],
 };
 
-// Two homepage slots preserve the existing layout; both use the same Cards type.
+// Homepage slots share the same Cards type and keep their content independent.
 export const cardsPageFields = [
   { slug: "services_section", label: "Services section" },
+  { slug: "approach_section", label: "Built into the approach section" },
   { slug: "projects_section", label: "Projects section" },
 ].map((field) => ({
   ...field,

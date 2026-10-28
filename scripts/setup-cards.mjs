@@ -13,9 +13,9 @@ const auth = await fetch(new URL("/_emdash/api/auth/dev-bypass", base), {
 const cookie = auth.headers.get("set-cookie")?.split(";")[0];
 if (!cookie) throw new Error("Start the local Astro development server first.");
 
-async function call(path, input) {
+async function call(path, input, method = input ? "POST" : "GET") {
   const response = await fetch(new URL(path, base), {
-    method: input ? "POST" : "GET",
+    method,
     headers: {
       "Content-Type": "application/json",
       "X-EmDash-Request": "1",
@@ -43,18 +43,51 @@ if (existingType) {
       const actual = fields?.find((field) => field.slug === expected.slug);
       return (
         actual?.type === expected.type &&
-        (expected.validation?.subFields ?? []).every((subField) =>
-          actual.validation?.subFields?.some(
-            (field) =>
-              field.slug === subField.slug && field.type === subField.type,
-          ),
+        (expected.validation?.subFields ?? []).every(
+          (subField) =>
+            actual.validation?.subFields?.some(
+              (field) =>
+                field.slug === subField.slug && field.type === subField.type,
+            ) ||
+            (subField.slug === "icon" &&
+              !actual.validation?.subFields?.some(
+                (field) => field.slug === "icon",
+              )),
         )
       );
     })
   ) {
     throw new Error("Cards has an incompatible schema; left unchanged.");
   }
-  console.log("Cards type already exists; left unchanged.");
+  const cards = fields.find((field) => field.slug === "cards");
+  if (!cards.validation.subFields.some((field) => field.slug === "icon")) {
+    const icon = cardsBlockType.fields
+      .find((field) => field.slug === "cards")
+      .validation.subFields.find((field) => field.slug === "icon");
+    await call(
+      "/_emdash/api/schema/block-types/cards",
+      {
+        expectedFingerprint: existingType.versions.find(
+          (version) => version.version === existingType.currentVersion,
+        ).fingerprint,
+        fields: fields.map((field) =>
+          field.slug === "cards"
+            ? {
+                ...field,
+                validation: {
+                  ...field.validation,
+                  subFields: [...field.validation.subFields, icon],
+                },
+              }
+            : field,
+        ),
+      },
+      "PUT",
+    );
+    console.log("Added optional card icons; existing content unchanged.");
+  } else {
+    console.log("Cards type already exists; left unchanged.");
+  }
 } else {
   await call("/_emdash/api/schema/block-types", cardsBlockType);
   console.log("Created Cards block type.");

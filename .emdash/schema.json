@@ -110,6 +110,21 @@
             "minItems": 0,
             "maxItems": 1
           }
+        },
+        {
+          "slug": "approach_section",
+          "label": "Built into the approach section",
+          "type": "blocks",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "allowedTypes": [
+              "cards"
+            ],
+            "retiredTypes": [],
+            "minItems": 0,
+            "maxItems": 1
+          }
         }
       ]
     },
@@ -234,5 +249,5 @@
       ]
     }
   ],
-  "version": "65d30662e865bcd1"
+  "version": "7bec0621d911a5dc"
 }

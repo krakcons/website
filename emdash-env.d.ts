@@ -29,7 +29,7 @@ export interface PageServicesSectionCardsV1Block {
   "heading": string;
   "link_label"?: string | null;
   "link_url"?: string | null;
-  "cards"?: { "title": string; "summary"?: string | null; "url"?: string | null; "link_label"?: string | null }[] | null;
+  "cards"?: { "title": string; "summary"?: string | null; "url"?: string | null; "link_label"?: string | null; "icon"?: string | null }[] | null;
 }
 
 export type PageServicesSectionCardsBlock = PageServicesSectionCardsV1Block;
@@ -44,12 +44,27 @@ export interface PageProjectsSectionCardsV1Block {
   "heading": string;
   "link_label"?: string | null;
   "link_url"?: string | null;
-  "cards"?: { "title": string; "summary"?: string | null; "url"?: string | null; "link_label"?: string | null }[] | null;
+  "cards"?: { "title": string; "summary"?: string | null; "url"?: string | null; "link_label"?: string | null; "icon"?: string | null }[] | null;
 }
 
 export type PageProjectsSectionCardsBlock = PageProjectsSectionCardsV1Block;
 
 export type PageProjectsSectionBlock = PageProjectsSectionCardsBlock;
+
+export interface PageApproachSectionCardsV1Block {
+  _type: "cards";
+  _version: 1;
+  _key: string;
+  "eyebrow"?: string | null;
+  "heading": string;
+  "link_label"?: string | null;
+  "link_url"?: string | null;
+  "cards"?: { "title": string; "summary"?: string | null; "url"?: string | null; "link_label"?: string | null; "icon"?: string | null }[] | null;
+}
+
+export type PageApproachSectionCardsBlock = PageApproachSectionCardsV1Block;
+
+export type PageApproachSectionBlock = PageApproachSectionCardsBlock;
 
 export interface Page {
   id: string;
@@ -61,6 +76,7 @@ export interface Page {
   content?: PortableTextBlock[];
   services_section?: PageServicesSectionBlock[];
   projects_section?: PageProjectsSectionBlock[];
+  approach_section?: PageApproachSectionBlock[];
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;

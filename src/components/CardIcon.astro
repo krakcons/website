@@ -1,0 +1,43 @@
+---
+interface Props {
+  name?: string;
+}
+
+// Only known, decorative icons are rendered; CMS values never become SVG markup.
+const icons = [
+  {
+    name: "shield",
+    path: "M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Zm-4 9 3 3 5-6",
+  },
+  {
+    name: "accessibility",
+    path: "M12 3a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM4 8l8 2 8-2M12 10v5m0 0-5 6m5-6 5 6",
+  },
+  {
+    name: "languages",
+    path: "M3 5h12M9 3v2m4 0c-1 6-4 9-9 12m1-9c2 4 5 7 9 9m0 4 4-10 4 10m-6-4h4",
+  },
+  { name: "activity", path: "M3 12h4l3-8 4 16 3-8h4" },
+  {
+    name: "sparkles",
+    path: "m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3ZM20 2v4m-2-2h4",
+  },
+];
+const icon = icons.find((icon) => icon.name === Astro.props.name);
+---
+
+{icon && (
+  <svg
+    class="card-icon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d={icon.path} />
+  </svg>
+)}
